@@ -13,11 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 /** Register Route */
 Route::get('/register', function () {
     return view('backend/register');
+});
+
+Route::get('/admin', function () {
+    return view('backend/pages/home');
+});
+
+Route::get('/project-detail', function () {
+    return view('backend/pages/project-detail');
 });
