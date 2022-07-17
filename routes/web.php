@@ -17,15 +17,20 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-/** Register Route */
-Route::get('/register', function () {
-    return view('backend/register');
-});
-
 Route::get('/admin', function () {
     return view('backend/pages/home');
-});
+})->name('admin');
+
+/** Register Route */
+Route::get('/register', function () {
+    return view('backend/auth/pages/register');
+})->name('register');
+Route::get('/login', function () {
+    return view('backend/auth/pages/login');
+})->name('login');
+
+
 
 Route::get('/project-detail', function () {
     return view('backend/pages/project-detail');
-});
+})->name('project-detail');

@@ -384,7 +384,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/examples/project-detail.html" class="nav-link">
+                <a href="{{ route('project-detail') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Project Detail</p>
                 </a>
@@ -428,15 +428,15 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="pages/examples/login.html" class="nav-link">
+                    <a href="{{ route('login') }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Login v1</p>
+                      <p>Login</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="pages/examples/register.html" class="nav-link">
+                    <a href="{{ route('register') }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Register v1</p>
+                      <p>Register</p>
                     </a>
                   </li>
                   <li class="nav-item">
