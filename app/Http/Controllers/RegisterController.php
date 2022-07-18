@@ -11,6 +11,8 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         // dd($request->input());
+
+        //object create
         $reg = new Register();
 
         $reg->full_name = $request->input('full_name');
