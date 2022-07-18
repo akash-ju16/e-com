@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,9 @@ Route::get('/admin', function () {
 })->name('admin');
 
 /** Register Route */
-Route::get('/register', function () {
-    return view('backend/auth/pages/register');
-})->name('register');
+Route::get('/register', function () { return view('backend/auth/pages/register'); })->name('register');
+Route::post('/register', [RegisterController::class, 'store'])->name('register');
+
 Route::get('/login', function () {
     return view('backend/auth/pages/login');
 })->name('login');
