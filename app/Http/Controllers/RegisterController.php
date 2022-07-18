@@ -14,11 +14,11 @@ class RegisterController extends Controller
         $reg = new Register();
 
         $reg->full_name = $request->input('full_name');
-        $reg->email = $request->input('email');
-        $reg->password = $request->input('password');
+        $reg->email     = $request->input('email');
+        $reg->password  = $request->input('password');
         $reg->confirm_password = $request->input('confirm_password');
-        $reg->user_level = 'editor';
-        $reg->status = 'inactive';
+        $reg->user_level= 'editor';
+        $reg->status    = 'inactive';
 
         $reg->save();
     }

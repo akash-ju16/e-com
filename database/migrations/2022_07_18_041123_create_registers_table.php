@@ -19,7 +19,7 @@ class CreateRegistersTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('confirm_password');
-            $table->string('user_level');
+            $table->string('level');
             $table->string('status');
             $table->timestamps();
         });
