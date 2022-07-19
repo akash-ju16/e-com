@@ -12,7 +12,22 @@ class RegisterController extends Controller
     {
         // dd($request->input());
 
-        //object create
+        //validation
+        $request->validate(
+            [
+            'full_name' => 'required',
+            'email'     => 'required',
+            'password'  => 'required',
+            'confirm_password' => 'required|same:password',
+            ],
+            [ 
+            'name.required' => 'The name field can not be blank value.',
+            'email.required' => 'The :attribute field can not leave blank.'
+            
+            ]
+        );
+
+        //object reletion map(ORM)
         $reg = new Register();
 
         $reg->full_name = $request->input('full_name');

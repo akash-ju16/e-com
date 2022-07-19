@@ -12,22 +12,38 @@
 
       <form action="" method="post">
         @csrf
+
+        <span class="text-danger">
+          @error('full_name')
+            {{$message}}
+          @enderror
+          </span>
         <div class="input-group mb-3">
-          <input type="text" name="full_name" class="form-control" placeholder="Full name">
+          <input type="text" name="full_name" class="form-control" placeholder="Full name" value="{{old('full_name')}}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
+        <span class="text-danger">
+          @error('email')
+            {{$message}}
+          @enderror
+          </span>
         <div class="input-group mb-3">
-          <input type="email" name="email" class="form-control" placeholder="Email">
+          <input type="email" name="email" class="form-control" placeholder="Email" value="{{old('email')}}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
           </div>
         </div>
+        <span class="text-danger">
+          @error('password')
+            {{$message}}
+          @enderror
+          </span>
         <div class="input-group mb-3">
           <input type="password" name="password" class="form-control" placeholder="Password">
           <div class="input-group-append">
@@ -36,6 +52,11 @@
             </div>
           </div>
         </div>
+        <span class="text-danger">
+          @error('confirm_password')
+            {{$message}}
+          @enderror
+          </span>
         <div class="input-group mb-3">
           <input type="password" name="confirm_password" class="form-control" placeholder="Retype password">
           <div class="input-group-append">
