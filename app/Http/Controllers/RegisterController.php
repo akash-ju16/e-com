@@ -4,30 +4,49 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Register;
+use App\Http\Requests\RegistrationRequest;
+//use App\Rules\Uppercase;
 
 class RegisterController extends Controller
 {
-    //register data store
-    public function store(Request $request)
+    //Register Data Store
+    public function store(RegistrationRequest $request)
     {
         // dd($request->input());
 
-        //validation
-        $request->validate(
-            [
-            'full_name' => 'required',
-            'email'     => 'required',
-            'password'  => 'required',
-            'confirm_password' => 'required|same:password',
-            ],
-            [ 
-            'name.required' => 'The name field can not be blank value.',
-            'email.required' => 'The :attribute field can not leave blank.'
-            
-            ]
-        );
+        /**
+         * Validation using validate() method
+         */
 
-        //object reletion map(ORM)
+        // $request->validate(
+        //     [
+        //     'full_name' => ['required', new Uppercase], //custom rule using object
+        //     'email'     => ['required', 
+        //     function($attribute, $value, $fail){ //custom rule using clousure
+        //         if($value === 'a@gmail.com'){
+        //             $fail('This email '.$attribute.' not allow' );
+        //         }
+        //     }],
+        //     'password'  => 'required',
+        //     'confirm_password' => 'required|same:password',
+        //     ],
+        //     [ 
+        //     'full_name.required' => 'The name field can not be blank value.',
+        //     'email.required' => 'The :attribute field can not leave blank.'
+            
+        //     ]
+        // );
+
+        
+        /**
+         * Validation using FormRequest
+         */
+        $request->validated();
+
+        /** 
+         * Data save   
+         * Eloquent object reletion map(ORM)
+        */
         $reg = new Register();
 
         $reg->full_name = $request->input('full_name');
@@ -38,5 +57,8 @@ class RegisterController extends Controller
         $reg->status    = 'inactive';
 
         $reg->save();
+
+        //redirect 
+        return redirect(route('login'));
     }
 }
