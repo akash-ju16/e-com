@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\Uppercase;
+// use App\Rules\Uppercase;
 
 class RegistrationRequest extends FormRequest
 {
@@ -26,7 +26,8 @@ class RegistrationRequest extends FormRequest
     {
         return [
                 
-                'full_name' => ['required', new Uppercase],
+                //'full_name' => ['required', new Uppercase],
+                'full_name' => 'required',
                 'email'     => 'required',
                 'password'  => 'required',
                 'confirm_password' => 'required|same:password',
@@ -36,7 +37,7 @@ class RegistrationRequest extends FormRequest
 
     public function messages(){
         return [
-            'full_name.required' => 'The field cant leave empty .',
+            'full_name.required' => 'The field can\'t leave empty .',
         ];
     }
 

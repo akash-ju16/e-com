@@ -10,7 +10,7 @@
     <div class="card-body register-card-body">
       <p class="login-box-msg">Register a new membership</p>
 
-      <form action="" method="post">
+      <form id="registerForm" action="" method="post">
         @csrf
 
         <span class="text-danger">
@@ -19,7 +19,7 @@
           @enderror
           </span>
         <div class="input-group mb-3">
-          <input type="text" name="full_name" class="form-control" placeholder="Full name" value="{{old('full_name')}}">
+          <input type="text" name="full_name" id="full_name" class="form-control" placeholder="Full name" value="{{old('full_name')}}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -77,7 +77,7 @@
           <!-- /.col -->
           <div class="col-4">
             <input type="submit" name="save" value="Register" class="btn btn-info">
-            <!-- <button type="submit" class="btn btn-primary btn-block">Register</button> -->
+            <!-- <button type="button" class="btn btn-primary btn-block">Register</button> -->
           </div>
           <!-- /.col -->
         </div>
@@ -101,4 +101,35 @@
   </div><!-- /.card -->
 </div>
 <!-- /.register-box -->
+
 @endsection
+
+<!-- @push('js')
+  <script>
+    $(document).ready(function(){
+      alert('Registration');
+    });
+  </script>
+@endpush -->
+@push('js-script')
+<script type="text/javascript">
+    $(document).ready(function(){
+
+      $('#registerForm').validate({
+            rules:{
+                  full_name : {
+                    required : true,
+                    maxlength : 50
+                  }
+              },
+          messages : {
+                full_name : {
+                  required : 'Enter Name Detail',
+                  maxlength : 'Name should not be more than 50 character'
+                },
+            }
+        });
+
+    });
+</script>
+@endpush
