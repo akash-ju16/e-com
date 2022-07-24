@@ -112,23 +112,32 @@
   </script>
 @endpush -->
 @push('js-script')
-<script type="text/javascript">
-    $(document).ready(function(){
 
-      $('#registerForm').validate({
+
+
+<script>
+    $(document).ready(function(){
+    
+
+    if($("#registerForm").length > 0)
+     {
+          $('#registerForm').validate({
             rules:{
-                  full_name : {
-                    required : true,
-                    maxlength : 50
-                  }
-              },
-          messages : {
-                full_name : {
-                  required : 'Enter Name Detail',
-                  maxlength : 'Name should not be more than 50 character'
-                },
+              full_name : {
+                required : true,
+                minlength : 5
+              }
+            },
+            messages : {
+              full_name : {
+                required :  'Enter Name Detail',
+                maxlength : 'Name should not be more than 50 character'
+              }
             }
-        });
+          });
+     } 
+
+
 
     });
 </script>
