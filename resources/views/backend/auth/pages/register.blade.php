@@ -10,7 +10,7 @@
     <div class="card-body register-card-body">
       <p class="login-box-msg">Register a new membership</p>
 
-      <form id="registerForm" action="" method="post">
+      <form id="registerFormValidate" action="" method="post">
         @csrf
 
         <span class="text-danger">
@@ -45,7 +45,7 @@
           @enderror
           </span>
         <div class="input-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="Password">
+          <input type="password" name="password" id="password" class="form-control" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -118,24 +118,55 @@
 <script>
     $(document).ready(function(){
     
-
-    if($("#registerForm").length > 0)
-     {
-          $('#registerForm').validate({
-            rules:{
-              full_name : {
+          $('#registerFormValidate').validate({
+            rules:
+            {
+              full_name : 
+              {
                 required : true,
                 minlength : 5
+              },
+              email: 'required', //note: when use multiple rules then using object. otherwise not using object.
+              password : 
+              {
+                required : true,
+                minlength : 5
+              }, 
+              confirm_password: 
+              {
+                required : true,
+                minlength : 5,
+                equalTo : '#password'
               }
             },
-            messages : {
-              full_name : {
-                required :  'Enter Name Detail',
-                maxlength : 'Name should not be more than 50 character'
+            messages :
+            {
+              full_name : 
+              {
+                required :  'Please enter your full name',
+                minlength : 'Name should be 5 character must'
+              },
+              email: 'please enter a valid email',
+              password : 
+              {
+                required: 'please enter a valid password',
+                minlength : 'password should be 5 characters'
+              },
+              confirm_password: 
+              {
+                required: 'please enter confirm password',
+                minlength : 'confirm_password should be 5 characters',
+                equalTo : 'Please enter same password'
               }
+            },
+            
+            submitHandler:function(form) 
+            {
+                form.submit();
             }
+
           });
-     } 
+     
 
 
 
