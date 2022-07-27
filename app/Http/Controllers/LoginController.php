@@ -30,8 +30,18 @@ class LoginController extends Controller
             //if empty :: redirect with failed message
            return redirect(route('login'))->with('status', 'Login failed, please filled out properly');
         }
-
+        
         //when succes run below code 
+        $req->session()->put('user', $username);
+        //echo $req->session()->get('user');exit; 
+        
         return redirect(route('admin'));
+    }
+
+    public function userLogout(Request $request){
+
+        $request->session()->forget('user');
+
+        return redirect(route('login'));
     }
 }

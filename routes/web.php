@@ -35,6 +35,7 @@ Route::get('/login', function () {
 
 Route::post('/login', [LoginController::class, 'userLogin'])->name('login');
 
+Route::get('/logout', [LoginController::class, 'userLogout'])->name('logout');
 
 Route::get('/project-detail', function () {
     return view('backend/pages/project-detail');
