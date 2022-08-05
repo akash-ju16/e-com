@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Register;
+use Illuminate\Support\Facades\Auth; 
 
 class LoginController extends Controller
 {
-    public function userLogin(Request $req)
+    public function userLoginCustom(Request $req)
     {
         //  dd( $req->input('username'));
 
@@ -36,6 +37,25 @@ class LoginController extends Controller
         //echo $req->session()->get('user');exit; 
         
         return redirect(route('admin'));
+    }
+
+    public function userLogin(Request $request)
+    {
+        // dd(print_r($request));
+        $credential = $request->validate([
+                'username' => ['required', 'email'],
+                'userpass' => ['required']
+        ]);
+
+        if (Auth::attempt(['email'=>$request->input('username'), 'password'=>$request->input('userpass')]))
+        {
+            return "Success";
+        }
+        else
+        {
+            return "Fail";
+        }
+
     }
 
     public function userLogout(Request $request){

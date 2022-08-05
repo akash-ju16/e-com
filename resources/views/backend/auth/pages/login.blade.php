@@ -17,6 +17,12 @@
       </span>
       <form action="" method="post">
         @csrf
+
+        <span class="text-danger">
+          @error('username')
+            {{$message}}
+          @enderror
+          </span>
         <div class="input-group mb-3">
           <input type="email" name="username" class="form-control" placeholder="Email">
           <div class="input-group-append">
@@ -25,6 +31,11 @@
             </div>
           </div>
         </div>
+        <span class="text-danger">
+          @error('userpass')
+            {{$message}}
+          @enderror
+          </span>
         <div class="input-group mb-3">
           <input type="password" name="userpass" class="form-control" placeholder="Password">
           <div class="input-group-append">
