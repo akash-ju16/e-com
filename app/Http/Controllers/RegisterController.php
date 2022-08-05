@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Register;
 use App\Http\Requests\RegistrationRequest;
+use Hash;
 //use App\Rules\Uppercase;
 
 class RegisterController extends Controller
@@ -51,7 +52,7 @@ class RegisterController extends Controller
 
         $reg->full_name = $request->input('full_name');
         $reg->email     = $request->input('email');
-        $reg->password  = $request->input('password');
+        $reg->password  = Hash::make($request->input('password'));
         $reg->confirm_password = $request->input('confirm_password');
         $reg->user_level= 'editor';
         $reg->status    = 'inactive';

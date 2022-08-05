@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'register',
+        'passwords' => 'registers',
     ],
 
     /*
@@ -41,7 +41,7 @@ return [
             'provider' => 'users',
         ],
 
-        'customlogin' => [
+        'register' => [
             'driver' => 'session',
             'provider' => 'registers'
         ]

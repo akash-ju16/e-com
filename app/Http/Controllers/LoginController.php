@@ -47,9 +47,11 @@ class LoginController extends Controller
                 'userpass' => ['required']
         ]);
 
-        if (Auth::attempt(['email'=>$request->input('username'), 'password'=>$request->input('userpass')]))
+        // dd($request->email);
+
+        if (Auth::attempt(['email'=>$request->username, 'password'=>$request->userpass]))
         {
-            return "Success";
+            return redirect(route('admin'));
         }
         else
         {
