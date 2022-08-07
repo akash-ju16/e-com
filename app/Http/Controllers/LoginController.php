@@ -9,15 +9,26 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+
+    /**
+     * function userLoginCustom
+     * this function written as procedural way
+     */
     public function userLoginCustom(Request $req)
     {
         //  dd( $req->input('username'));
 
-        //from user 
+        //validate
+        $req->validate([
+            'username' => ['required','email'],
+            'userpass' => ['required','size:5']
+        ]);
+
+        //from user input
          $username = $req->input('username');
          $password = $req->input('userpass');
 
-        //display play query  using toSql()
+        //display query using toSql()
         // $data = Register::where('email','=', $username)
         //                     ->Where('password', $password)
         //                     ->toSql();
@@ -39,24 +50,35 @@ class LoginController extends Controller
         return redirect(route('admin'));
     }
 
+    /**
+     * function userLogin()
+     * using auth facades 
+     */
+
     public function userLogin(Request $request)
     {
         // dd(print_r($request));
         $credential = $request->validate([
                 'username' => ['required', 'email'],
-                'userpass' => ['required']
+                'userpass' => ['required', 'size:5']
         ]);
 
-        // dd($request->email);
+        // dd($request->username);
 
+        //authentication using auth::attempt()
         if (Auth::attempt(['email'=>$request->username, 'password'=>$request->userpass]))
         {
-            return redirect(route('admin'));
+            $request->session()->regenerate();
+
+            session('')
+
+            return redirect()->intended('admin');
+            // return redirect(route('admin'));
         }
-        else
-        {
-            return "Fail";
-        }
+        
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
 
     }
 

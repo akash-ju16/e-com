@@ -8,7 +8,7 @@
       <a href="{{ route('admin') }}" class="h1"><b>Admin</b></a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg">Sign in</p>
 
       <span class="text-danger">
         @if(session()->has('status'))
