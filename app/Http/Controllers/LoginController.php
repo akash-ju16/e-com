@@ -70,15 +70,16 @@ class LoginController extends Controller
         {
             $request->session()->regenerate();
 
-            session('')
+            $request->session()->put('user', $request->username);
+            $request->session()->put('status_flag', 'session generate and you are loged in now');
 
             return redirect()->intended('admin');
             // return redirect(route('admin'));
         }
         
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+            'username' => 'The provided credentials do not match our records.',
+        ])->onlyInput('username');
 
     }
 

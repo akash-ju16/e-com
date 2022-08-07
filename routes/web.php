@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ use App\Http\Controllers\LoginController;
 
 /** Home Dashboard */
 Route::get('/admin', function () {
-    return view('backend/pages/home');
+    return view('backend/pages/homeview');
 })->name('admin');
 
 /** Register Route */
@@ -40,3 +41,7 @@ Route::get('/logout', [LoginController::class, 'userLogout'])->name('logout');
 Route::get('/project-detail', function () {
     return view('backend/pages/project-detail');
 })->name('project-detail');
+
+//pages 
+Route::get('/category', [SettingsController::class, 'categoryList'])->name('category');
+
