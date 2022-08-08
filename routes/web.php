@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ use App\Http\Controllers\SettingsController;
 
 /** Home Dashboard */
 Route::get('/admin', function () {
-    return view('backend/pages/homeview');
+    return view('backend/pages/view_home');
 })->name('admin');
 
 /** Register Route */
@@ -39,9 +40,11 @@ Route::post('/login', [LoginController::class, 'userLogin'])->name('login');
 Route::get('/logout', [LoginController::class, 'userLogout'])->name('logout');
 
 Route::get('/project-detail', function () {
-    return view('backend/pages/project-detail');
+    return view('backend/pages/view_project_details');
 })->name('project-detail');
 
 //pages 
 Route::get('/category', [SettingsController::class, 'categoryList'])->name('category');
+Route::get('/sub-category', [SettingsController::class, 'subCategoryList'])->name('subcategory');
+Route::get('/new-product', [ProductController::class, 'addNewProduct'])->name('newproduct');
 
