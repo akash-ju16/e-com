@@ -36,19 +36,25 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm">
+              <!-- {{ $errors }} -->
+              
+              <form id="quickForm" action="{{ route('catepost') }}" method="post" enctype="multipart/form">
+                @csrf
                 <div class="card-body">
                   <div class="form-group">
                     <label for="cat_name">Name</label>
-                    <input type="text" name="cat_name" class="form-control" id="cat_name" placeholder="Enter category name">
+                    <input type="text" name="cat_name" class="form-control" id="cat_name" value="{{ old('cat_name') }}" placeholder="Enter category name">
+                    <span class="text-danger">@error('cat_name') {{ $message }} @enderror</span>
                   </div>
                   <div class="form-group">
                     <label for="cat_name_bangla">Name(Bangla)</label>
-                    <input type="text" name="cat_name_bangla" class="form-control" id="cat_name_bangla" placeholder="Enter category bangla name">
+                    <input type="text" name="cat_name_bangla" class="form-control" id="cat_name_bangla" value="{{ old('cat_name_bangla') }}" placeholder="Enter category bangla name">
+                    <span class="text-danger">@error('cat_name_bangla') {{ $message }} @enderror</span>
                   </div>
                   <div class="form-group">
                     <label for="cat_image">Image</label>
                     <input type="file" name="cat_image" class="form-control" id="cat_image">
+                    <span class="text-danger">@error('cat_image') {{ $message }} @enderror</span>
                   </div>
                 </div>
                 <!-- /.card-body -->

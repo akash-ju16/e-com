@@ -45,6 +45,7 @@ Route::get('/project-detail', function () {
 
 //pages 
 Route::get('/category', [SettingsController::class, 'categoryList'])->name('category');
+Route::post('/category', [SettingsController::class, 'addCategory'])->name('catepost');
 Route::get('/sub-category', [SettingsController::class, 'subCategoryList'])->name('subcategory');
 Route::get('/new-product', [ProductController::class, 'addNewProduct'])->name('newproduct');
 
