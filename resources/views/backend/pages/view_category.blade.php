@@ -75,57 +75,33 @@
       
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
+                <h3 class="card-title">Category List</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Rendering engine</th>
-                    <th>Browser</th>
-                    <th>Platform(s)</th>
-                    <th>Engine version</th>
-                    <th>CSS grade</th>
+                    <th>SL No</th>
+                    <th>Category Name</th>
+                    <th>Category Name(bn)</th>
+                    <th>Image</th>
+                    <th>action</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td> 4</td>
-                    <td>X</td>
+
+                  @foreach ($data as $item)
+                    
+                    <tr>
+                    <td>{{ $item->id }}</td>
+                    <td>{{ $item->en_name }}</td>
+                    <td>{{ $item->bn_name }}</td>
+                    <td><img src="{{ asset('images/'.$item->cat_img_name) }}" width="40" height="40" alt="no image"></td>
+                    <td><span class="text-danger">edit</span></td>
                   </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td>5</td>
-                    <td>C</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.5
-                    </td>
-                    <td>Win 95+</td>
-                    <td>5.5</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 6
-                    </td>
-                    <td>Win 98+</td>
-                    <td>6</td>
-                    <td>A</td>
-                  </tr>
+
+                  @endforeach
                   
                   </tfoot>
                 </table>

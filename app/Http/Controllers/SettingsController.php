@@ -11,7 +11,10 @@ class SettingsController extends Controller
 {
     
     public function categoryList(){
-        return view('backend.pages.view_category');
+
+        $cat_data = Categorie::all();
+
+        return view('backend.pages.view_category', ['data'=>$cat_data]);
     }
 
     /**
@@ -40,7 +43,7 @@ class SettingsController extends Controller
 
         /** image resize using php intervention package */
         $resize_image = Image::make($image_file->getRealPath());
-        $resize_image->resize(100, 80);
+        $resize_image->resize(40, 40);
         $resize_image->save('images/' .$image_name);
 
         /** image store */
