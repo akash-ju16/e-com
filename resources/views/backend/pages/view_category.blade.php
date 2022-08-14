@@ -30,6 +30,11 @@
          
           <div class="col-md-12">
             <!-- jquery validation -->
+            <span class="text-success">
+              @if(session()->has('status'))
+              {{ session('status') }}
+              @endif
+            </span>
             <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Category <small>add new category</small></h3>

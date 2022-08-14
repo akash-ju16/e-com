@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Categorie;
+use Image;
 
 class SettingsController extends Controller
 {
@@ -33,16 +34,22 @@ class SettingsController extends Controller
 
         $category->en_name = $request->input('cat_name');
         $category->bn_name = $request->input('cat_name_bangla');
-        //image store
-        $image = $request->cat_image;
-        $name = $image->getClientOriginalName();
-        $image->storeAs('public/images', $name);
+        
+        $image_file = $request->cat_image;
+        $image_name = $image_file->getClientOriginalName();
 
-        $category->cat_img_name = $name;
+        /** image resize using php intervention package */
+        $resize_image = Image::make($image_file->getRealPath());
+        $resize_image->resize(100, 80);
+        $resize_image->save('images/' .$image_name);
 
+        /** image store */
+        // $image_file->storeAs('public/images', $image_name);
+
+        $category->cat_img_name = $image_name;
         $category->save();
 
-        return redirect(route('category'))->with('status', 'category inster successfully');
+        return redirect(route('category'))->with('status', 'category insert successfully');
     }
 
     public function subCategoryList(){
