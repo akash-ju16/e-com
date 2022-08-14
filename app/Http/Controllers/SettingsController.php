@@ -26,15 +26,21 @@ class SettingsController extends Controller
             'cat_image' => ['required']
         ]);
 
-        // dd($request->all());
+         //dd($request->all());
+        //dd($request->file('cat_image')->getExtension());
 
-        $cat = new Categorie();
+        $category = new Categorie();
 
-        $cat->en_name = $request->input('cat_name');
-        $cat->bn_name = $request->input('cat_name_bangla');
-        $cat->cat_img_name = $request->input('cat_image');
+        $category->en_name = $request->input('cat_name');
+        $category->bn_name = $request->input('cat_name_bangla');
+        //image store
+        $image = $request->cat_image;
+        $name = $image->getClientOriginalName();
+        $image->storeAs('public/images', $name);
 
-        $cat->save();
+        $category->cat_img_name = $name;
+
+        $category->save();
 
         return redirect(route('category'))->with('status', 'category inster successfully');
     }

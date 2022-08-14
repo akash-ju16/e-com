@@ -38,7 +38,7 @@
               <!-- form start -->
               <!-- {{ $errors }} -->
               
-              <form id="quickForm" action="{{ route('catepost') }}" method="post" enctype="multipart/form">
+              <form id="quickForm" action="{{ route('catepost') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
