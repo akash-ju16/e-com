@@ -36,33 +36,34 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm">
-                <div class="card-body">
-                    
+              <form id="quickForm" action="{{ route('subcatepost') }}" method="post" enctype="multipart/form-data">
+              @csrf  
+              <div class="card-body">
                 <div class="form-group">
                   <label>Select Main Category</label>
-                  <select class="form-control select2" style="width: 100%;">
-                    <option selected="selected">Alabama</option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
+                  <select name="mcategory" id="mcategory" class="form-control select2" style="width: 100%;">
+                    <option>Select</option>
+                    @foreach($data as $item)
+                    <option value="{{ $item->id }}">{{ $item->en_name }}</option>  
+                    @endforeach
                   </select>
+                  <span class="text-danger">@error('mcategory') {{ $message }} @enderror</span>
                 </div>
 
                   <div class="form-group">
                     <label for="sub_cat_name">Sub Category Name</label>
                     <input type="text" name="sub_cat_name" class="form-control" id="sub_cat_name" placeholder="Enter sub category name">
+                    <span class="text-danger">@error('sub_cat_name') {{ $message }} @enderror</span>
                   </div>
+                  
                   <div class="form-group">
                     <label for="sub_cat_name_bangla">Sub Category Name(Bangla)</label>
                     <input type="text" name="sub_cat_name_bangla" class="form-control" id="sub_cat_name_bangla" placeholder="Enter sub category bangla name">
-                  </div>
+                   </div>
                   <div class="form-group">
                     <label for="sub_cat_image">Image</label>
                     <input type="file" name="sub_cat_image" class="form-control" id="sub_cat_image">
+                    <span class="text-danger">@error('sub_cat_image') {{ $message }} @enderror</span>
                   </div>
                 </div>
                 <!-- /.card-body -->

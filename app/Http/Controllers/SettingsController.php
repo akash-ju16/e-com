@@ -56,6 +56,27 @@ class SettingsController extends Controller
     }
 
     public function subCategoryList(){
-        return view('backend.pages.view_sub_category');
+
+        $cat_data = Categorie::all();
+        //dump($cat_data);
+        return view('backend.pages.view_sub_category', ['data'=>$cat_data]);
+    }
+
+    /** 
+     * add sub category
+    */
+    public function addSubCategory(Request $request){
+
+        $request->validate(
+            [
+                'mcategory' => ['required'],
+                'sub_cat_name' => ['required'],
+                'sub_cat_image' => ['required'],
+            ],
+            [
+                'sub_cat_name.required' => 'Please input sub category name',
+                'sub_cat_image.required' => 'attached your sub category image',
+            ]
+        );
     }
 }
