@@ -67,6 +67,7 @@ class SettingsController extends Controller
     */
     public function addSubCategory(Request $request){
 
+        //validation form
         $request->validate(
             [
                 'mcategory' => ['required'],
@@ -74,9 +75,21 @@ class SettingsController extends Controller
                 'sub_cat_image' => ['required'],
             ],
             [
+                'mcategory.required' => 'Please select a main category name',
                 'sub_cat_name.required' => 'Please input sub category name',
                 'sub_cat_image.required' => 'attached your sub category image',
             ]
         );
+
+        //after successfully validated then below code executed
+
+        $data = $request->except('_token');
+
+        // dd($data);
+
+
+
+
+
     }
 }

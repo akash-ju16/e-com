@@ -42,7 +42,7 @@
                 <div class="form-group">
                   <label>Select Main Category</label>
                   <select name="mcategory" id="mcategory" class="form-control select2" style="width: 100%;">
-                    <option>Select</option>
+                    <option value="">Select</option>
                     @foreach($data as $item)
                     <option value="{{ $item->id }}">{{ $item->en_name }}</option>  
                     @endforeach
