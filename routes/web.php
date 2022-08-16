@@ -5,6 +5,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\ProductController;
+ use App\Test;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,12 @@ use App\Http\Controllers\ProductController;
 |
 */
 
+// app()->bind('newf', Test::class);
+
 // Route::get('/', function () {
+//     $data = app()->make('newf');
+//     echo $data->name;
+//     dd(app());
 //     return view('welcome');
 // });
 
