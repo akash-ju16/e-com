@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title', 'Admin | Category')
+@section('title', 'Admin | SubCategory')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -29,6 +29,11 @@
         <div class="row">
          
           <div class="col-md-12">
+          <span class="text-success">
+              @if(session()->has('status'))
+              {{ session('status') }}
+              @endif
+            </span>
             <!-- jquery validation -->
             <div class="card card-primary">
               <div class="card-header">

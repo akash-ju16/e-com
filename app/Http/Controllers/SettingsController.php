@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Categorie;
+use App\Models\Subcat;
 use Image;
 
 class SettingsController extends Controller
@@ -83,13 +84,30 @@ class SettingsController extends Controller
 
         //after successfully validated then below code executed
 
-        $data = $request->except('_token');
+        // $data = $request->except('_token');
 
-        // dd($data);
+        $subcategory = new Subcat();
 
+        $subcategory->en_name = $request->input('sub_cat_name');
+        $subcategory->bn_name = $request->input('sub_cat_name_bangla');
+        $subcategory->main_cat_id = $request->input('mcategory');
+        
+        $image_file = $request->sub_cat_image;
+        $image_name = $image_file->getClientOriginalName();
 
+        /** image resize using php intervention package */
+        $resize_image = Image::make($image_file->getRealPath());
+        $resize_image->resize(40, 40);
+        $resize_image->save('images/subimages/' .$image_name);
 
+        /** image store */
+        // $image_file->storeAs('public/images', $image_name);
 
+        $subcategory->image_name = $image_name;
+
+        $subcategory->save();
+
+        return redirect(route('subcategory'))->with('status', 'sub category insert successfully');
 
     }
 }
