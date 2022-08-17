@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Categorie;
 use Image;
-use App\Services\MyFirstInterface;
 
 class SettingsController extends Controller
 {
@@ -56,10 +55,7 @@ class SettingsController extends Controller
         return redirect(route('category'))->with('status', 'category insert successfully');
     }
 
-    public function subCategoryList(MyFirstInterface $custom_service){
-
-        //$custom_service->sayHello();
-        //$custom_service->sayHi();die;
+    public function subCategoryList(){
 
         $cat_data = Categorie::all();
         //dump($cat_data);

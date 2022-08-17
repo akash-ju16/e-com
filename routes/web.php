@@ -5,6 +5,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ServiceController;
  use App\Test;
 
 /*
@@ -55,4 +56,7 @@ Route::post('/category', [SettingsController::class, 'addCategory'])->name('cate
 Route::get('/sub-category', [SettingsController::class, 'subCategoryList'])->name('subcategory');
 Route::post('/sub-category', [SettingsController::class, 'addSubCategory'])->name('subcatepost');
 Route::get('/new-product', [ProductController::class, 'addNewProduct'])->name('newproduct');
+
+//custom service pages
+Route::get('/service', [ServiceController::class, 'displayService']);
 
