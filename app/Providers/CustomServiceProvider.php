@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\MyFirstInterface;
+use App\Services\MyFirstService;
+use App\Services\MySecondService;
 
 class CustomServiceProvider extends ServiceProvider
 {
@@ -13,7 +16,19 @@ class CustomServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('App\Services\MyFirstInterface', 'App\Services\MyFirstService');
+
+        $this->app->bind(MyFirstInterface::class, MyFirstService::class);
+
+        /** 
+         * note: no need to bind classes into the container if they do not depend on any interfaces
+        */
+        $this->app->bind(MySecondService::class, function ($app) {
+            return new MySecondService();
+          });
+
+        // $this->app->bind(MyFirstInterface::class, function($app){
+        //     return $app->make(MyFirstService::class);
+        // });
     }
 
     /**
