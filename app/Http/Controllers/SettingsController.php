@@ -62,7 +62,7 @@ class SettingsController extends Controller
 
     public function subCategoryList(){
 
-        $cat_data = Categorie::all();
+        $cat_data = Subcat::all();
         //dump($cat_data);
         return view('backend.pages.view_sub_category', ['data'=>$cat_data]);
     }
