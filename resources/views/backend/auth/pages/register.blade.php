@@ -143,19 +143,19 @@
             {
               full_name : 
               {
-                required :  'Please enter your full name',
+                required :  'Please input name',
                 minlength : 'Name should be 5 character must'
               },
-              email: 'please enter a valid email',
+              email: 'please input email',
               password : 
               {
-                required: 'please enter a valid password',
+                required: 'input valid password',
                 minlength : 'password should be 5 characters'
               },
               confirm_password: 
               {
-                required: 'please enter confirm password',
-                minlength : 'confirm_password should be 5 characters',
+                required: 'please enter same password',
+                minlength : 'should be 5 characters',
                 equalTo : 'Please enter same password'
               }
             },

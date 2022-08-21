@@ -70,7 +70,7 @@ class LoginController extends Controller
         // dd(print_r($request));
         $credential = $request->validate([
                 'username' => ['required', 'email'],
-                'userpass' => ['required', 'size:5']
+                'userpass' => ['required']
         ]);
 
         // dd($request->username);
