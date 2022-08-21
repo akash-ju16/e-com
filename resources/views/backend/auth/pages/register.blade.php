@@ -2,13 +2,16 @@
 @section('title', 'E-com | Registration')
 @section('reg-log-form')
 <div class="register-box">
-  <div class="register-logo">
+  <!-- <div class="register-logo">
     <a href="{{ route('admin') }}"><b>Admin</b></a>
-  </div>
+  </div> -->
 
-  <div class="card">
+  <div class="card card-outline card-primary">
+  <div class="card-header text-center">
+      <a href="{{ route('admin') }}" class="h1"><b>Admin</b></a>
+    </div>
     <div class="card-body register-card-body">
-      <p class="login-box-msg">Register a new membership</p>
+      <!-- <p class="login-box-msg">Register a new member</p> -->
 
       <form id="registerFormValidate" action="" method="post">
         @csrf
@@ -69,9 +72,9 @@
           <div class="col-8">
             <div class="icheck-primary">
               <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-              <label for="agreeTerms">
+              <!-- <label for="agreeTerms">
                I agree to the <a href="#">terms</a>
-              </label>
+              </label> -->
             </div>
           </div>
           <!-- /.col -->
@@ -83,7 +86,7 @@
         </div>
       </form>
 
-      <div class="social-auth-links text-center">
+      <!-- <div class="social-auth-links text-center">
         <p>- OR -</p>
         <a href="#" class="btn btn-block btn-primary">
           <i class="fab fa-facebook mr-2"></i>
@@ -93,9 +96,9 @@
           <i class="fab fa-google-plus mr-2"></i>
           Sign up using Google+
         </a>
-      </div>
+      </div> -->
 
-      <a href="{{ route('login') }}" class="text-center">I already have a membership</a>
+      <a href="{{ route('login') }}" class="text-center">I already have a member</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
