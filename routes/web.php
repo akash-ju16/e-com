@@ -6,18 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ServiceController;
- use App\Test;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Test;
 
 // app()->bind('newf', Test::class);
 
@@ -28,35 +17,47 @@ use App\Http\Controllers\ServiceController;
 //     return view('welcome');
 // });
 
-/** Home Dashboard */
-Route::get('/admin', function () {
-    return view('backend/pages/view_home');
-})->name('admin');
+
 
 /** Register Route */
-Route::get('/register', function () { return view('backend/auth/pages/register'); })->name('register');
+Route::get('/register', function () { 
+    if (Auth::check()) {
+        return redirect()->route('admin');
+    }
+    return view('backend/auth/pages/register'); })->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register');
 
 /** Login Route */
 Route::get('/login', function () {
+    if (Auth::check()) {
+        return redirect()->route('admin');
+    }
     return view('backend/auth/pages/login');
 })->name('login');
 
 Route::post('/login', [LoginController::class, 'userLogin'])->name('login');
-
 Route::get('/logout', [LoginController::class, 'userLogout'])->name('logout');
 
-Route::get('/project-detail', function () {
-    return view('backend/pages/view_project_details');
-})->name('project-detail');
 
-//pages 
-Route::get('/category', [SettingsController::class, 'categoryList'])->name('category');
-Route::post('/category', [SettingsController::class, 'addCategory'])->name('catepost');
-Route::get('/sub-category', [SettingsController::class, 'subCategoryList'])->name('subcategory');
-Route::post('/sub-category', [SettingsController::class, 'addSubCategory'])->name('subcatepost');
-Route::get('/new-product', [ProductController::class, 'addNewProduct'])->name('newproduct');
+Route::middleware('auth')->group(function(){
+
+    /** Dashboard */
+    Route::get('/admin', function () {
+        return view('backend/pages/view_home');
+    })->name('admin');
+
+    //pages 
+    Route::get('/category', [SettingsController::class, 'categoryList'])->name('category');
+    Route::post('/category', [SettingsController::class, 'addCategory'])->name('catepost');
+    Route::get('/sub-category', [SettingsController::class, 'subCategoryList'])->name('subcategory');
+    Route::post('/sub-category', [SettingsController::class, 'addSubCategory'])->name('subcatepost');
+    Route::get('/new-product', [ProductController::class, 'addNewProduct'])->name('newproduct');
+
+
+    //Test pages
+
+});
+
 
 //custom service pages
 Route::get('/service', [ServiceController::class, 'displayService']);
-

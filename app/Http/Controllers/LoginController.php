@@ -51,8 +51,18 @@ class LoginController extends Controller
     }
 
     /**
-     * function userLogin()
-     * using auth facades 
+     * \\custom authentication for register table\\
+     * usnig auth facades
+     * Model: Register; extends hoyeche Authenticatable theke not model
+     * and also core user ke Authenticatable banano hoyece.
+     * auth:: defaults, guards and providers setting kora hoyeche by register table 
+     * Table: registers
+     * 
+     * //authentication default for user table\\\\\
+     * user table use korle kichu kora lagbe na just auth facades use korlei hobe.
+     * 
+     * //another way authentication for package \\\\ 
+     * breeze
      */
 
     public function userLogin(Request $request)
@@ -85,7 +95,13 @@ class LoginController extends Controller
 
     public function userLogout(Request $request){
 
-        $request->session()->forget('user');
+        Auth::logout();
+ 
+        $request->session()->invalidate();
+    
+        $request->session()->regenerateToken();
+    
+       
 
         return redirect(route('login'));
     }

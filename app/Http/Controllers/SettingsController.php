@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Categorie;
 use App\Models\Subcat;
 use Image;
+
 
 class SettingsController extends Controller
 {
     
     public function categoryList(){
+
+        // dd(Auth::User());
 
         $cat_data = Categorie::all();
 
