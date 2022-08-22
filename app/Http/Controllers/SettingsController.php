@@ -62,7 +62,7 @@ class SettingsController extends Controller
 
     public function subCategoryList(){
 
-        $cat_data = Subcat::all();
+        $cat_data = Categorie::all();
         //dump($cat_data);
         return view('backend.pages.view_sub_category', ['data'=>$cat_data]);
     }
@@ -94,7 +94,7 @@ class SettingsController extends Controller
 
         $subcategory->en_name = $request->input('sub_cat_name');
         $subcategory->bn_name = $request->input('sub_cat_name_bangla');
-        $subcategory->main_cat_id = $request->input('mcategory');
+        $subcategory->categories_id = $request->input('mcategory');
         
         $image_file = $request->sub_cat_image;
         $image_name = $image_file->getClientOriginalName();
