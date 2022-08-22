@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Categorie;
-use App\Models\Subcat;
+use App\Models\Subcategorie;
 use Image;
 
 
@@ -62,9 +62,14 @@ class SettingsController extends Controller
 
     public function subCategoryList(){
 
-        $cat_data = Categorie::all();
+        $cat_data       = Categorie::all();
+        $sub_cat_data   = Subcategorie::all();
+
+        // $categorie      = Subcategorie::find(1)->categorie;
+        $subcategorie   = Categorie::find(1)->subcategorie;
+        dd($subcategorie);
         //dump($cat_data);
-        return view('backend.pages.view_sub_category', ['data'=>$cat_data]);
+        return view('backend.pages.view_sub_category', ['mdata'=>$cat_data, 'sdata'=>$sub_cat_data,]);
     }
 
     /** 
@@ -90,11 +95,11 @@ class SettingsController extends Controller
 
         // $data = $request->except('_token');
 
-        $subcategory = new Subcat();
+        $subcategory = new Subcategorie();
 
         $subcategory->en_name = $request->input('sub_cat_name');
         $subcategory->bn_name = $request->input('sub_cat_name_bangla');
-        $subcategory->categories_id = $request->input('mcategory');
+        $subcategory->categorie_id = $request->input('mcategory');
         
         $image_file = $request->sub_cat_image;
         $image_name = $image_file->getClientOriginalName();

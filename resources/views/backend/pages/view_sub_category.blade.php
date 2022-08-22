@@ -48,7 +48,7 @@
                   <label>Select Main Category</label>
                   <select name="mcategory" id="mcategory" class="form-control select2" style="width: 100%;">
                     <option value="">Select</option>
-                    @foreach($data as $item)
+                    @foreach($mdata as $item)
                     <option value="{{ $item->id }}">{{ $item->en_name }}</option>  
                     @endforeach
                   </select>
@@ -57,13 +57,13 @@
 
                   <div class="form-group">
                     <label for="sub_cat_name">Sub Category Name</label>
-                    <input type="text" name="sub_cat_name" class="form-control" id="sub_cat_name" placeholder="Enter sub category name">
+                    <input type="text" name="sub_cat_name" class="form-control" id="sub_cat_name" value="{{old('sub_cat_name')}}" placeholder="Enter sub category name">
                     <span class="text-danger">@error('sub_cat_name') {{ $message }} @enderror</span>
                   </div>
                   
                   <div class="form-group">
                     <label for="sub_cat_name_bangla">Sub Category Name(Bangla)</label>
-                    <input type="text" name="sub_cat_name_bangla" class="form-control" id="sub_cat_name_bangla" placeholder="Enter sub category bangla name">
+                    <input type="text" name="sub_cat_name_bangla" class="form-control" id="sub_cat_name_bangla" value="{{old('sub_cat_name_bangla')}}" placeholder="Enter sub category bangla name">
                    </div>
                   <div class="form-group">
                     <label for="sub_cat_image">Image</label>
@@ -99,10 +99,10 @@
                   </tr>
                   </thead>
                   <tbody>
-                    @foreach ($data as $item)
+                    @foreach ($sdata as $item)
                       <tr>
                         <td>{{$item->id}}</td>
-                        <td>{{$item->main_cat_id}}</td>
+                        <td>{{$item->categories_id}}</td>
                         <td>{{$item->bn_name}}</td>
                         <td>{{$item->image_name}}</td>
                         <td><span class="text-danger">edit</span></td>
