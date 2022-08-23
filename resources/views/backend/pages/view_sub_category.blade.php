@@ -84,7 +84,7 @@
       
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
+                <h3 class="card-title">Sub Category List</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -104,7 +104,7 @@
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->categorie->en_name }}</td>
                         <td>{{ $item->en_name }}</td>
-                        <td>{{ $item->image_name }}</td>
+                        <td><img src="{{ asset('images/subimages/'.$item->image_name) }}" alt="no img" width="40" height="30" ></td>
                         <td><span class="text-danger">edit</span></td>
                       </tr>
                     @endforeach
