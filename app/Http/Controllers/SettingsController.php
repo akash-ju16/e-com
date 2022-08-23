@@ -7,12 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Categorie;
 use App\Models\Subcategorie;
-use Image;
+use App\Http\Traits\ResizeImage;
 
 
 class SettingsController extends Controller
 {
-    
+    /** using trait */
+    use ResizeImage;
+
     public function categoryList(){
 
         // dd(Auth::User());
@@ -26,7 +28,6 @@ class SettingsController extends Controller
      * add category 
      */
     public function addCategory(Request $request){
-        
 
         //form validation
         $request->validate([
@@ -44,15 +45,8 @@ class SettingsController extends Controller
         $category->bn_name = $request->input('cat_name_bangla');
         
         $image_file = $request->cat_image;
-        $image_name = $image_file->getClientOriginalName();
-
-        /** image resize using php intervention package */
-        $resize_image = Image::make($image_file->getRealPath());
-        $resize_image->resize(40, 40);
-        $resize_image->save('images/' .$image_name);
-
-        /** image store */
-        // $image_file->storeAs('public/images', $image_name);
+        $path = 'images/';
+        $image_name = $this->imageresize($image_file, $path); //using trait
 
         $category->cat_img_name = $image_name;
         $category->save();
@@ -111,15 +105,8 @@ class SettingsController extends Controller
         $subcategory->categorie_id = $request->input('mcategory');
         
         $image_file = $request->sub_cat_image;
-        $image_name = $image_file->getClientOriginalName();
-
-        /** image resize using php intervention package */
-        $resize_image = Image::make($image_file->getRealPath());
-        $resize_image->resize(40, 40);
-        $resize_image->save('images/subimages/' .$image_name);
-
-        /** image store */
-        // $image_file->storeAs('public/images', $image_name);
+        $path = 'images/subimages/';
+        $image_name = $this->imageresize($image_file, $path); //using trait
 
         $subcategory->image_name = $image_name;
 
