@@ -62,14 +62,23 @@ class SettingsController extends Controller
 
     public function subCategoryList(){
 
-        $cat_data       = Categorie::all();
-        $sub_cat_data   = Subcategorie::all();
+        $cat_data = Categorie::all();
+        $subcategorie = Subcategorie::with('categorie')->get();
 
-        // $categorie      = Subcategorie::find(1)->categorie;
-        $subcategorie   = Categorie::find(1)->subcategorie;
-        dd($subcategorie);
-        //dump($cat_data);
-        return view('backend.pages.view_sub_category', ['mdata'=>$cat_data, 'sdata'=>$sub_cat_data,]);
+        //     $subcategorie = Categorie::join('subcategories','categories.id', '=', 'subcategories.categorie_id')
+        //                         ->get();
+        //                         (
+        //                             [
+        //                                 'categories.en_name as category_name', 
+        //                                 'categories.id', 
+        //                                 'subcategories.en_name as sub_category_name', 
+        //                                 'subcategories.image_name'
+        //                             ]
+             
+        //                         );
+        // //     dd($cat_data);
+        // // dump($cat_data);
+        return view('backend.pages.view_sub_category', ['mdata'=>$cat_data, 'cat_sub_main_data'=>$subcategorie]);
     }
 
     /** 

@@ -99,12 +99,12 @@
                   </tr>
                   </thead>
                   <tbody>
-                    @foreach ($sdata as $item)
+                    @foreach ($cat_sub_main_data as $item)
                       <tr>
-                        <td>{{$item->id}}</td>
-                        <td>{{$item->categories_id}}</td>
-                        <td>{{$item->bn_name}}</td>
-                        <td>{{$item->image_name}}</td>
+                        <td>{{ $item->id }}</td>
+                        <td>{{ $item->categorie->en_name }}</td>
+                        <td>{{ $item->en_name }}</td>
+                        <td>{{ $item->image_name }}</td>
                         <td><span class="text-danger">edit</span></td>
                       </tr>
                     @endforeach
