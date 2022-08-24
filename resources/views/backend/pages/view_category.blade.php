@@ -98,7 +98,13 @@
                     <td>{{ $item->en_name }}</td>
                     <td>{{ $item->bn_name }}</td>
                     <td><img src="{{ asset('images/'.$item->cat_img_name) }}" width="40" height="30" alt="no image"></td>
-                    <td><span class="text-danger">edit</span></td>
+                    <td>
+                      <span class="text-danger">edit</span>
+
+                    @can('isAdmin') 
+                    <span class="text-danger"> | Delete</span>
+                    @endcan
+                  </td>
                   </tr>
 
                   @endforeach

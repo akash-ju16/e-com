@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use App\Models\Categorie;
 use App\Models\Subcategorie;
 use App\Http\Traits\ResizeImage;
@@ -40,6 +41,13 @@ class SettingsController extends Controller
         //dd($request->file('cat_image')->getExtension());
 
         $category = new Categorie();
+
+        /**
+         * authorization people can only add categories
+         */
+        if(Gate::denies('isAdmin', $category)){
+            abort(403, 'you are not authorized');
+        }
 
         $category->en_name = $request->input('cat_name');
         $category->bn_name = $request->input('cat_name_bangla');
