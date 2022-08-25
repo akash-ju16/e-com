@@ -3,12 +3,22 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\Post;
+use App\Models\Categorie;
 use App\Models\Register;
 
-class PostPolicy
+class CategoriePolicy
 {
     use HandlesAuthorization;
+
+    public function isAdmin(Register $register){
+
+        if ($register->email === 'akash.bigm@gmail.com') {
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
 
     /**
      * Determine whether the user can view any models.
@@ -18,17 +28,21 @@ class PostPolicy
      */
     public function viewAny(Register $register)
     {
-        //
+        if ($register->email === 'akash.bigm@gmail.com') {
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\Register  $register
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Categorie  $categorie
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(Register $register, Post $post)
+    public function view(Register $register, Categorie $categorie)
     {
         //
     }
@@ -48,10 +62,10 @@ class PostPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\Register  $register
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Categorie  $categorie
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(Register $register, Post $post)
+    public function update(Register $register, Categorie $categorie)
     {
         //
     }
@@ -60,10 +74,10 @@ class PostPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\Register  $register
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Categorie  $categorie
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(Register $register, Post $post)
+    public function delete(Register $register, Categorie $categorie)
     {
         //
     }
@@ -72,10 +86,10 @@ class PostPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\Register  $register
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Categorie  $categorie
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(Register $register, Post $post)
+    public function restore(Register $register, Categorie $categorie)
     {
         //
     }
@@ -84,10 +98,10 @@ class PostPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\Register  $register
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Categorie  $categorie
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(Register $register, Post $post)
+    public function forceDelete(Register $register, Categorie $categorie)
     {
         //
     }
