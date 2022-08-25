@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 use App\Models\Categorie;
 use App\Models\Register;
 
@@ -12,11 +13,7 @@ class CategoriePolicy
 
     public function isAdmin(Register $register){
 
-        if ($register->email === 'akash.bigm@gmail.com') {
-            return true;
-        }else{
-            return false;
-        }
+       return $register->email === 'akash.bigm@gmail.com';
         
     }
 
@@ -28,11 +25,9 @@ class CategoriePolicy
      */
     public function viewAny(Register $register)
     {
-        if ($register->email === 'akash.bigm@gmail.com') {
-            return true;
-        }else{
-            return false;
-        }
+        return $register->email === 'akash.bigm@gmail.com'
+        ? Response::allow()
+        : Response::deny('you do not access this action');
     }
 
     /**

@@ -105,9 +105,14 @@ class SettingsController extends Controller
         //after successfully validated then below code executed
 
         // $data = $request->except('_token');
-        
+
         /** Polices authorizations */
         $this->authorize('isAdmin', Categorie::class);
+
+        /**another way to authorization */
+        // if(Auth::user()->cannot('isAdmin', Categorie::class)){
+        //     abort(403);
+        // }
 
         $subcategory = new Subcategorie();
 
