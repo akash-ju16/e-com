@@ -7,7 +7,37 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function addNewProduct(){
+    public function showProduct(){
         return view('backend.pages.view_add_new_product');
+    }
+
+    /** 
+     * product store method 
+     * 
+    */
+    public function productStore(Request $request){
+
+        /** form validation */
+        $request->validate([
+            'prod_name'           => 'required',
+            'prod_description'    => 'required',
+            'prod_price'          => 'required',
+            'unit_selct'          => 'required',
+            'prod_stock'          => 'required',
+            'category_select'     => 'required',
+            'sub_category_select' => 'required',
+            'prod_attribute'      => 'required',
+            'product_image'       => 'required',
+        ],
+        [
+            'prod_name.required' => 'Product name must be provided',
+            'prod_description.required' => 'Product description field is required',
+            'prod_price.required' => 'Price field is required',
+            'unit_selct.required' => 'Unit field is required',
+            'prod_stock.required' => 'Stock field is required',
+        ]
+    );
+
+
     }
 }

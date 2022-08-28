@@ -36,37 +36,43 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm">
+              <form id="quickForm" action="{{ route('addproduct') }}" method="post" enctype="multiform/form-data">
+                @csrf
                 <div class="card-body">
                   <div class="form-group">
                     <label for="prod_name">Name</label>
-                    <input type="text" name="prod_name" class="form-control" id="prod_name" placeholder="Enter product name">
+                    <input type="text" name="prod_name" class="form-control" id="prod_name" value="{{ old('prod_name') }}" placeholder="Enter product name">
+                    <span class="text-danger">@error('prod_name') {{$message}} @enderror</span>
                   </div>
                   <div class="form-group">
                     <label for="prod_name_bangla">Name(Bangla)</label>
-                    <input type="text" name="prod_name_bangla" class="form-control" id="prod_name_bangla" placeholder="Enter product name bangla">
+                    <input type="text" name="prod_name_bangla" class="form-control" id="prod_name_bangla" value="{{ old('prod_name_bangla') }}" placeholder="Enter product name bangla">
+                    <!-- <span class="text-danger">@error('prod_name_bangla') {{$message}} @enderror</span> -->
                   </div>
                   <div class="form-group">
                     <label for="prod_description">Description</label>
-                    <input type="text" name="prod_description" class="form-control" id="prod_description" placeholder="Enter product description">
+                    <input type="text" name="prod_description" class="form-control" id="prod_description" value="{{ old('prod_description') }}" placeholder="Enter product description">
+                    <span class="text-danger">@error('prod_description') {{$message}} @enderror</span>
                   </div>
 
                   <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="prod_price">Price</label>
-                                <input type="text" name="prod_price" class="form-control" id="prod_price" placeholder="Enter product price">
+                                <input type="text" name="prod_price" class="form-control" id="prod_price" value="{{ old('prod_price') }}" placeholder="Enter product price">
+                                <span class="text-danger">@error('prod_price') {{$message}} @enderror</span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                             <label>Unit</label>
-                                <select class="form-control select2" style="width: 100%;">
-                                    <option selected="selected">Kg</option>
+                                <select class="form-control select2" name="unit_selct" id="unit_selct" style="width: 100%;">
+                                    <option value="">Select</option>
                                     <option>Gm</option>
                                     <option>Ltr</option>
                                     <option>Pc</option>
                                 </select>
+                                <span class="text-danger">@error('unit_selct') {{$message}} @enderror</span>
                             </div>
                         </div>
                   </div>
@@ -75,27 +81,30 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="prod_stock">Stock</label>
-                                <input type="text" name="prod_stock" class="form-control" id="prod_stock" placeholder="Enter product stock">
-                            </div>
+                                <input type="text" name="prod_stock" class="form-control" id="prod_stock" value="{{ old('prod_stock') }}" placeholder="Enter product stock">
+                                <span class="text-danger">@error('prod_stock') {{$message}} @enderror</span>
+                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                             <label>Category</label>
-                                <select class="form-control select2" style="width: 100%;">
-                                    <option selected="selected">cat-1</option>
+                                <select class="form-control select2" name="category_select" id="category_select" style="width: 100%;">
+                                    <option value="">Select</option>
                                     <option>cat-2</option>
                                     <option>cat-3</option>
                                 </select>
+                                <span class="text-danger">@error('category_select') {{$message}} @enderror</span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                             <label>Sub Category</label>
-                                <select class="form-control select2" style="width: 100%;">
-                                    <option selected="selected">subcat-1</option>
+                                <select class="form-control select2" name="sub_category_select" id="sub_category_select" style="width: 100%;">
+                                    <option value="">Select</option>
                                     <option>subcat-2</option>
-                                    <option>subcat-3</option>
+                                    <option>subcat-3</option>  
                                 </select>
+                                <span class="text-danger">@error('sub_category_select') {{$message}} @enderror</span>
                             </div>
                         </div>
                   </div>
@@ -103,12 +112,14 @@
                   
                   <div class="form-group">
                     <label for="prod_attribute">Attributes</label>
-                    <input type="text" name="prod_attribute" class="form-control" id="prod_attribute" placeholder="Enter product attribute">
+                    <input type="text" name="prod_attribute" class="form-control" id="prod_attribute" value="{{ old('prod_attribute') }}" placeholder="Enter product attribute">
+                    <span class="text-danger">@error('prod_attribute') {{$message}} @enderror</span>
                   </div>
 
                   <div class="form-group">
-                    <label for="cat_image">Product Image</label>
-                    <input type="file" name="cat_image" class="form-control" id="cat_image">
+                    <label for="product_image">Product Image</label>
+                    <input type="file" name="product_image" value="{{ old('product_image') }}" class="form-control" id="product_image">
+                    <span class="text-danger">@error('product_image') {{$message}} @enderror</span>
                   </div>
                 </div>
                 <!-- /.card-body -->
