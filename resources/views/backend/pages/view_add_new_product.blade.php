@@ -49,9 +49,10 @@
                     <input type="text" name="prod_name_bangla" class="form-control" id="prod_name_bangla" value="{{ old('prod_name_bangla') }}" placeholder="Enter product name bangla">
                     <!-- <span class="text-danger">@error('prod_name_bangla') {{$message}} @enderror</span> -->
                   </div>
+
                   <div class="form-group">
                     <label for="prod_description">Description</label>
-                    <input type="text" name="prod_description" class="form-control" id="prod_description" value="{{ old('prod_description') }}" placeholder="Enter product description">
+                    <textarea id="summernote" name="prod_description" type="text">{{ old('prod_description') }}</textarea>
                     <span class="text-danger">@error('prod_description') {{$message}} @enderror</span>
                   </div>
 
@@ -68,9 +69,9 @@
                             <label>Unit</label>
                                 <select class="form-control select2" name="unit_selct" id="unit_selct" style="width: 100%;">
                                     <option value="">Select</option>
-                                    <option>Gm</option>
-                                    <option>Ltr</option>
-                                    <option>Pc</option>
+                                    <option value="Gm">Gm</option>
+                                    <option value="Ltr">Ltr</option>
+                                    <option value="Pc">Pc</option>
                                 </select>
                                 <span class="text-danger">@error('unit_selct') {{$message}} @enderror</span>
                             </div>
@@ -130,25 +131,6 @@
             </div>
             <!-- /.card -->
             </div>
-          
-<div class="col-md-12">
-            <div class="card card-outline card-info">
-            <div class="card-header">
-              <h3 class="card-title">
-                Summernote
-              </h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <textarea id="summernote">
-                Place <em>some</em> <u>text</u> <strong>here</strong>
-              </textarea>
-            </div>
-            <div class="card-footer">
-              Visit <a href="https://github.com/summernote/summernote/">Summernote</a> documentation for more examples and information about the plugin.
-            </div>
-          </div>
-</div>
             
        
           

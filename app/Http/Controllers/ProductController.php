@@ -4,9 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Categorie;
+use App\Models\Subcategorie;
 
 class ProductController extends Controller
 {
+    /** 
+     * default need load usnig construct function
+    */
+    public function __construct(){
+        
+    }
+
     public function showProduct(){
         return view('backend.pages.view_add_new_product');
     }
@@ -38,6 +47,8 @@ class ProductController extends Controller
         ]
     );
 
+    /** after validation  */
+    dd($request->input('prod_description'));
 
     }
 }
