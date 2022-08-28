@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\Categorie;
 use App\Models\Subcategorie;
 
+/** 
+ * Class Description
+ * This class use for productDisplay, productStore, productUpdate and so on..
+ * Author: Akash 
+*/
+
 class ProductController extends Controller
 {
     /** 
