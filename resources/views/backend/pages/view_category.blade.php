@@ -96,7 +96,7 @@
                     <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ allUpper($item->en_name) }} <!--allUpper() using form helper function--></td>
-                    <td>{{ $item->bn_name }}</td>
+                    <td>{{ CustomHelper::uppercase($item->bn_name) }} <!--CustomHelper::uppercase using form class based helper function--></td>
                     <td><img src="{{ asset('images/'.$item->cat_img_name) }}" width="40" height="30" alt="no image"></td>
                     <td>
                       <span class="text-danger">edit</span>
