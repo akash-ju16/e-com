@@ -7,6 +7,7 @@
  * Author: Akash
  */
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 /**
  * convert date
@@ -27,5 +28,19 @@ if(! function_exists('allUpper')) {
     function allUpper($str) 
     {
         return strtoupper($str);
+    }
+}
+
+/**
+ * Function <> allMainCategory
+ * @param null
+ * @return allcategory
+ */
+if (! function_exists('allMainCategory')) {
+    function allMainCategory()
+    {
+        $category = DB::table('categories')->get();
+
+        return $category;
     }
 }

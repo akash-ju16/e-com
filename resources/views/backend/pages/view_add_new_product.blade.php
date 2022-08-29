@@ -91,8 +91,9 @@
                             <label>Category</label>
                                 <select class="form-control select2" name="category_select" id="category_select" style="width: 100%;">
                                     <option value="">Select</option>
-                                    <option>cat-2</option>
-                                    <option>cat-3</option>
+                                    @foreach($maincategory as $catitme)
+                                    <option value="{{ $catitme->id }}">{{ $catitme->en_name }}</option>
+                                    @endforeach
                                 </select>
                                 <span class="text-danger">@error('category_select') {{$message}} @enderror</span>
                             </div>

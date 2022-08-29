@@ -23,7 +23,10 @@ class ProductController extends Controller
     }
 
     public function showProduct(){
-        return view('backend.pages.view_add_new_product');
+        
+        $maincategory = allMainCategory();
+
+        return view('backend.pages.view_add_new_product', ['maincategory' => $maincategory]);
     }
 
     /** 
