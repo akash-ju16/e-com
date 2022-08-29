@@ -19,6 +19,8 @@ class SettingsController extends Controller
     public function categoryList(){
 
         // dd(Auth::User());
+        // $uppercase = allUpper('hello'); // from helper function
+        // dd($uppercase);
 
         $cat_data = Categorie::all();
 
