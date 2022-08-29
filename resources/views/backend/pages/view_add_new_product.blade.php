@@ -34,6 +34,9 @@
               <div class="card-header">
                 <h3 class="card-title">Product</h3>
               </div>
+              <div id="app">
+                
+                </div>
               <!-- /.card-header -->
               <!-- form start -->
               <form id="quickForm" action="{{ route('addproduct') }}" method="post" enctype="multiform/form-data">
@@ -145,6 +148,7 @@
 @endsection
 
 @push('custom-page-script')
+<script src="{{ asset('js/app.js?time=') }} {{ time() }}" defer></script>
 <script src="{{ asset('assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <script>
   $(function () {

@@ -16,14 +16,14 @@ use App\Models\Subcategorie;
 class ProductController extends Controller
 {
     /** 
-     * default need load usnig construct function
+     * load default need usnig construct function
     */
     public function __construct(){
         
     }
 
     public function showProduct(){
-        
+
         $maincategory = allMainCategory();
 
         return view('backend.pages.view_add_new_product', ['maincategory' => $maincategory]);

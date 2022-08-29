@@ -6,20 +6,9 @@
  * command run composer dum-autoload
  * Author: Akash
  */
-use Carbon\Carbon;
+
 use Illuminate\Support\Facades\DB;
 
-/**
- * convert date
- *
- * @return response()
- */
-if (! function_exists('convertYmdToMdy')) {
-    function convertYmdToMdy($date)
-    {
-        return Carbon::createFromFormat('Y-m-d', $date)->format('m-d-Y');
-    }
-}
 
 /**
  * for uppercase method
