@@ -34,7 +34,7 @@ class ProductController extends Controller
      * 
     */
     public function productStore(Request $request){
-
+        // dd($request->all());
         /** form validation */
         $request->validate([
             'prod_name'           => 'required',

@@ -34,9 +34,6 @@
               <div class="card-header">
                 <h3 class="card-title">Product</h3>
               </div>
-              <div id="app">
-                
-                </div>
               <!-- /.card-header -->
               <!-- form start -->
               <form id="quickForm" action="{{ route('addproduct') }}" method="post" enctype="multiform/form-data">
@@ -82,38 +79,16 @@
                   </div>
 
                   <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label for="prod_stock">Stock</label>
                                 <input type="text" name="prod_stock" class="form-control" id="prod_stock" value="{{ old('prod_stock') }}" placeholder="Enter product stock">
                                 <span class="text-danger">@error('prod_stock') {{$message}} @enderror</span>
                              </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                            <label>Category</label>
-                                <select class="form-control select2" name="category_select" id="category_select" style="width: 100%;">
-                                    <option value="">Select</option>
-                                    @foreach($maincategory as $catitme)
-                                    <option value="{{ $catitme->id }}">{{ $catitme->en_name }}</option>
-                                    @endforeach
-                                </select>
-                                <span class="text-danger">@error('category_select') {{$message}} @enderror</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                            <label>Sub Category</label>
-                                <select class="form-control select2" name="sub_category_select" id="sub_category_select" style="width: 100%;">
-                                    <option value="">Select</option>
-                                    <option>subcat-2</option>
-                                    <option>subcat-3</option>  
-                                </select>
-                                <span class="text-danger">@error('sub_category_select') {{$message}} @enderror</span>
-                            </div>
-                        </div>
+                        
                   </div>
-
+                  <div class="row" id="app"></div>
                   
                   <div class="form-group">
                     <label for="prod_attribute">Attributes</label>
@@ -148,7 +123,7 @@
 @endsection
 
 @push('custom-page-script')
-<script src="{{ asset('js/app.js?time=') }} {{ time() }}" defer></script>
+<script src="{{ mix('js/app.js') }}"></script>
 <script src="{{ asset('assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <script>
   $(function () {

@@ -1,11 +1,11 @@
 <template>
-  <ExampleApp />
+  <DependenyApp />
 </template>
 
 <script>
-import ExampleApp from './components/ExampleComponent.vue'
+import DependenyApp from './components/DependencyComponent.vue'
 export default {
-     components: {ExampleApp}
+     components: {DependenyApp}
 }
 </script>
 
