@@ -67,13 +67,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                             <label>Unit</label>
-                                <select class="form-control select2" name="unit_selct" id="unit_selct" style="width: 100%;">
+                                <select class="form-control select2" name="prod_unit" id="prod_unit" style="width: 100%;">
                                     <option value="">Select</option>
                                     <option value="Gm">Gm</option>
                                     <option value="Ltr">Ltr</option>
                                     <option value="Pc">Pc</option>
                                 </select>
-                                <span class="text-danger">@error('unit_selct') {{$message}} @enderror</span>
+                                <span class="text-danger">@error('prod_unit') {{$message}} @enderror</span>
                             </div>
                         </div>
                   </div>

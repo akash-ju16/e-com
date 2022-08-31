@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/sub-category', [SettingsController::class, 'addSubCategory'])->name('subcatepost');
     Route::get('/new-product', [ProductController::class, 'showProduct'])->middleware(['can:isAdmin'])->name('newproduct');
     Route::post('/new-product', [ProductController::class, 'productStore'])->name('addproduct');
+    Route::get('/product', [ProductController::class, 'displayProductList'])->name('product');
 
 
     //Test pages

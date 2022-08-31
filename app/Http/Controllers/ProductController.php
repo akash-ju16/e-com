@@ -23,6 +23,16 @@ class ProductController extends Controller
         
     }
 
+    /** 
+     * display product list 
+    */
+    public function displayProductList(){
+        return view('backend.pages.view_products_list');
+    }
+
+    /** 
+     * product insert page
+    */
     public function showProduct(){
 
         $maincategory = allMainCategory();
@@ -42,7 +52,7 @@ class ProductController extends Controller
             'prod_name'           => 'required',
             'prod_description'    => 'required',
             'prod_price'          => 'required',
-            'unit_selct'          => 'required',
+            'prod_unit'          => 'required',
             'prod_stock'          => 'required',
             // 'category_select'     => 'required',
             // 'sub_category_select' => 'required',
@@ -60,11 +70,13 @@ class ProductController extends Controller
 
     /** after validation  */
 
-    $data = $request->except('_token');
-    // dd($data);
-    // $data['anycolum'] = 'custom value';
-    $product = Product::create($data);
-    dd($data);
+     $data = $request->except('_token', 'files');
+     //dd($data);
+     $data['categories_id'] = $request->input('category_select', true);
+     $data['subcategories_id'] = $request->input('sub_category_select', true);
+     $product = Product::create($data);
+
+        return redirect(route('product'))->with('product-status', 'product insert successfully');
 
     }
 }
