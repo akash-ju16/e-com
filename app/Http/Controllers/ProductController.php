@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Categorie;
 use App\Models\Subcategorie;
+use App\Models\Product;
 
 /** 
  * Class Description
@@ -58,7 +59,12 @@ class ProductController extends Controller
     );
 
     /** after validation  */
-    dd($request->all());
+
+    $data = $request->except('_token');
+    // dd($data);
+    // $data['anycolum'] = 'custom value';
+    $product = Product::create($data);
+    dd($data);
 
     }
 }
