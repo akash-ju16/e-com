@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Categorie;
 use App\Models\Subcategorie;
 use App\Models\Product;
+use App\Http\Traits\ResizeImage;
 
 /** 
  * Class Description
@@ -16,6 +17,9 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+    /** using trait */
+    use ResizeImage;
+
     /** 
      * load default need usnig construct function
     */
@@ -70,10 +74,21 @@ class ProductController extends Controller
 
     /** after validation  */
 
-     $data = $request->except('_token', 'files');
-     //dd($data);
+     $data = $request->except('_token');
+
      $data['categories_id'] = $request->input('category_select', true);
      $data['subcategories_id'] = $request->input('sub_category_select', true);
+
+    /** product image area */
+    if ($request->hasFile('product_image')){ 
+        $img_file = $request->product_image;
+        $imgpath = 'images/products/';
+        $img_name = $this->productImageResize($img_file, $imgpath); //using trait
+     } 
+
+     $data['product_image'] = $img_name;
+
+
      $product = Product::create($data);
 
         return redirect(route('product'))->with('product-status', 'product insert successfully');
