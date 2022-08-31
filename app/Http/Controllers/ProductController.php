@@ -35,6 +35,7 @@ class ProductController extends Controller
     */
     public function productStore(Request $request){
         // dd($request->all());
+
         /** form validation */
         $request->validate([
             'prod_name'           => 'required',
@@ -42,8 +43,8 @@ class ProductController extends Controller
             'prod_price'          => 'required',
             'unit_selct'          => 'required',
             'prod_stock'          => 'required',
-            'category_select'     => 'required',
-            'sub_category_select' => 'required',
+            // 'category_select'     => 'required',
+            // 'sub_category_select' => 'required',
             'prod_attribute'      => 'required',
             'product_image'       => 'required',
         ],
@@ -57,7 +58,7 @@ class ProductController extends Controller
     );
 
     /** after validation  */
-    dd($request->input('prod_description'));
+    dd($request->all());
 
     }
 }

@@ -51,7 +51,7 @@
             }
         },
 
-        created: function(){
+        created(){
             this.getCategories()
         }
     }
