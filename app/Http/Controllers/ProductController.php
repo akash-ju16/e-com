@@ -31,7 +31,9 @@ class ProductController extends Controller
      * display product list 
     */
     public function displayProductList(){
-        return view('backend.pages.view_products_list');
+
+        $product = Product::all();
+        return view('backend.pages.view_products_list', ['productlist'=>$product]);
     }
 
     /** 

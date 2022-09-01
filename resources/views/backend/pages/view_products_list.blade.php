@@ -10,4 +10,9 @@
 <span class="text-success"> {{ session('product-status') }} </span>
 @endif
 
+@foreach($productlist as $product)
+
+{{$product->prod_name}}
+@endforeach
+
 @endsection
