@@ -31,13 +31,10 @@
         <div class="row">
           
             <div class="col-12">
-                <span class="text-success">
-                @if(session()->has('product-status')) {{ session('product-status') }}  @endif
-                </span>
       
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Product List</h3>
+                <h3 class="card-title">Product Details</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -56,23 +53,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                  @foreach ($productlist as $product)
                     <tr>
-                        <td>{{ $product->id }}</td>
-                        <td><a href="{{ url('product/view/'.$product->id) }}">{{ $product->prod_name }}</a></td>
-                        <td> <img src="{{ asset('images/products/'.$product->product_image) }}" width="100" height="100" alt="no image"></td>
-                        <td>Active</td>
-                        <!-- <td>{!! $product->prod_description !!}</td> -->
-                        <td>{{ $product->prod_price }}Tk</td>
-                        <td>{{ $product->prod_stock }}</td>
-                        <!-- <td>{{ $product->categories_id }}</td> -->
-                        
-                        <td>
-                            <span class="text-danger">edit</span>
-                            <span class="text-danger"> | Delete</span>
-                        </td>
+                    
                     </tr>
-                  @endforeach
                   
                   </tbody>
                 </table>

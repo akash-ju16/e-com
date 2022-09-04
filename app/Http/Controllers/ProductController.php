@@ -28,6 +28,15 @@ class ProductController extends Controller
     }
 
     /** 
+     * display product details 
+    */
+    public function ProductDetails(Request $request){
+        $pid = $request->pid;
+        $product = Product::where('id', $pid)->get();
+        return view('backend.pages.view_product_details', ['productItem'=>$product]);
+    }
+
+    /** 
      * display product list 
     */
     public function displayProductList(){
