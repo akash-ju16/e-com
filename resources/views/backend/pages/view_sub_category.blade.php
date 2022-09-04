@@ -110,7 +110,7 @@
                     @endforeach
                   
                   
-                  </tfoot>
+                  </tbody>
                 </table>
               </div>
               <!-- /.card-body -->
