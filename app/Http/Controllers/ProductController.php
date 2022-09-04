@@ -32,7 +32,7 @@ class ProductController extends Controller
     */
     public function ProductDetails(Request $request){
         $pid = $request->pid;
-        $product = Product::where('id', $pid)->get();
+        $product = Product::where('id', $pid)->first();
         return view('backend.pages.view_product_details', ['productItem'=>$product]);
     }
 

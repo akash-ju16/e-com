@@ -68,8 +68,8 @@
                         <!-- <td>{{ $product->categories_id }}</td> -->
                         
                         <td>
-                            <span class="text-danger">edit</span>
-                            <span class="text-danger"> | Delete</span>
+                            <a class="btn btn-info btn-sm" href="#"><i class="fas fa-pencil-alt"></i>Edit</a>
+                            <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash"></i>Delete</a>
                         </td>
                     </tr>
                   @endforeach
