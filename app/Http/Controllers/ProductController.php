@@ -28,6 +28,13 @@ class ProductController extends Controller
     }
 
     /** 
+     * product edit
+    */
+    public function ProductEdit(Request $request){
+        return view('backend.pages.view_edit_product');
+    }
+
+    /** 
      * display product details 
     */
     public function ProductDetails(Request $request){
