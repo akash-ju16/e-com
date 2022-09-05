@@ -16,6 +16,24 @@ class SettingsController extends Controller
     /** using trait */
     use ResizeImage;
 
+    /** 
+     * edit category 
+     */
+    public function edit_category(Request $request){
+        $cid = $request->cid;
+        $cat_data = Categorie::where('id', $cid)->first();
+        return view('backend.pages.view_edit_category', ['data'=>$cat_data]);
+    }
+
+    /** 
+     * edit sub category 
+     */
+    public function edit_sub_category(Request $request){
+        $scid = $request->cid;
+        $cat_data = Subcategorie::where('id', $scid)->first();
+        return view('backend.pages.view_edit_sub_category', ['data'=>$cat_data]);
+    }
+
     public function categoryList(){
 
         // dd(Auth::User());

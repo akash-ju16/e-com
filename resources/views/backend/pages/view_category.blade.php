@@ -99,10 +99,10 @@
                     <td>{{ CustomHelper::uppercase($item->bn_name) }} <!--CustomHelper::uppercase using form class based helper function--></td>
                     <td><img src="{{ asset('images/'.$item->cat_img_name) }}" width="40" height="30" alt="no image"></td>
                     <td>
-                      <span class="text-danger">edit</span>
+                    <a class="btn btn-info btn-sm" href="#"><i class="fas fa-pencil-alt"></i>Edit</a>
 
                     @can('isAdmin') 
-                    <span class="text-danger"> | Delete</span>
+                    <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash"></i>Delete</a>
                     @endcan
                   </td>
                   </tr>

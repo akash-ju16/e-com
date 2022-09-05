@@ -105,7 +105,10 @@
                         <td>{{ $item->categorie->en_name }}</td>
                         <td>{{ $item->en_name }}</td>
                         <td><img src="{{ asset('images/subimages/'.$item->image_name) }}" alt="no img" width="40" height="30" ></td>
-                        <td><span class="text-danger">edit</span></td>
+                        <td>
+                            <a class="btn btn-info btn-sm" href="#"><i class="fas fa-pencil-alt"></i>Edit</a>
+                            <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash"></i>Delete</a>
+                        </td>
                       </tr>
                     @endforeach
                   

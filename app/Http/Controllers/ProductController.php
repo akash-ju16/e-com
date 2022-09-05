@@ -31,7 +31,11 @@ class ProductController extends Controller
      * product edit
     */
     public function ProductEdit(Request $request){
-        return view('backend.pages.view_edit_product');
+
+        $pid = $request->pid;
+        $product = Product::where('id', $pid)->first();
+
+        return view('backend.pages.view_edit_product', ['productItem'=>$product]);
     }
 
     /** 
