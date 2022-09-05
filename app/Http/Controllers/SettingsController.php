@@ -28,13 +28,18 @@ class SettingsController extends Controller
     /** 
      * edit sub category 
      */
-    public function edit_sub_category(Request $request){
+    public function edit_sub_category(Request $request, $scid){
         $scid = $request->cid;
+
         $cat_data = Subcategorie::where('id', $scid)->first();
+        dd($scid);
         return view('backend.pages.view_edit_sub_category', ['data'=>$cat_data]);
     }
 
-    public function categoryList(){
+    /**
+     * category_list
+     */
+    public function category_list(){
 
         // dd(Auth::User());
         // $uppercase = allUpper('hello'); // from helper function
