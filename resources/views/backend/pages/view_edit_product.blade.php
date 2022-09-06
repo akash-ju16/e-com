@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title', 'Admin | Category')
+@section('title', 'Admin | Product')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -68,10 +68,10 @@
                             <div class="form-group">
                             <label>Unit</label>
                                 <select class="form-control select2" name="prod_unit" id="prod_unit" style="width: 100%;">
-                                    <option value="">Select</option>
-                                    <option value="Gm">Gm</option>
-                                    <option value="Ltr">Ltr</option>
-                                    <option value="Pc">Pc</option>
+                                <option value="">Select</option>
+                                @foreach ($unit as $item)
+                                  <option value="{{ $item }}" {{ ( $item == $productItem->prod_unit) ? 'selected' : '' }}> {{ $item }} </option>
+                                @endforeach    
                                 </select>
                                 <span class="text-danger">@error('prod_unit') {{$message}} @enderror</span>
                             </div>

@@ -22,4 +22,13 @@ class Product extends Model
         'product_image'
     ];
 
+    public static function get_unit(){
+        $unit = array(
+            'Gm' => 'Gm',
+            'Ltr' => 'Ltr',
+            'Pc' => 'Pc'
+        );
+        return $unit;
+    }
+
 }

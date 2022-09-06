@@ -20,11 +20,12 @@ class ProductController extends Controller
     /** using trait */
     use ResizeImage;
 
+    private $product;
     /** 
      * load default need usnig construct function
     */
-    public function __construct(){
-        
+    public function __construct(Product $prod){
+        $this->product = $prod;
     }
 
     /** 
@@ -32,10 +33,13 @@ class ProductController extends Controller
     */
     public function ProductEdit(Request $request){
 
+        // $unit = Product::get_unit();
+        $unit = $this->product->get_unit();
+        
         $pid = $request->pid;
-        $product = Product::where('id', $pid)->first();
-
-        return view('backend.pages.view_edit_product', ['productItem'=>$product]);
+        $product = $this->product->where('id', $pid)->first();
+        // dd($product);
+        return view('backend.pages.view_edit_product', ['productItem'=>$product, 'unit'=>$unit]);
     }
 
     /** 
@@ -43,7 +47,7 @@ class ProductController extends Controller
     */
     public function ProductDetails(Request $request){
         $pid = $request->pid;
-        $product = Product::where('id', $pid)->first();
+        $product = $this->product->where('id', $pid)->first();
         return view('backend.pages.view_product_details', ['productItem'=>$product]);
     }
 
@@ -52,7 +56,7 @@ class ProductController extends Controller
     */
     public function displayProductList(){
 
-        $product = Product::all();
+        $product = $this->product->all();
         return view('backend.pages.view_products_list', ['productlist'=>$product]);
     }
 
@@ -111,7 +115,7 @@ class ProductController extends Controller
      $data['product_image'] = $img_name;
 
 
-     $product = Product::create($data);
+     $product = $this->product->create($data);
 
         return redirect(route('product'))->with('product-status', 'product insert successfully');
 
