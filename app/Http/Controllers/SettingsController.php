@@ -16,12 +16,19 @@ class SettingsController extends Controller
     /** using trait */
     use ResizeImage;
 
+    private $category;
+    private $subcategory;
+
+    public function __construct(Categorie $cat, Subcategorie $subcat){
+        $this->category = $cat;
+        $this->subcategory = $subcat;
+    }
     /** 
      * edit category 
      */
     public function edit_category(Request $request){
         $cid = $request->cid;
-        $cat_data = Categorie::where('id', $cid)->first();
+        $cat_data = $this->category->where('id', $cid)->first();
         return view('backend.pages.view_edit_category', ['data'=>$cat_data]);
     }
 
@@ -31,7 +38,7 @@ class SettingsController extends Controller
     public function edit_sub_category(Request $request, $scid){
         $scid = $request->cid;
 
-        $cat_data = Subcategorie::where('id', $scid)->first();
+        $cat_data = $this->subcategory->where('id', $scid)->first();
         dd($scid);
         return view('backend.pages.view_edit_sub_category', ['data'=>$cat_data]);
     }
@@ -45,7 +52,7 @@ class SettingsController extends Controller
         // $uppercase = allUpper('hello'); // from helper function
         // dd($uppercase);
 
-        $cat_data = Categorie::all();
+        $cat_data = $this->category->all();
 
         return view('backend.pages.view_category', ['data'=>$cat_data]);
     }
@@ -87,10 +94,10 @@ class SettingsController extends Controller
         return redirect(route('category'))->with('status', 'category insert successfully');
     }
 
-    public function subCategoryList(){
+    public function sub_category_list(){
 
-        $cat_data = Categorie::all();
-        $subcategorie = Subcategorie::with('categorie')->get();
+        $cat_data = $this->category->all();
+        $subcategorie = $this->subcategory->with('categorie')->get();
 
         //     $subcategorie = Categorie::join('subcategories','categories.id', '=', 'subcategories.categorie_id')
         //                         ->get();

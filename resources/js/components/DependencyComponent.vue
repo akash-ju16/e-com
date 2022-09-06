@@ -14,7 +14,7 @@
     <label>Sub Category</label>
      <select class='form-control select2' name="sub_category_select" id="sub_category_select" style="width: 100%;" v-model='subcategory'>
         <option value="">Select</option>
-        <option v-for='data in subcategories' :key="data.id" :value='data.id'>{{ data.en_name }}</option>
+        <option v-for='data in subcategories' :key="data.id" :value='data.id'>{{ data.en_name }} </option>
     </select>
     <!-- <span class="text-danger">@error('sub_category_select') {{$message}} @enderror</span> -->
     </div>

@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/category/add', [SettingsController::class, 'category_list'])->middleware(['can:viewAny, App\Models\Categorie'])->name('category');
     Route::post('/category/add', [SettingsController::class, 'addCategory'])->name('catepost');
     Route::get('/category/edit/{cid}', [SettingsController::class, 'edit_category']);
-    Route::get('/category/add-sub-category', [SettingsController::class, 'subCategoryList'])->name('subcategory');
+    Route::get('/category/add-sub-category', [SettingsController::class, 'sub_category_list'])->name('subcategory');
     Route::post('/category/sub-category', [SettingsController::class, 'addSubCategory'])->name('subcatepost');
     Route::get('/category/sub-category/edit/{scid}', [SettingsController::class, 'edit_sub_category']);
     /** product */
