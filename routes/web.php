@@ -55,12 +55,12 @@ Route::middleware('auth')->group(function(){
     Route::post('/category/sub-category', [SettingsController::class, 'addSubCategory'])->name('subcatepost');
     Route::get('/category/sub-category/edit/{scid}', [SettingsController::class, 'edit_sub_category']);
     /** product */
-    Route::get('/product/add-new', [ProductController::class, 'showProduct'])->middleware(['can:isAdmin'])->name('newproduct');
-    Route::post('/product/add-new', [ProductController::class, 'productStore'])->name('addproduct');
-    Route::get('/product/list', [ProductController::class, 'displayProductList'])->name('product');
-    Route::get('/product/view/{pid}', [ProductController::class, 'ProductDetails']);
-    Route::get('/product/edit/{pid}', [ProductController::class, 'ProductEdit']);
-    Route::post('/product/edit/{pid}', [ProductController::class, 'ProductUpdate'])->name('updateproduct');
+    Route::get('/product/add-new', [ProductController::class, 'product_view'])->middleware(['can:isAdmin'])->name('newproduct');
+    Route::post('/product/add-new', [ProductController::class, 'product_store'])->name('addproduct');
+    Route::get('/product/list', [ProductController::class, 'product_display'])->name('product');
+    Route::get('/product/view/{pid}', [ProductController::class, 'product_details']);
+    Route::get('/product/edit/{pid}', [ProductController::class, 'product_edit']);
+    Route::post('/product/edit/{pid}', [ProductController::class, 'product_update'])->name('updateproduct');
 
 
     //Test pages

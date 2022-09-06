@@ -21,12 +21,12 @@ if(! function_exists('allUpper')) {
 }
 
 /**
- * Function <> allMainCategory
+ * Function <> get_main_category
  * @param null
  * @return allcategory
  */
-if (! function_exists('allMainCategory')) {
-    function allMainCategory()
+if (! function_exists('get_main_category')) {
+    function get_main_category()
     {
         $category = DB::table('categories')->get();
 

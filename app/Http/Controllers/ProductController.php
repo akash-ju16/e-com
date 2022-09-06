@@ -31,7 +31,7 @@ class ProductController extends Controller
     /** 
      * product edit
     */
-    public function ProductEdit(Request $request){
+    public function product_edit(Request $request){
 
         // $unit = Product::get_unit();
         $unit = $this->product->get_unit();
@@ -45,7 +45,7 @@ class ProductController extends Controller
     /** 
      * display product details 
     */
-    public function ProductDetails(Request $request){
+    public function product_details(Request $request){
         $pid = $request->pid;
         $product = $this->product->where('id', $pid)->first();
         return view('backend.pages.view_product_details', ['productItem'=>$product]);
@@ -54,7 +54,7 @@ class ProductController extends Controller
     /** 
      * display product list 
     */
-    public function displayProductList(){
+    public function product_display(){
 
         $product = $this->product->all();
         return view('backend.pages.view_products_list', ['productlist'=>$product]);
@@ -63,9 +63,9 @@ class ProductController extends Controller
     /** 
      * product insert page
     */
-    public function showProduct(){
+    public function product_view(){
 
-        $maincategory = allMainCategory();
+        $maincategory = get_main_category();
 
         return view('backend.pages.view_add_new_product', ['maincategory' => $maincategory]);
     }
@@ -74,7 +74,7 @@ class ProductController extends Controller
      * product store method 
      * 
     */
-    public function productStore(Request $request){
+    public function product_store(Request $request){
         // dd($request->all());
 
         /** form validation */
