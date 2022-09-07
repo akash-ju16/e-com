@@ -44,6 +44,43 @@ class ProductController extends Controller
             'prod_attribute'      => 'required'
         ]);
 
+        /** after validation  */
+
+        $data = $request->except('_token');
+        
+        
+        
+        if($request->input('category_select', true)){
+            $data['categories_id']    = $request->input('category_select', true);
+        }else{
+            $data['categories_id_hidden']    = $request->input('categories_id_hidden', true);
+        }
+
+        if($request->input('sub_category_select', true)){
+            $data['subcategories_id'] = $request->input('sub_category_select', true);
+        }else{
+            $data['subcategories_id_hidden'] = $request->input('subcategories_id_hidden', true);
+        }
+        
+        
+
+        
+        
+        dd($data);
+        /** product image area */
+        if ($request->hasFile('product_image')){ 
+            $img_file = $request->product_image;
+            $imgpath = 'images/products/';
+            $img_name = $this->productImageResize($img_file, $imgpath); //using trait
+        } 
+
+        $data['product_image'] = $img_name;
+        dd($data);
+
+        $product = $this->product->create($data);
+
+        return redirect(route('product'))->with('product-status', 'product insert successfully');
+
     }
 
     /** 

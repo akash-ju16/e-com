@@ -88,7 +88,8 @@
                         
                   </div>
                   <div class="row" id="app"></div>
-                  
+                  <input type="hidden" name="categories_id_hidden" class="form-control" id="categories_id_hidden" value="{{ $productItem->categories_id }}">
+                  <input type="hidden" name="subcategories_id_hidden" class="form-control" id="subcategories_id_hidden" value="{{ $productItem->subcategories_id }}">
                   <div class="form-group">
                     <label for="prod_attribute">Attributes <span class="text-danger">*</span></label>
                     <input type="text" name="prod_attribute" class="form-control" id="prod_attribute" value="{{ $productItem->prod_attribute }}">
