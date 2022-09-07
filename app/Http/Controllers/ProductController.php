@@ -28,6 +28,24 @@ class ProductController extends Controller
         $this->product = $prod;
     }
 
+    /**
+     * product update
+     */
+    public function product_update(Request $request){
+        
+        $request->validate([
+            'prod_name'           => 'required',
+            'prod_description'    => 'required',
+            'prod_price'          => 'required',
+            'prod_unit'           => 'required',
+            'prod_stock'          => 'required',
+            // 'category_select'     => 'required',
+            // 'sub_category_select' => 'required',
+            'prod_attribute'      => 'required'
+        ]);
+
+    }
+
     /** 
      * product edit
     */

@@ -59,7 +59,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/product/add-new', [ProductController::class, 'product_store'])->name('addproduct');
     Route::get('/product/list', [ProductController::class, 'product_display'])->name('product');
     Route::get('/product/view/{pid}', [ProductController::class, 'product_details']);
-    Route::get('/product/edit/{pid}', [ProductController::class, 'product_edit']);
+    Route::get('/product/edit/{pid}', [ProductController::class, 'product_edit'])->name('productedit');
     Route::post('/product/edit/{pid}', [ProductController::class, 'product_update'])->name('updateproduct');
 
 

@@ -36,22 +36,21 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm" action="{{ route('addproduct') }}" method="post" enctype="multipart/form-data">
+              <form id="quickForm" action="{{ route('updateproduct', $productItem->id ) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="prod_name">Name</label>
-                    <input type="text" name="prod_name" class="form-control" id="prod_name" value="{{ $productItem->prod_name }}" placeholder="Enter product name">
+                    <label for="prod_name">Name <span class="text-danger">*</span></label>
+                    <input type="text" name="prod_name" class="form-control" id="prod_name" value="{{ $productItem->prod_name }}">
                     <span class="text-danger">@error('prod_name') {{$message}} @enderror</span>
                   </div>
                   <div class="form-group">
                     <label for="prod_name_bangla">Name(Bangla)</label>
-                    <input type="text" name="prod_name_bangla" class="form-control" id="prod_name_bangla" value="{{ $productItem->prod_name_bangla }}" placeholder="Enter product name bangla">
-                    <!-- <span class="text-danger">@error('prod_name_bangla') {{$message}} @enderror</span> -->
+                    <input type="text" name="prod_name_bangla" class="form-control" id="prod_name_bangla" value="{{ $productItem->prod_name_bangla }}">
                   </div>
 
                   <div class="form-group">
-                    <label for="prod_description">Description</label>
+                    <label for="prod_description">Description <span class="text-danger">*</span></label>
                     <textarea id="summernote" name="prod_description" type="text">{{ $productItem->prod_description }}</textarea>
                     <span class="text-danger">@error('prod_description') {{$message}} @enderror</span>
                   </div>
@@ -59,14 +58,14 @@
                   <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="prod_price">Price</label>
-                                <input type="text" name="prod_price" class="form-control" id="prod_price" value="{{ $productItem->prod_price }}" placeholder="Enter product price">
+                                <label for="prod_price">Price <span class="text-danger">*</span></label>
+                                <input type="text" name="prod_price" class="form-control" id="prod_price" value="{{ $productItem->prod_price }}">
                                 <span class="text-danger">@error('prod_price') {{$message}} @enderror</span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                            <label>Unit</label>
+                            <label>Unit <span class="text-danger">*</span></label>
                                 <select class="form-control select2" name="prod_unit" id="prod_unit" style="width: 100%;">
                                 <option value="">Select</option>
                                 @foreach ($unit as $item)
@@ -81,8 +80,8 @@
                   <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="prod_stock">Stock</label>
-                                <input type="text" name="prod_stock" class="form-control" id="prod_stock" value="{{ $productItem->prod_stock }}" placeholder="Enter product stock">
+                                <label for="prod_stock">Stock <span class="text-danger">*</span></label>
+                                <input type="text" name="prod_stock" class="form-control" id="prod_stock" value="{{ $productItem->prod_stock }}">
                                 <span class="text-danger">@error('prod_stock') {{$message}} @enderror</span>
                              </div>
                         </div>
@@ -91,20 +90,21 @@
                   <div class="row" id="app"></div>
                   
                   <div class="form-group">
-                    <label for="prod_attribute">Attributes</label>
-                    <input type="text" name="prod_attribute" class="form-control" id="prod_attribute" value="{{ $productItem->prod_attribute }}" placeholder="Enter product attribute">
+                    <label for="prod_attribute">Attributes <span class="text-danger">*</span></label>
+                    <input type="text" name="prod_attribute" class="form-control" id="prod_attribute" value="{{ $productItem->prod_attribute }}">
                     <span class="text-danger">@error('prod_attribute') {{$message}} @enderror</span>
                   </div>
 
                   <div class="form-group">
                     <label for="product_image">Product Image</label>
+                    <img src="{{ asset('images/products/'.$productItem->product_image)  }}" width="80" height="60" alt="no image">
                     <input type="file" name="product_image" value="{{ old('product_image') }}" class="form-control" id="product_image">
                     <span class="text-danger">@error('product_image') {{$message}} @enderror</span>
                   </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Update</button>
                 </div>
               </form>
             </div>
