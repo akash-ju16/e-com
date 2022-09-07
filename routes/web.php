@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\HomeController;
 use App\Test;
 
 // app()->bind('newf', Test::class);
@@ -17,7 +18,8 @@ use App\Test;
 //     return view('welcome');
 // });
 
-
+//home page
+Route::get('/', [HomeController::class, 'index'])->name('homepg');
 
 /** Register Route */
 Route::get('/register', function () { 
