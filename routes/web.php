@@ -7,16 +7,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\HomeController;
-use App\Test;
 
-// app()->bind('newf', Test::class);
-
-// Route::get('/', function () {
-//     $data = app()->make('newf');
-//     echo $data->name;
-//     dd(app());
-//     return view('welcome');
-// });
 
 //home page
 Route::get('/', [HomeController::class, 'index'])->name('homepg');
@@ -30,14 +21,14 @@ Route::get('/register', function () {
 Route::post('/register', [RegisterController::class, 'store'])->name('register');
 
 /** Login Route */
-Route::get('/login', function () {
+Route::get('/admin/login', function () {
     if (Auth::check()) {
         return redirect()->route('admin');
     }
     return view('backend/auth/pages/login');
 })->name('login');
 
-Route::post('/login', [LoginController::class, 'userLogin'])->name('login');
+Route::post('/admin/login', [LoginController::class, 'userLogin'])->name('login');
 Route::get('/logout', [LoginController::class, 'userLogout'])->name('logout');
 
 
