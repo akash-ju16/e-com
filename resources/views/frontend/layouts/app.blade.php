@@ -69,7 +69,7 @@
     <!--end shipping area-->
 
    <!--product area start-->
-   @include('frontend.layouts.popular_product')
+   @include('frontend.pages.popular_product')
    <!--end/product area-->
 
     <!--banner area start-->
@@ -89,7 +89,7 @@
     <!--banner area end-->
 
     <!--custom product area-->
-    @include('frontend.layouts.product')
+    @include('frontend.pages.product')
     <!--end/custom product area-->
 
     <!--banner area start-->
