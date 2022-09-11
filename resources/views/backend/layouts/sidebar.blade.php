@@ -37,6 +37,12 @@
                       <p>Sub category</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="{{ route('childcategory') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Child category</p>
+                    </a>
+                  </li>
                 </ul>
           </li>
           <li class="nav-item">

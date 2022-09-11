@@ -46,7 +46,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/category/edit/{cid}', [SettingsController::class, 'edit_category']);
     Route::get('/category/add-sub-category', [SettingsController::class, 'sub_category_list'])->name('subcategory');
     Route::get('/category/add-child-category', [SettingsController::class, 'child_category_list'])->name('childcategory');
-    Route::post('/category/sub-category', [SettingsController::class, 'addSubCategory'])->name('subcatepost');
+    Route::post('/category/sub-category', [SettingsController::class, 'add_sub_category'])->name('subcatepost');
+    Route::post('/category/child-category', [SettingsController::class, 'add_child_category'])->name('childcatepost');
     Route::get('/category/sub-category/edit/{scid}', [SettingsController::class, 'edit_sub_category']);
     /** product */
     Route::get('/product/add-new', [ProductController::class, 'product_view'])->middleware(['can:isAdmin'])->name('newproduct');

@@ -41,35 +41,20 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm" action="{{ route('subcatepost') }}" method="post" enctype="multipart/form-data">
+              <form id="quickForm" action="" method="post">
               @csrf  
-              <div class="card-body">
-                <div class="form-group">
-                  <label>Select Main Category</label>
-                  <select name="mcategory" id="mcategory" class="form-control select2" style="width: 100%;">
-                    <option value="">Select</option>
-                    @foreach($mdata as $item)
-                    <option value="{{ $item->id }}">{{ $item->en_name }}</option>  
-                    @endforeach
-                  </select>
-                  <span class="text-danger">@error('mcategory') {{ $message }} @enderror</span>
-                </div>
+                  <div id="app"></div>
 
                   <div class="form-group">
-                    <label for="sub_cat_name">Sub Category Name</label>
-                    <input type="text" name="sub_cat_name" class="form-control" id="sub_cat_name" value="{{old('sub_cat_name')}}" placeholder="Enter sub category name">
-                    <span class="text-danger">@error('sub_cat_name') {{ $message }} @enderror</span>
+                    <label for="child_cat_name">Child Category Name</label>
+                    <input type="text" name="child_cat_name" class="form-control" id="child_cat_name" value="{{old('child_cat_name')}}" placeholder="Enter child category name">
+                    <span class="text-danger">@error('child_cat_name') {{ $message }} @enderror</span>
                   </div>
                   
                   <div class="form-group">
-                    <label for="sub_cat_name_bangla">Sub Category Name(Bangla)</label>
-                    <input type="text" name="sub_cat_name_bangla" class="form-control" id="sub_cat_name_bangla" value="{{old('sub_cat_name_bangla')}}" placeholder="Enter sub category bangla name">
+                    <label for="child_cat_name_bangla">Child Category Name(Bangla)</label>
+                    <input type="text" name="child_cat_name_bangla" class="form-control" id="child_cat_name_bangla" value="{{old('child_cat_name_bangla')}}" placeholder="Enter child category bangla name">
                    </div>
-                  <div class="form-group">
-                    <label for="sub_cat_image">Image</label>
-                    <input type="file" name="sub_cat_image" class="form-control" id="sub_cat_image">
-                    <span class="text-danger">@error('sub_cat_image') {{ $message }} @enderror</span>
-                  </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
@@ -84,7 +69,7 @@
       
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Sub Category List</h3>
+                <h3 class="card-title">Child Category List</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -99,18 +84,7 @@
                   </tr>
                   </thead>
                   <tbody>
-                    @foreach ($cat_sub_main_data as $item)
-                      <tr>
-                        <td>{{ $item->id }}</td>
-                        <td>{{ $item->categorie->en_name }}</td>
-                        <td>{{ $item->en_name }}</td>
-                        <td><img src="{{ asset('images/subimages/'.$item->image_name) }}" alt="no img" width="40" height="30" ></td>
-                        <td>
-                            <a class="btn btn-info btn-sm" href="{{ url('category/sub-category/edit/'.$item->id) }}"><i class="fas fa-pencil-alt"></i>Edit</a>
-                            <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash"></i>Delete</a>
-                        </td>
-                      </tr>
-                    @endforeach
+                   
                   
                   
                   </tbody>
@@ -130,3 +104,7 @@
   </div>
   <!-- /.content-wrapper -->
 @endsection 
+
+@push('custom-page-script')
+<script src="{{ mix('js/app.js') }}"></script>
+@endpush
