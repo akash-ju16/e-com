@@ -115,6 +115,17 @@ class SettingsController extends Controller
         return view('backend.pages.view_sub_category', ['mdata'=>$cat_data, 'cat_sub_main_data'=>$subcategorie]);
     }
 
+    /**
+     * child_category_list
+     * @param null
+     */
+    public function child_category_list(){
+        $cat_data = $this->category->all();
+        $subcategorie = $this->subcategory->with('categorie')->get();
+        return view('backend.pages.view_sub_category', ['mdata'=>$cat_data, 'cat_sub_main_data'=>$subcategorie]);
+
+    }
+
     /** 
      * add sub category
     */

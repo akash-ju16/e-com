@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/category/add', [SettingsController::class, 'addCategory'])->name('catepost');
     Route::get('/category/edit/{cid}', [SettingsController::class, 'edit_category']);
     Route::get('/category/add-sub-category', [SettingsController::class, 'sub_category_list'])->name('subcategory');
+    Route::get('/category/add-child-category', [SettingsController::class, 'child_category_list'])->name('childcategory');
     Route::post('/category/sub-category', [SettingsController::class, 'addSubCategory'])->name('subcatepost');
     Route::get('/category/sub-category/edit/{scid}', [SettingsController::class, 'edit_sub_category']);
     /** product */
