@@ -183,28 +183,12 @@ class SettingsController extends Controller
         //validation form
         $request->validate(
             [
-                'mcategory' => ['required'],
-                'sub_cat_name' => ['required'],
-                'sub_cat_image' => ['required'],
+                'child_cat_name' => ['required'],
             ],
             [
-                'mcategory.required' => 'Please select a main category name',
-                'sub_cat_name.required' => 'Please input sub category name',
-                'sub_cat_image.required' => 'attached your sub category image',
+                'child_cat_name.required' => 'Please input sub category name',
             ]
         );
-
-        //after successfully validated then below code executed
-
-        // $data = $request->except('_token');
-
-        /** Polices authorizations */
-        $this->authorize('isAdmin', Categorie::class);
-
-        /**another way to authorization */
-        // if(Auth::user()->cannot('isAdmin', Categorie::class)){
-        //     abort(403);
-        // }
 
         $subcategory = new Subcategorie();
 

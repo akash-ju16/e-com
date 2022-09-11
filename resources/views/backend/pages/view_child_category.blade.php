@@ -41,10 +41,9 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm" action="" method="post">
+              <form id="quickForm" action="{{ route('childcatepost') }}" method="post">
               @csrf  
                   <div id="app"></div>
-
                   <div class="form-group">
                     <label for="child_cat_name">Child Category Name</label>
                     <input type="text" name="child_cat_name" class="form-control" id="child_cat_name" value="{{old('child_cat_name')}}" placeholder="Enter child category name">
