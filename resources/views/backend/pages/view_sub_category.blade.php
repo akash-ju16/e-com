@@ -68,7 +68,7 @@
                   <div class="form-group">
                     <label for="sub_cat_image">Image</label>
                     <input type="file" name="sub_cat_image" class="form-control" id="sub_cat_image">
-                    <span class="text-danger">@error('sub_cat_image') {{ $message }} @enderror</span>
+                    <!-- <span class="text-danger">@error('sub_cat_image') {{ $message }} @enderror</span> -->
                   </div>
                 </div>
                 <!-- /.card-body -->

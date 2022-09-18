@@ -66,7 +66,7 @@ class SettingsController extends Controller
         $request->validate([
             'cat_name' => ['required'],
             'cat_name_bangla' => ['required'],
-            'cat_image' => ['required']
+            // 'cat_image' => ['required']
         ]);
 
          //dd($request->all());
@@ -83,12 +83,13 @@ class SettingsController extends Controller
 
         $category->en_name = $request->input('cat_name');
         $category->bn_name = $request->input('cat_name_bangla');
-        
-        $image_file = $request->cat_image;
-        $path = 'images/';
-        $image_name = $this->imageresize($image_file, $path); //using trait
 
-        $category->cat_img_name = $image_name;
+        if ($request->hasFile('cat_image')) {
+            $image_file = $request->cat_image;
+            $path = 'images/';
+            $image_name = $this->imageresize($image_file, $path); //using trait
+        }
+        $category->cat_img_name =  !empty($image_name) ? $image_name : '';
         $category->save();
 
         return redirect(route('category'))->with('status', 'category insert successfully');
@@ -127,7 +128,9 @@ class SettingsController extends Controller
     }
 
     /** 
-     * add sub category
+     * add_sub_category
+     * @param 
+     * @return 
     */
     public function add_sub_category(Request $request){
 
@@ -136,12 +139,12 @@ class SettingsController extends Controller
             [
                 'mcategory' => ['required'],
                 'sub_cat_name' => ['required'],
-                'sub_cat_image' => ['required'],
+                // 'sub_cat_image' => ['required'],
             ],
             [
                 'mcategory.required' => 'Please select a main category name',
                 'sub_cat_name.required' => 'Please input sub category name',
-                'sub_cat_image.required' => 'attached your sub category image',
+                // 'sub_cat_image.required' => 'attached your sub category image',
             ]
         );
 
@@ -162,12 +165,13 @@ class SettingsController extends Controller
         $subcategory->en_name = $request->input('sub_cat_name');
         $subcategory->bn_name = $request->input('sub_cat_name_bangla');
         $subcategory->categorie_id = $request->input('mcategory');
-        
-        $image_file = $request->sub_cat_image;
-        $path = 'images/subimages/';
-        $image_name = $this->imageresize($image_file, $path); //using trait
+        if ($request->hasFile('sub_cat_image')) {
+            $image_file = $request->sub_cat_image;
+            $path = 'images/subimages/';
+            $image_name = $this->imageresize($image_file, $path); //using trait
+        }
 
-        $subcategory->image_name = $image_name;
+        $subcategory->image_name = !empty($image_name) ? $image_name : '';
 
         $subcategory->save();
 
