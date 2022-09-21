@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Categorie;
 use App\Models\Subcategorie;
+use App\Models\Child;
 use App\Http\Traits\ResizeImage;
 
 
@@ -18,10 +19,12 @@ class SettingsController extends Controller
 
     private $category;
     private $subcategory;
+    private $childcat;
 
-    public function __construct(Categorie $cat, Subcategorie $subcat){
-        $this->category = $cat;
+    public function __construct(Categorie $cat, Subcategorie $subcat, Child $childcat){
+        $this->category    = $cat;
         $this->subcategory = $subcat;
+        $this->childcat    = $childcat;
     }
     /** 
      * edit category 
@@ -180,35 +183,27 @@ class SettingsController extends Controller
     }
 
     /** 
-     * add sub category
+     * add_child_category
+     * @param user_input_Data
+     * @return 
     */
     public function add_child_category(Request $request){
-
+        // dd($request->input());
         //validation form
         $request->validate(
             [
                 'child_cat_name' => ['required'],
             ],
             [
-                'child_cat_name.required' => 'Please input sub category name',
+                'child_cat_name.required' => 'Please input child category name',
             ]
         );
-
-        $subcategory = new Subcategorie();
-
-        $subcategory->en_name = $request->input('sub_cat_name');
-        $subcategory->bn_name = $request->input('sub_cat_name_bangla');
-        $subcategory->categorie_id = $request->input('mcategory');
         
-        $image_file = $request->sub_cat_image;
-        $path = 'images/subimages/';
-        $image_name = $this->imageresize($image_file, $path); //using trait
+        $data = $request->except('_token');
+        // dd($data);
+        $this->childcat->create($data);
 
-        $subcategory->image_name = $image_name;
-
-        $subcategory->save();
-
-        return redirect(route('subcategory'))->with('status', 'sub category insert successfully');
+        return redirect(route('childcategory'))->with('status', 'child category insert successfully');
 
     }
 }

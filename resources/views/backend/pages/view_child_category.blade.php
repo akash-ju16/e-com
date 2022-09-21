@@ -41,7 +41,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm" action="{{ route('childcatepost') }}" method="post">
+              <form id="quickForm" style="padding:10px;" action="{{ route('childcatepost') }}" method="post">
               @csrf  
                   <div id="app"></div>
                   <div class="form-group">
