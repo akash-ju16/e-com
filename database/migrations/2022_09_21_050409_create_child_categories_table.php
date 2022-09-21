@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateChildsTable extends Migration
+class CreateChildCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateChildsTable extends Migration
      */
     public function up()
     {
-        Schema::create('childs', function (Blueprint $table) {
+        Schema::create('child_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('child_en_name');
             $table->string('child_bn_name');
-            $table->foreignId('subcategories_id')->constrained();
+            $table->string('categories_id');
+            $table->string('subcategories_id');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateChildsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('childs');
+        Schema::dropIfExists('child_categories');
     }
 }
