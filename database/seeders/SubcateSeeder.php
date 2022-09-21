@@ -21,21 +21,21 @@ class SubcateSeeder extends Seeder
                     'en_name'       =>'Wheel Bearings',          
                     'bn_name'       =>'Wheel Bearings',           
                     'image_name'    =>'', 
-                    'categorie_id'  =>'16', 
+                    'categorie_id'  =>'1', 
                     'created_at'    =>Carbon::now()->format('Y-m-d H:i:s')
                 ],
                 [
                     'en_name'       =>'Wheel Rim Screws',       
                     'bn_name'       =>'Wheel Rim Screws',        
                     'image_name'    =>'', 
-                    'categorie_id'  =>'16', 
+                    'categorie_id'  =>'1', 
                     'created_at'    =>Carbon::now()->format('Y-m-d H:i:s')
                 ],
                 [
                     'en_name'       =>'Wheel Simulators',   
                     'bn_name'       =>'Wheel Simulators',    
                     'image_name'    =>'', 
-                    'categorie_id'  =>'16', 
+                    'categorie_id'  =>'1', 
                     'created_at'    =>Carbon::now()->format('Y-m-d H:i:s')
                 ],
             ]

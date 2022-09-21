@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Categorie;
 use App\Models\Subcategorie;
-use App\Models\Child;
+use App\Models\ChildCategory;
 use App\Http\Traits\ResizeImage;
 
 
@@ -21,7 +21,7 @@ class SettingsController extends Controller
     private $subcategory;
     private $childcat;
 
-    public function __construct(Categorie $cat, Subcategorie $subcat, Child $childcat){
+    public function __construct(Categorie $cat, Subcategorie $subcat, ChildCategory $childcat){
         $this->category    = $cat;
         $this->subcategory = $subcat;
         $this->childcat    = $childcat;
@@ -100,7 +100,7 @@ class SettingsController extends Controller
 
     public function sub_category_list(){
 
-        $cat_data = $this->category->all();
+        $cat_data     = $this->category->all();
         $subcategorie = $this->subcategory->with('categorie')->get();
 
         //     $subcategorie = Categorie::join('subcategories','categories.id', '=', 'subcategories.categorie_id')
@@ -125,7 +125,8 @@ class SettingsController extends Controller
      */
     public function child_category_list(){
         // $cat_data = $this->category->all();
-        // $subcategorie = $this->subcategory->with('categorie')->get();
+        $childcategory = $this->childcat->with('subcategorie')->get();
+        dd($childcategory);
         return view('backend.pages.view_child_category');
 
     }
@@ -185,24 +186,27 @@ class SettingsController extends Controller
     /** 
      * add_child_category
      * @param user_input_Data
-     * @return 
+     * @return child_cat_list
     */
     public function add_child_category(Request $request){
         // dd($request->input());
+
         //validation form
         $request->validate(
             [
-                'child_cat_name' => ['required'],
+                'child_en_name' => ['required'],
             ],
             [
-                'child_cat_name.required' => 'Please input child category name',
+                'child_en_name.required' => 'Please input child category name',
             ]
         );
         
         $data = $request->except('_token');
+        $data['categories_id']      =  $request->input('category_select', true);
+        $data['subcategories_id']   =  $request->input('sub_category_select', true);
         // dd($data);
         $this->childcat->create($data);
-
+        
         return redirect(route('childcategory'))->with('status', 'child category insert successfully');
 
     }

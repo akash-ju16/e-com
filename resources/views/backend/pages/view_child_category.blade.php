@@ -45,14 +45,14 @@
               @csrf  
                   <div id="app"></div>
                   <div class="form-group">
-                    <label for="child_cat_name">Child Category Name</label>
-                    <input type="text" name="child_cat_name" class="form-control" id="child_cat_name" value="{{old('child_cat_name')}}" placeholder="Enter child category name">
-                    <span class="text-danger">@error('child_cat_name') {{ $message }} @enderror</span>
+                    <label for="child_en_name">Child Category Name</label>
+                    <input type="text" name="child_en_name" class="form-control" id="child_en_name" value="{{old('child_en_name')}}" placeholder="Enter child category name">
+                    <span class="text-danger">@error('child_en_name') {{ $message }} @enderror</span>
                   </div>
                   
                   <div class="form-group">
-                    <label for="child_cat_name_bangla">Child Category Name(Bangla)</label>
-                    <input type="text" name="child_cat_name_bangla" class="form-control" id="child_cat_name_bangla" value="{{old('child_cat_name_bangla')}}" placeholder="Enter child category bangla name">
+                    <label for="child_bn_name">Child Category Name(Bangla)</label>
+                    <input type="text" name="child_bn_name" class="form-control" id="child_bn_name" value="{{old('child_bn_name')}}" placeholder="Enter child category bangla name">
                    </div>
                 </div>
                 <!-- /.card-body -->
