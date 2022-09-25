@@ -7,6 +7,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ChildCatController;
 
 
 //home page
@@ -39,16 +40,26 @@ Route::middleware('auth')->group(function(){
         return view('backend/pages/view_home');
     })->name('admin');
 
-    //pages 
+    /** 
+     * pages::
+     * 
+    */
+
     /** category */
     Route::get('/category/add', [SettingsController::class, 'category_list'])->middleware(['can:viewAny, App\Models\Categorie'])->name('category');
     Route::post('/category/add', [SettingsController::class, 'addCategory'])->name('catepost');
     Route::get('/category/edit/{cid}', [SettingsController::class, 'edit_category']);
+    
+    
+    /** sub category */
     Route::get('/category/add-sub-category', [SettingsController::class, 'sub_category_list'])->name('subcategory');
-    Route::get('/category/add-child-category', [SettingsController::class, 'child_category_list'])->name('childcategory');
     Route::post('/category/sub-category', [SettingsController::class, 'add_sub_category'])->name('subcatepost');
-    Route::post('/category/child-category', [SettingsController::class, 'add_child_category'])->name('childcatepost');
     Route::get('/category/sub-category/edit/{scid}', [SettingsController::class, 'edit_sub_category']);
+
+    /** child category */
+    Route::get('/category/add-child-category', [ChildCatController::class, 'child_category_list'])->name('childcategory');
+    Route::post('/category/child-category', [ChildCatController::class, 'add_child_category'])->name('childcatepost');
+
     /** product */
     Route::get('/product/add-new', [ProductController::class, 'product_view'])->middleware(['can:isAdmin'])->name('newproduct');
     Route::post('/product/add-new', [ProductController::class, 'product_store'])->name('addproduct');
