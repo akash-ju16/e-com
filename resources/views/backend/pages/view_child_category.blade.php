@@ -76,9 +76,9 @@
                   <thead>
                   <tr>
                     <th>SL No</th>
-                    <th>Child Category Name</th>
                     <th>Main Category Name</th>
                     <th>Sub Category Name</th>
+                    <th>Child Category Name</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -86,10 +86,10 @@
                    @foreach($data as $item)
                    <tr>
                     <td>{{$loop->iteration}}</td>
-                    <td>{{ $item->child_en_name }}</td>
-                    <td>{{ $item->child_en_name }}</td>
+                    <td>{{ $item->maincategory->en_name }}</td>
                     <td>{{ $item->subcategorie->en_name }}</td>
                     <td>{{ $item->child_en_name }}</td>
+                    <td>edit</td>
                     </tr>
                    @endforeach
                   </tbody>

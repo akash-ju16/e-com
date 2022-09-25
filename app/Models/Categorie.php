@@ -14,4 +14,9 @@ class Categorie extends Model
     {
         return $this->hasMany(Subcategorie::class);
     }
+
+    public function childcategory()
+    {
+        return $this->hasMany(ChildCategory::class, 'categories_id');
+    }
 }

@@ -16,4 +16,9 @@ class ChildCategory extends Model
         return $this->belongsTo(Subcategorie::class, 'subcategories_id');
     }
 
+    public function maincategory()
+    {
+        return $this->belongsTo(Categorie::class, 'categories_id');
+    }
+
 }

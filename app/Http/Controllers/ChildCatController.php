@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Categorie;
 use App\Models\Subcategorie;
 use App\Models\ChildCategory;
 
@@ -21,15 +22,22 @@ class ChildCatController extends Controller
      * child_category_list
      * @param null
      */
-    public function child_category_list(){
+    public function child_category_list()
+    {
         
-        // $childcategory = $this->childcat->get();
-        // $childcategory = $this->childcat->with('subcategorie')->get();
-        // $childcategory = $this->childcat->subcategorie();
-        // $childcategory = $this->childcat::find(1)->subcategorie();
-        $childcategory = ChildCategory::with('subcategorie')->get();
+       /** 
+        * Relation :: category, subcategory, childcategory
+        * 3 Table togather ouput a. top to botton and b. bottom to top
+        * Top to Bottom: category->subcategory->childcategory
+        * Bottom to Top: childcategory->subcategory->category
+       */
+
+        $childcategory  = ChildCategory::with(['subcategorie','maincategory'])->get(); //Bottom to Top
+         //$childcategory = Subcategorie::with(['categorie','childcategory'])->get(); 
+         //$childcategory = Categorie::with(['subcategorie','childcategory'])->get(); //Top to Bottom
+        
         // return $childcategory;
-        // dd($childcategory->toArray());
+        //  dd($childcategory->toArray());
         return view('backend.pages.view_child_category', ['data' => $childcategory]);
 
     }
