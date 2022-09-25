@@ -76,16 +76,22 @@
                   <thead>
                   <tr>
                     <th>SL No</th>
+                    <th>Child Category Name</th>
                     <th>Main Category Name</th>
                     <th>Sub Category Name</th>
-                    <th>Image</th>
                     <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
-                   
-                  
-                  
+                   @foreach($data as $item)
+                   <tr>
+                    <td>{{$loop->iteration}}</td>
+                    <td>{{ $item->child_en_name }}</td>
+                    <td>{{ $item->child_en_name }}</td>
+                    <td>{{ $item->subcategorie->en_name }}</td>
+                    <td>{{ $item->child_en_name }}</td>
+                    </tr>
+                   @endforeach
                   </tbody>
                 </table>
               </div>

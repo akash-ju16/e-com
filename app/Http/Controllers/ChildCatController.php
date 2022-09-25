@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Subcategorie;
 use App\Models\ChildCategory;
 
 class ChildCatController extends Controller
@@ -13,6 +14,7 @@ class ChildCatController extends Controller
     public function __construct(ChildCategory $childcat)
     {
         $this->childcat = $childcat;
+        // dd($this->childcat);
     }
 
      /**
@@ -21,9 +23,14 @@ class ChildCatController extends Controller
      */
     public function child_category_list(){
         
-        $childcategory = $this->childcat->with('subcategorie')->get();
-        dd($childcategory);
-        return view('backend.pages.view_child_category');
+        // $childcategory = $this->childcat->get();
+        // $childcategory = $this->childcat->with('subcategorie')->get();
+        // $childcategory = $this->childcat->subcategorie();
+        // $childcategory = $this->childcat::find(1)->subcategorie();
+        $childcategory = ChildCategory::with('subcategorie')->get();
+        // return $childcategory;
+        // dd($childcategory->toArray());
+        return view('backend.pages.view_child_category', ['data' => $childcategory]);
 
     }
 
