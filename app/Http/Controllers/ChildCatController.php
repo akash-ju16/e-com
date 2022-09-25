@@ -4,17 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Categorie;
-use App\Models\Subcategorie;
-use App\Models\ChildCategory;
+use App\Models\{Categorie,Subcategorie,ChildCategory};
+
 
 class ChildCatController extends Controller
 {
-    protected $childcat;
+    protected $childcategory;
 
     public function __construct(ChildCategory $childcat)
     {
-        $this->childcat = $childcat;
+        $this->childcategory = $childcat;
         // dd($this->childcat);
     }
 
@@ -32,7 +31,7 @@ class ChildCatController extends Controller
         * Bottom to Top: childcategory->subcategory->category
        */
 
-        $childcategory  = ChildCategory::with(['subcategorie','maincategory'])->get(); //Bottom to Top
+        $childcategory  = $this->childcategory::with(['subcategorie','maincategory'])->get(); //Bottom to Top
          //$childcategory = Subcategorie::with(['categorie','childcategory'])->get(); 
          //$childcategory = Categorie::with(['subcategorie','childcategory'])->get(); //Top to Bottom
         
@@ -68,6 +67,31 @@ class ChildCatController extends Controller
         
         return redirect(route('childcategory'))->with('status', 'child category insert successfully');
 
+    }
+
+    /**
+     * edit_child_category
+     */
+    public function edit_child_category(Request $request) 
+    {
+        $cid  = $request->ccid;
+        $data = $this->childcategory->where('id', $cid)->first();
+        
+        //main-category
+        $maincat = Categorie::all(); //it's a redundency
+
+        //sub-category
+        $subcat = Subcategorie::all(); //it's a redundency
+        
+        return view('backend.pages.view_edit_child_category', ['data'=>$data, 'maincat'=>$maincat, 'subcat'=>$subcat]);
+    }
+
+    /**
+     * update_child_category
+     */
+    public function update_child_category(Request $request) 
+    {
+        dd($request->all());
     }
 
 }

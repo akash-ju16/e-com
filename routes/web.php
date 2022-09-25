@@ -1,13 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\SettingsController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ChildCatController;
+use App\Http\Controllers\{
+    RegisterController,LoginController,ProductController,
+    ServiceController,HomeController,MainCatController,SubCatController,ChildCatController
+};
 
 
 //home page
@@ -46,19 +43,21 @@ Route::middleware('auth')->group(function(){
     */
 
     /** category */
-    Route::get('/category/add', [SettingsController::class, 'category_list'])->middleware(['can:viewAny, App\Models\Categorie'])->name('category');
-    Route::post('/category/add', [SettingsController::class, 'addCategory'])->name('catepost');
-    Route::get('/category/edit/{cid}', [SettingsController::class, 'edit_category']);
+    Route::get('/category/add', [MainCatController::class, 'category_list'])->middleware(['can:viewAny, App\Models\Categorie'])->name('category');
+    Route::post('/category/add', [MainCatController::class, 'addCategory'])->name('catepost');
+    Route::get('/category/edit/{cid}', [MainCatController::class, 'edit_category']);
     
     
     /** sub category */
-    Route::get('/category/add-sub-category', [SettingsController::class, 'sub_category_list'])->name('subcategory');
-    Route::post('/category/sub-category', [SettingsController::class, 'add_sub_category'])->name('subcatepost');
-    Route::get('/category/sub-category/edit/{scid}', [SettingsController::class, 'edit_sub_category']);
+    Route::get('/category/add-sub-category', [SubCatController::class, 'sub_category_list'])->name('subcategory');
+    Route::post('/category/sub-category', [SubCatController::class, 'add_sub_category'])->name('subcatepost');
+    Route::get('/category/sub-category/edit/{scid}', [SubCatController::class, 'edit_sub_category']);
 
     /** child category */
     Route::get('/category/add-child-category', [ChildCatController::class, 'child_category_list'])->name('childcategory');
+    Route::get('/category/child-category/edit/{ccid}', [ChildCatController::class, 'edit_child_category'])->name('editchild');
     Route::post('/category/child-category', [ChildCatController::class, 'add_child_category'])->name('childcatepost');
+    Route::post('/category/child-category/edit/{ccid}', [ChildCatController::class, 'update_child_category'])->name('updatechildcate');
 
     /** product */
     Route::get('/product/add-new', [ProductController::class, 'product_view'])->middleware(['can:isAdmin'])->name('newproduct');

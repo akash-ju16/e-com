@@ -15,7 +15,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Child-Category</li>
+              <li class="breadcrumb-item active">Child-Category Edit</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -37,22 +37,41 @@
             <!-- jquery validation -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Child-Category <small>add new child-category</small></h3>
+                <h3 class="card-title">Child-Category <small>edit child-category</small></h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm" style="padding:10px;" action="{{ route('childcatepost') }}" method="post">
+              <form id="quickForm" style="padding:10px;" action="{{ route('updatechildcate', $data->id) }}" method="post">
               @csrf  
-                  <div id="app"></div>
+                  <div class="form-group">
+                  <label>Category</label>
+                      <select class='form-control select2' name="category_select" id="category_select" style="width: 100%;">
+                          <option value="">Select</option>
+                          @foreach($maincat as $cat)
+                            <option value="{{ $cat->id }}" {{ ( $cat->id == $data->categories_id) ? 'selected' : '' }}>{{ $cat->en_name }}</option>
+                          @endforeach
+                      </select>
+                      <!-- <span class="text-danger">@error('category_select') {{$message}} @enderror</span> -->
+                  </div>
+                  <div class="form-group">
+                  <label>Sub Category</label>
+                    <select class='form-control select2' name="sub_category_select" id="sub_category_select" style="width: 100%;">
+                        <option value="">Select</option>
+                         @foreach($subcat as $cat)
+                            <option value="{{ $cat->id }}" {{ ( $cat->id == $data->subcategories_id) ? 'selected' : '' }}>{{ $cat->en_name }}</option>
+                          @endforeach
+                    </select>
+                    <!-- <span class="text-danger">@error('sub_category_select') {{$message}} @enderror</span> -->
+                  </div>
                   <div class="form-group">
                     <label for="child_en_name">Child Category Name</label>
-                    <input type="text" name="child_en_name" class="form-control" id="child_en_name" value="{{old('child_en_name')}}" placeholder="Enter child category name">
+                    <input type="text" name="child_en_name" class="form-control" id="child_en_name" value="{{ $data->child_en_name }}">
                     <span class="text-danger">@error('child_en_name') {{ $message }} @enderror</span>
                   </div>
                   
                   <div class="form-group">
                     <label for="child_bn_name">Child Category Name(Bangla)</label>
-                    <input type="text" name="child_bn_name" class="form-control" id="child_bn_name" value="{{old('child_bn_name')}}" placeholder="Enter child category bangla name">
+                    <input type="text" name="child_bn_name" class="form-control" id="child_bn_name" value="{{ $data->child_bn_name }}">
                    </div>
                 </div>
                 <!-- /.card-body -->
@@ -62,40 +81,6 @@
               </form>
             </div>
             <!-- /.card -->
-            </div>
-          
-            <div class="col-12">
-      
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Child Category List</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>SL No</th>
-                    <th>Main Category Name</th>
-                    <th>Sub Category Name</th>
-                    <th>Child Category Name</th>
-                    <th>Action</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                   @foreach($data as $item)
-                   <tr>
-                      <td>{{$loop->iteration}}</td>
-                      <td>{{ $item->maincategory->en_name }}</td>
-                      <td>{{ $item->subcategorie->en_name }}</td>
-                      <td>{{ $item->child_en_name }}</td>
-                      <td><a class="btn btn-info btn-sm" href="{{ route('editchild', $item->id) }}"><i class="fas fa-pencil-alt"></i></a></td>
-                    </tr>
-                   @endforeach
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>
