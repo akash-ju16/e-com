@@ -104,12 +104,12 @@
       var category_id = this.value;
       // console.log(category_id);
       $.ajax({
-        url: '{{ route('getStates') }}?cat_id='+category_id,
+        url: '{{ route('getSubCat') }}?cat_id='+category_id,
         type: 'get',
         success: function (res) {
           $('#sub_category_select').html('<option value="">Select State</option>');
           $.each(res, function(key, value) {
-              $('#sub_category_select').append('<option value="' + value.id + '">' + value.name + '</option>')
+              $('#sub_category_select').append('<option value="' + value.id + '">' + value.en_name + '</option>')
           });
         }
       });
