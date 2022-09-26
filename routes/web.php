@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     RegisterController,LoginController,ProductController,
-    ServiceController,HomeController,MainCatController,SubCatController,ChildCatController
+    ServiceController,HomeController,MainCatController,SubCatController,ChildCatController,
+    DependencyControler
 };
 
 
@@ -58,7 +59,9 @@ Route::middleware('auth')->group(function(){
     Route::get('/category/child-category/edit/{ccid}', [ChildCatController::class, 'edit_child_category'])->name('editchild');
     Route::post('/category/child-category', [ChildCatController::class, 'add_child_category'])->name('childcatepost');
     Route::post('/category/child-category/edit/{ccid}', [ChildCatController::class, 'update_child_category'])->name('updatechildcate');
-    Route::get('/category/get-sub-category', [ChildCatController::class, 'get_sub_category_list'])->name('getSubCat');
+    
+    /** dependency page for ajax */
+    Route::get('/category/get-sub-category', [DependencyControler::class, 'get_sub_category_list'])->name('getSubCat');
 
 
     /** product */

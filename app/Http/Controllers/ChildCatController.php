@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ChildCategoryRequest;
 use Illuminate\Http\Request;
 use App\Models\{Categorie,Subcategorie,ChildCategory};
 
@@ -42,22 +43,16 @@ class ChildCatController extends Controller
     }
 
     /** 
-     * add_child_category
-     * @param user_input_Data
-     * @return child_cat_list
+     * child category entry
+     * 
+     * @param \Illuminate\Http\Request
+     * @return \Illuminate\Http\Response
     */
-    public function add_child_category(Request $request){
+    public function add_child_category(ChildCategoryRequest $request){
         // dd($request->input());
 
         //validation form
-        $request->validate(
-            [
-                'child_en_name' => ['required'],
-            ],
-            [
-                'child_en_name.required' => 'Please input child category name',
-            ]
-        );
+        $request->validated();
         
         $data = $request->except('_token');
         $data['categories_id']      =  $request->input('category_select', true);
@@ -95,23 +90,6 @@ class ChildCatController extends Controller
     public function update_child_category(Request $request) 
     {
         dd($request->all());
-    }
-
-    /**
-     * get subcategory list 
-     * 
-     * @param \Illuminate\Http\Request
-     * @return json
-     */
-    public function get_sub_category_list(Request $request)
-    {
-        
-        $subcategory = Subcategorie::where('categorie_id', $request->cat_id)->get();
-        // dd($subcategory->toArray());
-        if (count($subcategory) > 0) {
-            return response()->json($subcategory);
-        }
-
     }
 
 }
