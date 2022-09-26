@@ -70,7 +70,10 @@ class ChildCatController extends Controller
     }
 
     /**
-     * edit_child_category
+     * child category edit
+     * 
+     * @param \Illuminate\Http\Request
+     * @return \Illuminate\Http\Response
      */
     public function edit_child_category(Request $request) 
     {

@@ -45,13 +45,13 @@
               @csrf  
                   <div class="form-group">
                   <label>Category</label>
-                      <select class='form-control select2' name="category_select" id="category_select" style="width: 100%;">
+                      <select class='form-control select2 select_cat' name="category_select" id="category_select" style="width: 100%;">
                           <option value="">Select</option>
                           @foreach($maincat as $cat)
                             <option value="{{ $cat->id }}" {{ ( $cat->id == $data->categories_id) ? 'selected' : '' }}>{{ $cat->en_name }}</option>
                           @endforeach
                       </select>
-                      <!-- <span class="text-danger">@error('category_select') {{$message}} @enderror</span> -->
+                      <span class="text-danger">@error('category_select') {{$message}} @enderror</span>
                   </div>
                   <div class="form-group">
                   <label>Sub Category</label>
@@ -61,7 +61,7 @@
                             <option value="{{ $cat->id }}" {{ ( $cat->id == $data->subcategories_id) ? 'selected' : '' }}>{{ $cat->en_name }}</option>
                           @endforeach
                     </select>
-                    <!-- <span class="text-danger">@error('sub_category_select') {{$message}} @enderror</span> -->
+                    <span class="text-danger">@error('sub_category_select') {{$message}} @enderror</span>
                   </div>
                   <div class="form-group">
                     <label for="child_en_name">Child Category Name</label>
@@ -93,8 +93,28 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
 @endsection 
 
-@push('custom-page-script')
-<script src="{{ mix('js/app.js') }}"></script>
+@push('dependencies-scripts')
+<script type="text/javascript">
+  $(document).ready(function () {
+
+    $('#category_select').on('change', function () {
+      var category_id = this.value;
+      // console.log(category_id);
+      $.ajax({
+        url: '{{ route('getStates') }}?cat_id='+category_id,
+        type: 'get',
+        success: function (res) {
+          $('#sub_category_select').html('<option value="">Select State</option>');
+          $.each(res, function(key, value) {
+              $('#sub_category_select').append('<option value="' + value.id + '">' + value.name + '</option>')
+          });
+        }
+      });
+    });
+
+  });
+</script>
 @endpush

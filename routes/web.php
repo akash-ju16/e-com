@@ -59,6 +59,8 @@ Route::middleware('auth')->group(function(){
     Route::post('/category/child-category', [ChildCatController::class, 'add_child_category'])->name('childcatepost');
     Route::post('/category/child-category/edit/{ccid}', [ChildCatController::class, 'update_child_category'])->name('updatechildcate');
 
+
+    
     /** product */
     Route::get('/product/add-new', [ProductController::class, 'product_view'])->middleware(['can:isAdmin'])->name('newproduct');
     Route::post('/product/add-new', [ProductController::class, 'product_store'])->name('addproduct');
