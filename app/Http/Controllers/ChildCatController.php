@@ -24,28 +24,25 @@ class ChildCatController extends Controller
      */
     public function child_category_list()
     {
-        
-       /** 
-        * Relation :: category, subcategory, childcategory
-        * 3 Table togather ouput a. top to botton and b. bottom to top
-        * Top to Bottom: category->subcategory->childcategory
-        * Bottom to Top: childcategory->subcategory->category
-       */
 
-        $childcategory  = $this->childcategory::with(['subcategorie','maincategory'])->get(); //Bottom to Top
-         //$childcategory = Subcategorie::with(['categorie','childcategory'])->get(); 
-         //$childcategory = Categorie::with(['subcategorie','childcategory'])->get(); //Top to Bottom
+        $childcategory  = $this->childcategory::with(['subcategorie','maincategory'])->get(); 
+
+        //main-category
+        $maincat = Categorie::all(); //it's a redundency
+
+        //sub-category
+        $subcat = Subcategorie::all(); //it's a redundency
         
         // return $childcategory;
         //  dd($childcategory->toArray());
-        return view('backend.pages.view_child_category', ['data' => $childcategory]);
+        return view('backend.pages.view_child_category', ['data' => $childcategory, 'maincat'=>$maincat, 'subcat'=>$subcat]);
 
     }
 
     /** 
      * child category entry
      * 
-     * @param \Illuminate\Http\Request
+     * @param \App\Http\Requests\ChildCategoryRequest
      * @return \Illuminate\Http\Response
     */
     public function add_child_category(ChildCategoryRequest $request){

@@ -43,7 +43,27 @@
               <!-- form start -->
               <form id="quickForm" style="padding:10px;" action="{{ route('childcatepost') }}" method="post">
               @csrf  
-                  <div id="app"></div>
+                  <!-- <div id="app"></div> -->
+                  <div class="form-group">
+                  <label>Category</label>
+                      <select class='form-control select2 select_cat' name="category_select" id="category_select" style="width: 100%;">
+                          <option value="">Select</option>
+                          @foreach($maincat as $key => $cat)
+                            <option {{ Input::old('category_select') == $key ? 'selected="selected"' : '' }} value="{{ $cat->id }}">{{ $cat->en_name }}</option>
+                          @endforeach
+                      </select>
+                      <span class="text-danger">@error('category_select') {{$message}} @enderror</span>
+                  </div>
+                  <div class="form-group">
+                  <label>Sub Category</label>
+                    <select class='form-control select2' name="sub_category_select" id="sub_category_select" style="width: 100%;">
+                        <option value="">Select</option>
+                         @foreach($subcat as $key => $cat)
+                            <option {{ Input::old('sub_category_select') == $key ? 'selected="selected"' : '' }} value="{{ $cat->id }}">{{ $cat->en_name }}</option>
+                          @endforeach
+                    </select>
+                    <span class="text-danger">@error('sub_category_select') {{$message}} @enderror</span>
+                  </div>
                   <div class="form-group">
                     <label for="child_en_name">Child Category Name</label>
                     <input type="text" name="child_en_name" class="form-control" id="child_en_name" value="{{old('child_en_name')}}" placeholder="Enter child category name">
@@ -110,6 +130,29 @@
   <!-- /.content-wrapper -->
 @endsection 
 
-@push('custom-page-script')
+<!-- @push('custom-page-script')
 <script src="{{ mix('js/app.js') }}"></script>
+@endpush -->
+
+@push('dependencies-scripts')
+<script type="text/javascript">
+  $(document).ready(function () {
+
+    $('#category_select').on('change', function () {
+      var category_id = this.value;
+      // console.log(category_id);
+      $.ajax({
+        url: '{{ route('getSubCat') }}?cat_id='+category_id,
+        type: 'get',
+        success: function (res) {
+          $('#sub_category_select').html('<option value="">Select State</option>');
+          $.each(res, function(key, value) {
+              $('#sub_category_select').append('<option value="' + value.id + '">' + value.en_name + '</option>')
+          });
+        }
+      });
+    });
+
+  });
+</script>
 @endpush

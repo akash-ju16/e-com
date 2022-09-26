@@ -24,7 +24,9 @@ class ChildCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'child_en_name' => ['required']
+            'category_select' => ['required'],
+            'sub_category_select' => ['required'],
+            'child_en_name' => ['required'],
         ];
     }
 
