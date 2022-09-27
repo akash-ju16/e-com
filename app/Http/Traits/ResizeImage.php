@@ -7,8 +7,8 @@ Trait ResizeImage {
 
     public function imageresize($image_file, $path){
 
-        $image_file = $image_file;
-        $image_name = $image_file->getClientOriginalName();
+        $original_image_file = $image_file->getClientOriginalName();
+        $image_name          = time() .'_'.$original_image_file;
 
         /** image resize using php intervention package */
         $resize_image = Image::make($image_file->getRealPath());

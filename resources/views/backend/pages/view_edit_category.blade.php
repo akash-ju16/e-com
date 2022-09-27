@@ -37,8 +37,9 @@
               <!-- form start -->
               <!-- {{ $errors }} -->
               
-              <form id="quickForm" action="{{ route('catepost') }}" method="post" enctype="multipart/form-data">
+              <form id="quickForm" action="{{ route('updatecate', $data->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="card-body">
                   <div class="form-group">
                     <label for="cat_name">Name</label>
@@ -52,7 +53,9 @@
                   </div>
                   <div class="form-group">
                     <label for="cat_image">Image</label>
-                    <img src="{{ asset('images/'.$data->cat_img_name) }}" width="80" height="60" alt="no image">
+                    @if($data->cat_img_name !='')
+                      <img src="{{ asset('images/'.$data->cat_img_name) }}" width="80" height="60" alt="no image">
+                    @endif
                     <input type="file" name="cat_image" class="form-control" id="cat_image">
                     <span class="text-danger">@error('cat_image') {{ $message }} @enderror</span>
                   </div>

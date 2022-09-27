@@ -97,5 +97,56 @@ class MainCatController extends Controller
         return redirect(route('category'))->with('status', 'category insert successfully');
     }
 
-    
+    /**
+     * update category
+     * 
+     * @param App\Http\Requests\CategoryRequest
+     */
+    public function update_category(CategoryRequest $request)
+    {
+
+        //form validate
+        $request->validated();
+
+        //category oldest data
+        $oldcategory = $this->categoryRepository->getCategoryById($request->cid);
+
+        //from user input
+        $categoryDetails['en_name'] = $request->cat_name;
+        $categoryDetails['bn_name'] = $request->cat_name_bangla;
+
+        //image file
+        if ($request->hasFile('cat_image')) {
+
+            //remove old file
+            $opath = public_path().'/images/';
+            if($oldcategory->cat_img_name != ''  && $oldcategory->cat_img_name != null){
+                $file_old = $opath.$oldcategory->cat_img_name;
+                unlink($file_old);
+            }
+
+            $image_file = $request->cat_image;
+            $path = 'images/';
+            $image_name = $this->imageresize($image_file, $path); //using trait
+            $categoryDetails['cat_img_name'] = $image_name;
+        }
+        
+        
+        // dd($categoryDetails);
+        $this->categoryRepository->updateCategory($request->cid, $categoryDetails);
+
+        return redirect(route('category'))->with('status', 'category updated successfully');
+    }
+
+    /**
+     * 
+     * destroy_category
+     */
+    public function destroy_category($cid)
+    {
+        dd($cid);
+        $this->categoryRepository->deleteCategory($cid);
+
+        return redirect(route('category'))->with('status', 'category deleted successfully');
+    }
 }

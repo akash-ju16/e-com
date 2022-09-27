@@ -29,6 +29,12 @@ class CategoryRepository implements CategoryInterface
     {
         return Categorie::whereId($catid)->update($newCategoryDetails);
     }
+
+    /** delete category */
+    public function deleteCategory($catid)
+    {
+        Categorie::destroy($catid);
+    }
 }
 
 ?>
