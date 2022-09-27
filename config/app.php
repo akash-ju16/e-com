@@ -181,6 +181,11 @@ return [
          */
         App\Providers\CustomServiceProvider::class,
 
+        /**
+         * Repository Service Provider...
+         */
+        App\Providers\RepositoryServiceProvider::class,
+
     ],
 
     /*

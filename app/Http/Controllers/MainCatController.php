@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Traits\ResizeImage;
 use App\Models\{Categorie,Subcategorie,ChildCategory};
+use App\Interfaces\Category\CategoryInterface;
 
 class MainCatController extends Controller
 {
@@ -17,10 +18,12 @@ class MainCatController extends Controller
     private $category;
     private $subcategory;
     private $childcat;
+    private $maincategory;
 
-    public function __construct(Categorie $cat, Subcategorie $subcat){
+    public function __construct(Categorie $cat, Subcategorie $subcat, CategoryInterface $maincategory){
         $this->category    = $cat;
         $this->subcategory = $subcat;
+        $this->maincategory = $maincategory;
     }
 
      /** 
@@ -43,7 +46,7 @@ class MainCatController extends Controller
         // $uppercase = allUpper('hello'); // from helper function
         // dd($uppercase);
 
-        $cat_data = $this->category->all();
+        $cat_data = $this->maincategory->getCategoryAll();
 
         return view('backend.pages.view_category', ['data'=>$cat_data]);
     }
