@@ -27,19 +27,11 @@ class MainCatController extends Controller
         $this->categoryRepository = $categoryRepository;
     }
 
-     /** 
-     * edit category 
-     */
-    public function edit_category(Request $request){
-        $cid = $request->cid;
-        $cat_data = $this->category->where('id', $cid)->first();
-        return view('backend.pages.view_edit_category', ['data'=>$cat_data]);
-    }
-
-    
-
     /**
-     * category_list
+     * category list
+     * 
+     * @param null
+     * @return Illuminate\Http\Response
      */
     public function category_list(){
 
@@ -52,8 +44,22 @@ class MainCatController extends Controller
         return view('backend.pages.view_category', ['data'=>$cat_data]);
     }
 
+    /** 
+     * edit category 
+     * 
+     * @param Illuminate\Http\Request
+     * @return Illuminate\Http\Response
+     */
+    public function edit_category(Request $request){
+
+        $cid = $request->cid;
+        $cat_data = $this->categoryRepository->getCategoryById($cid);
+
+        return view('backend.pages.view_edit_category', ['data'=>$cat_data]);
+    }
+
     /**
-     * create category in add_category method
+     * create category
      * 
      * @param App\Http\Requests\CategoryRequest
      * @return 

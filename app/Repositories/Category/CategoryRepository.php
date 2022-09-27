@@ -12,10 +12,22 @@ class CategoryRepository implements CategoryInterface
         return Categorie::all();
     }
 
+    /** specific category  */
+    public function getCategoryById($cateid)
+    {
+        return Categorie::findOrFail($cateid);
+    }
+
     /** create category */
     public function createCategory(array $categoryDetails)
     {
         return Categorie::create($categoryDetails);
+    }
+
+    /** udpate category */
+    public function updateCategory($catid, $newCategoryDetails)
+    {
+        return Categorie::whereId($catid)->update($newCategoryDetails);
     }
 }
 
