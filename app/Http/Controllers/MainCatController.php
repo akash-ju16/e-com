@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Http\Traits\ResizeImage;
 use App\Models\{Categorie,Subcategorie,ChildCategory};
 use App\Interfaces\Category\CategoryInterface;
+use App\Http\Requests\CategoryRequest;
 
 class MainCatController extends Controller
 {
@@ -18,12 +19,12 @@ class MainCatController extends Controller
     private $category;
     private $subcategory;
     private $childcat;
-    private $maincategory;
+    private $categoryRepository;
 
-    public function __construct(Categorie $cat, Subcategorie $subcat, CategoryInterface $maincategory){
+    public function __construct(Categorie $cat, Subcategorie $subcat, CategoryInterface $categoryRepository){
         $this->category    = $cat;
         $this->subcategory = $subcat;
-        $this->maincategory = $maincategory;
+        $this->categoryRepository = $categoryRepository;
     }
 
      /** 
@@ -46,45 +47,46 @@ class MainCatController extends Controller
         // $uppercase = allUpper('hello'); // from helper function
         // dd($uppercase);
 
-        $cat_data = $this->maincategory->getCategoryAll();
+        $cat_data = $this->categoryRepository->getCategoryAll();
 
         return view('backend.pages.view_category', ['data'=>$cat_data]);
     }
 
     /**
-     * add category 
+     * create category in add_category method
+     * 
+     * @param App\Http\Requests\CategoryRequest
+     * @return 
      */
-    public function addCategory(Request $request){
-
+    public function add_category(CategoryRequest $request){
         //form validation
-        $request->validate([
-            'cat_name' => ['required'],
-            'cat_name_bangla' => ['required'],
-            // 'cat_image' => ['required']
-        ]);
+        $request->validated();
 
-         //dd($request->all());
+        //dd($request->all());
         //dd($request->file('cat_image')->getExtension());
 
-        $category = new Categorie();
+        // $categoryDetails = $request->except('_token');
+        $categoryDetails['en_name'] = $request->cat_name;
+        $categoryDetails['bn_name'] = $request->cat_name_bangla;
 
+
+        // $category = new Categorie();
         /**
          * authorization people can only add categories
          */
-        if(Gate::denies('isAdmin', $category)){
-            abort(403, 'you are not authorized');
-        }
-
-        $category->en_name = $request->input('cat_name');
-        $category->bn_name = $request->input('cat_name_bangla');
-
+        // if(Gate::denies('isAdmin', $category)){
+        //     abort(403, 'you are not authorized');
+        // }
+        
         if ($request->hasFile('cat_image')) {
             $image_file = $request->cat_image;
             $path = 'images/';
             $image_name = $this->imageresize($image_file, $path); //using trait
         }
-        $category->cat_img_name =  !empty($image_name) ? $image_name : '';
-        $category->save();
+        $categoryDetails['cat_img_name'] = !empty($image_name) ? $image_name : '';
+        
+        // dd($categoryDetails);
+        $this->categoryRepository->createCategory($categoryDetails);
 
         return redirect(route('category'))->with('status', 'category insert successfully');
     }

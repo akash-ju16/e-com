@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function(){
 
     /** category */
     Route::get('/category/add', [MainCatController::class, 'category_list'])->middleware(['can:viewAny, App\Models\Categorie'])->name('category');
-    Route::post('/category/add', [MainCatController::class, 'addCategory'])->name('catepost');
+    Route::post('/category/add', [MainCatController::class, 'add_category'])->name('catepost');
     Route::get('/category/edit/{cid}', [MainCatController::class, 'edit_category']);
     
     
