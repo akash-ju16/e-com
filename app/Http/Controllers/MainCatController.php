@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Traits\ResizeImage;
-use App\Models\{Categorie,Subcategorie,ChildCategory};
+use App\Models\Categorie;
 use App\Interfaces\Category\CategoryInterface;
 use App\Http\Requests\CategoryRequest;
 
@@ -16,14 +16,10 @@ class MainCatController extends Controller
     /** using trait */
     use ResizeImage;
 
-    private $category;
-    private $subcategory;
-    private $childcat;
     private $categoryRepository;
 
-    public function __construct(Categorie $cat, Subcategorie $subcat, CategoryInterface $categoryRepository){
-        $this->category    = $cat;
-        $this->subcategory = $subcat;
+    public function __construct(CategoryInterface $categoryRepository)
+    {
         $this->categoryRepository = $categoryRepository;
     }
 
@@ -44,25 +40,11 @@ class MainCatController extends Controller
         return view('backend.pages.view_category', ['data'=>$cat_data]);
     }
 
-    /** 
-     * edit category 
-     * 
-     * @param Illuminate\Http\Request
-     * @return Illuminate\Http\Response
-     */
-    public function edit_category(Request $request){
-
-        $cid = $request->cid;
-        $cat_data = $this->categoryRepository->getCategoryById($cid);
-
-        return view('backend.pages.view_edit_category', ['data'=>$cat_data]);
-    }
-
     /**
      * create category
      * 
      * @param App\Http\Requests\CategoryRequest
-     * @return 
+     * @return Illuminate\Http\Response
      */
     public function add_category(CategoryRequest $request){
         //form validation
@@ -97,10 +79,25 @@ class MainCatController extends Controller
         return redirect(route('category'))->with('status', 'category insert successfully');
     }
 
+    /** 
+     * edit category 
+     * 
+     * @param Illuminate\Http\Request
+     * @return Illuminate\Http\Response
+     */
+    public function edit_category(Request $request){
+
+        $cid = $request->cid;
+        $cat_data = $this->categoryRepository->getCategoryById($cid);
+
+        return view('backend.pages.view_edit_category', ['data'=>$cat_data]);
+    }
+
     /**
      * update category
      * 
      * @param App\Http\Requests\CategoryRequest
+     * @return Illuminate\Http\Response
      */
     public function update_category(CategoryRequest $request)
     {
@@ -139,14 +136,16 @@ class MainCatController extends Controller
     }
 
     /**
+     * delete category
      * 
-     * destroy_category
+     * @param Illuminate\Http\Request
+     * @return Illuminate\Http\Response
      */
     public function destroy_category($cid)
     {
-        dd($cid);
         $this->categoryRepository->deleteCategory($cid);
 
         return redirect(route('category'))->with('status', 'category deleted successfully');
     }
+
 }

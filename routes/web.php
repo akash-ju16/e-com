@@ -43,12 +43,12 @@ Route::middleware('auth')->group(function(){
      * 
     */
 
-    /** category */
+    /** category route */
     Route::get('/category/add', [MainCatController::class, 'category_list'])->middleware(['can:viewAny, App\Models\Categorie'])->name('category');
     Route::post('/category/add', [MainCatController::class, 'add_category'])->name('catepost');
     Route::get('/category/edit/{cid}', [MainCatController::class, 'edit_category'])->name('editcat');
     Route::put('/category/edit/{cid}', [MainCatController::class, 'update_category'])->name('updatecate');
-    Route::delete('/category/delete/{cid}', [MainCatController::class, 'destroy_category'])->name('deletecate');
+    Route::get('/category/delete/{cid}', [MainCatController::class, 'destroy_category'])->name('deletecate');
     
     
     /** sub category */
