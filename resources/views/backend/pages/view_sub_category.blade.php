@@ -65,11 +65,6 @@
                     <label for="sub_cat_name_bangla">Sub Category Name(Bangla)</label>
                     <input type="text" name="sub_cat_name_bangla" class="form-control" id="sub_cat_name_bangla" value="{{old('sub_cat_name_bangla')}}" placeholder="Enter sub category bangla name">
                    </div>
-                  <div class="form-group">
-                    <label for="sub_cat_image">Image</label>
-                    <input type="file" name="sub_cat_image" class="form-control" id="sub_cat_image">
-                    <!-- <span class="text-danger">@error('sub_cat_image') {{ $message }} @enderror</span> -->
-                  </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
@@ -94,20 +89,20 @@
                     <th>SL No</th>
                     <th>Main Category Name</th>
                     <th>Sub Category Name</th>
-                    <th>Image</th>
+                    <th>Sub Category Name(Bangla)</th>
                     <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
                     @foreach ($cat_sub_main_data as $item)
                       <tr>
-                        <td>{{ $item->id }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->categorie->en_name }}</td>
                         <td>{{ $item->en_name }}</td>
-                        <td><img src="{{ asset('images/subimages/'.$item->image_name) }}" alt="no img" width="40" height="30" ></td>
+                        <td>{{ $item->bn_name }}</td>
                         <td>
-                            <a class="btn btn-info btn-sm" href="{{ url('category/sub-category/edit/'.$item->id) }}"><i class="fas fa-pencil-alt"></i>Edit</a>
-                            <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash"></i>Delete</a>
+                            <a class="btn btn-info btn-sm" href="{{ route('editsubcat', $item->id) }}"><i class="fas fa-pencil-alt"></i></a>
+                            <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash"></i></a>
                         </td>
                       </tr>
                     @endforeach

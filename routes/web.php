@@ -53,8 +53,8 @@ Route::middleware('auth')->group(function(){
     
     /** sub category */
     Route::get('/category/add-sub-category', [SubCatController::class, 'sub_category_list'])->name('subcategory');
-    Route::post('/category/sub-category', [SubCatController::class, 'add_sub_category'])->name('subcatepost');
-    Route::get('/category/sub-category/edit/{scid}', [SubCatController::class, 'edit_sub_category']);
+    Route::post('/category/add-sub-category', [SubCatController::class, 'add_sub_category'])->name('subcatepost');
+    Route::get('/category/sub-category/edit/{scid}', [SubCatController::class, 'edit_sub_category'])->name('editsubcat');
 
     /** child category */
     Route::get('/category/add-child-category', [ChildCatController::class, 'child_category_list'])->name('childcategory');
