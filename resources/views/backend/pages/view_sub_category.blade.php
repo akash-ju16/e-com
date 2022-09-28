@@ -106,7 +106,7 @@
                         <td>{{ $item->bn_name }}</td>
                         <td>
                             <a class="btn btn-info btn-sm" href="{{ route('editsubcat', $item->id) }}"><i class="fas fa-pencil-alt"></i></a>
-                            <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash"></i></a>
+                            <a class="btn btn-danger btn-sm" href="{{ route('deletesubcate', $item->id) }}"><i class="fas fa-trash"></i></a>
                         </td>
                       </tr>
                     @endforeach

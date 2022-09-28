@@ -56,6 +56,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/category/add-sub-category', [SubCatController::class, 'add_sub_category'])->name('subcatepost');
     Route::get('/category/sub-category/edit/{scid}', [SubCatController::class, 'edit_sub_category'])->name('editsubcat');
     Route::put('/category/sub-category/edit/{scid}', [SubCatController::class, 'update_sub_category'])->name('updatesubcat');
+    Route::get('/category/sub-category/delete/{scid}', [SubCatController::class, 'destroy_sub_category'])->name('deletesubcate');
 
     /** child category */
     Route::get('/category/add-child-category', [ChildCatController::class, 'child_category_list'])->name('childcategory');

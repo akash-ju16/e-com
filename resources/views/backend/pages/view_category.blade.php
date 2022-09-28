@@ -94,7 +94,7 @@
                   @foreach ($data as $item)
                     
                     <tr>
-                    <td>{{ $item->id }}</td>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ allUpper($item->en_name) }} <!--allUpper() using form helper function--></td>
                     <td>{{ CustomHelper::uppercase($item->bn_name) }} <!--CustomHelper::uppercase using form class based helper function--></td>
                     <td>
@@ -108,7 +108,7 @@
                     <a class="btn btn-info btn-sm" href="{{ route('editcat',$item->id) }}"><i class="fas fa-pencil-alt"></i></a>
 
                     @can('isAdmin') 
-                    <a class="btn btn-danger btn-sm" href="{{ route('deletecate', $item->id) }}"><i class="fas fa-trash"></i></a>
+                    <!-- <a class="btn btn-danger btn-sm" href="{{ route('deletecate', $item->id) }}"><i class="fas fa-trash"></i></a> -->
                     @endcan
                   </td>
                   </tr>

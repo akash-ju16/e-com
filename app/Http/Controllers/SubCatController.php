@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Traits\ResizeImage;
-use App\Models\{Categorie,Subcategorie,ChildCategory};
+use App\Models\{Categorie,Subcategorie};
 use App\Interfaces\Category\CategoryInterface;
 use App\Interfaces\Category\SubCategoryInterface;
 use App\Http\Requests\SubCategoryRequest;
@@ -15,15 +15,10 @@ class SubCatController extends Controller
     /** using trait */
     use ResizeImage;
 
-    private $category;
-    private $subcategory;
-    private $childcat;
     private $mainCateRepository;
     private $subCateRepository;
 
-    public function __construct(Categorie $cat, Subcategorie $subcat, CategoryInterface $mainCateRepository, SubCategoryInterface $subCateRepository){
-        $this->category    = $cat;
-        $this->subcategory = $subcat;
+    public function __construct(CategoryInterface $mainCateRepository, SubCategoryInterface $subCateRepository){
         $this->mainCateRepository = $mainCateRepository;
         $this->subCateRepository  = $subCateRepository;
     }
@@ -36,7 +31,7 @@ class SubCatController extends Controller
      */
     public function sub_category_list(){
         $cat_data     = $this->mainCateRepository->getCategoryAll();
-        $subcategorie = $this->subcategory::with('categorie')->get();
+        $subcategorie = Subcategorie::with('categorie')->get();
         return view('backend.pages.view_sub_category', ['mdata'=>$cat_data, 'cat_sub_main_data'=>$subcategorie]);
     }
 
@@ -108,6 +103,19 @@ class SubCatController extends Controller
         $this->subCateRepository->updateCategory($request->scid, $subCategoryDetails);
 
         return redirect(route('subcategory'))->with('status', 'sub category updated successfully');
+    }
+
+    /**
+     * delete category
+     * 
+     * @param Illuminate\Http\Request
+     * @return Illuminate\Http\Response
+     */
+    public function destroy_sub_category($scid)
+    {
+        $this->subCateRepository->deleteCategory($scid);
+
+        return redirect(route('subcategory'))->with('status', 'sub category deleted successfully');
     }
     
 

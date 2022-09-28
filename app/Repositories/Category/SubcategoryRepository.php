@@ -33,7 +33,7 @@ class SubcategoryRepository implements SubCategoryInterface
     /** delete category */
     public function deleteCategory($catid)
     {
-        //
+        Subcategorie::destroy($catid);
     }
 }
 
