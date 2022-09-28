@@ -74,15 +74,41 @@ class SubCatController extends Controller
 
     /** 
      * edit sub category 
+     * 
+     * @param subcategory_id
+     * @return Illuminate\Http\Response
      */
-    public function edit_sub_category(Request $request, $scid){
-        $scid = $request->cid;
-
-        $cat_data = $this->subcategory->where('id', $scid)->first();
-        dd($scid);
-        return view('backend.pages.view_edit_sub_category', ['data'=>$cat_data]);
+    public function edit_sub_category($scid)
+    {
+        $mcat_data = $this->mainCateRepository->getCategoryAll();
+        $cat_data  = $this->subCateRepository->getCategoryById($scid);
+        return view('backend.pages.view_edit_sub_category', ['mdata'=>$mcat_data, 'data'=>$cat_data]);
     }
 
+    /**
+     * update sub category
+     * 
+     * @param App\Http\Requests\SubCategoryRequest
+     * @return Illuminate\Http\Response
+     */
+    public function update_sub_category(SubCategoryRequest $request)
+    {
+        //form validation 
+        $request->validated();
+
+        //sub category oldest data
+        $oldSubcategory = $this->subCateRepository->getCategoryById($request->scid);
+
+        //from user input
+        $subCategoryDetails['en_name']      = $request->sub_cat_name;
+        $subCategoryDetails['bn_name']      = $request->sub_cat_name_bangla;
+        $subCategoryDetails['categorie_id'] = $request->mcategory;
+        
+        // dd($subCategoryDetails);
+        $this->subCateRepository->updateCategory($request->scid, $subCategoryDetails);
+
+        return redirect(route('subcategory'))->with('status', 'sub category updated successfully');
+    }
     
 
     

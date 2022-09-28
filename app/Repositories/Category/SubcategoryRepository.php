@@ -15,7 +15,7 @@ class SubcategoryRepository implements SubCategoryInterface
     /** specific category  */
     public function getCategoryById($cateid)
     {
-        //
+        return Subcategorie::findOrFail($cateid);
     }
 
     /** create category */
@@ -27,7 +27,7 @@ class SubcategoryRepository implements SubCategoryInterface
     /** udpate category */
     public function updateCategory($catid, $newCategoryDetails)
     {
-        //
+        return Subcategorie::whereId($catid)->update($newCategoryDetails);
     }
 
     /** delete category */

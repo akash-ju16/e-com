@@ -41,7 +41,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm" action="{{ route('subcatepost') }}" method="post" enctype="multipart/form-data">
+              <form id="quickForm" action="{{ route('subcatepost') }}" method="post">
               @csrf  
               <div class="card-body">
                 <div class="form-group">
@@ -49,7 +49,11 @@
                   <select name="mcategory" id="mcategory" class="form-control select2" style="width: 100%;">
                     <option value="">Select</option>
                     @foreach($mdata as $item)
-                    <option value="{{ $item->id }}">{{ $item->en_name }}</option>  
+                      @if (old('mcategory')==$item->id)
+                          <option value="{{$item->id}}" selected>{{ $item->en_name }}</option>
+                      @else
+                          <option value="{{$item->id}}" >{{ $item->en_name }}</option>
+                      @endif
                     @endforeach
                   </select>
                   <span class="text-danger">@error('mcategory') {{ $message }} @enderror</span>
