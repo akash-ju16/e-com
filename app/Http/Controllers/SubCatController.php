@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Traits\ResizeImage;
 use App\Models\{Categorie,Subcategorie};
 use App\Interfaces\Category\CategoryInterface;
 use App\Interfaces\Category\SubCategoryInterface;
@@ -12,13 +11,11 @@ use App\Http\Requests\SubCategoryRequest;
 
 class SubCatController extends Controller
 {
-    /** using trait */
-    use ResizeImage;
-
     private $mainCateRepository;
     private $subCateRepository;
 
-    public function __construct(CategoryInterface $mainCateRepository, SubCategoryInterface $subCateRepository){
+    public function __construct(CategoryInterface $mainCateRepository, SubCategoryInterface $subCateRepository)
+    {
         $this->mainCateRepository = $mainCateRepository;
         $this->subCateRepository  = $subCateRepository;
     }
@@ -29,9 +26,10 @@ class SubCatController extends Controller
      * @param null 
      * @return Illuminate\Http\Response
      */
-    public function sub_category_list(){
+    public function subCategoryList()
+    {
         $cat_data     = $this->mainCateRepository->getCategoryAll();
-        $subcategorie = Subcategorie::with('categorie')->get();
+        $subcategorie = $this->subCateRepository->getSubCategoryWithCategory();
         return view('backend.pages.view_sub_category', ['mdata'=>$cat_data, 'cat_sub_main_data'=>$subcategorie]);
     }
 
@@ -41,7 +39,8 @@ class SubCatController extends Controller
      * @param App\Http\Requests\SubCategoryRequest
      * @return Illuminate\Http\Response
     */
-    public function add_sub_category(SubCategoryRequest $request){
+    public function addSubCategory(SubCategoryRequest $request)
+    {
 
         //validation form
         $request->validated();
@@ -73,7 +72,7 @@ class SubCatController extends Controller
      * @param subcategory_id
      * @return Illuminate\Http\Response
      */
-    public function edit_sub_category($scid)
+    public function editSubCategory($scid)
     {
         $mcat_data = $this->mainCateRepository->getCategoryAll();
         $cat_data  = $this->subCateRepository->getCategoryById($scid);
@@ -86,7 +85,7 @@ class SubCatController extends Controller
      * @param App\Http\Requests\SubCategoryRequest
      * @return Illuminate\Http\Response
      */
-    public function update_sub_category(SubCategoryRequest $request)
+    public function updateSubCategory(SubCategoryRequest $request)
     {
         //form validation 
         $request->validated();
@@ -111,7 +110,7 @@ class SubCatController extends Controller
      * @param Illuminate\Http\Request
      * @return Illuminate\Http\Response
      */
-    public function destroy_sub_category($scid)
+    public function destroySubCategory($scid)
     {
         $this->subCateRepository->deleteCategory($scid);
 

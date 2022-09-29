@@ -2,7 +2,7 @@
 namespace App\Repositories\Category;
 
 use App\Interfaces\Category\SubCategoryInterface;
-use App\Models\Subcategorie;
+use App\Models\{Subcategorie,Categorie};
 
 class SubcategoryRepository implements SubCategoryInterface
 {
@@ -10,6 +10,12 @@ class SubcategoryRepository implements SubCategoryInterface
     public function getCategoryAll()
     {
         //
+    }
+
+    /** sub category list with category */
+    public function getSubCategoryWithCategory()
+    {
+        return Subcategorie::with('categorie')->get();
     }
 
     /** specific category  */

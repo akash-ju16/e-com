@@ -29,8 +29,8 @@ class MainCatController extends Controller
      * @param null
      * @return Illuminate\Http\Response
      */
-    public function category_list(){
-
+    public function categoryList()
+    {
         // dd(Auth::User());
         // $uppercase = allUpper('hello'); // from helper function
         // dd($uppercase);
@@ -46,7 +46,8 @@ class MainCatController extends Controller
      * @param App\Http\Requests\CategoryRequest
      * @return Illuminate\Http\Response
      */
-    public function add_category(CategoryRequest $request){
+    public function addCategory(CategoryRequest $request)
+    {
         //form validation
         $request->validated();
 
@@ -66,7 +67,7 @@ class MainCatController extends Controller
         //     abort(403, 'you are not authorized');
         // }
         
-        if ($request->hasFile('cat_image')) {
+        if ( $request->hasFile('cat_image') ) {
             $image_file = $request->cat_image;
             $path = 'images/';
             $image_name = $this->imageresize($image_file, $path); //using trait
@@ -85,7 +86,8 @@ class MainCatController extends Controller
      * @param Illuminate\Http\Request
      * @return Illuminate\Http\Response
      */
-    public function edit_category(Request $request){
+    public function editCategory(Request $request)
+    {
 
         $cid = $request->cid;
         $cat_data = $this->categoryRepository->getCategoryById($cid);
@@ -99,7 +101,7 @@ class MainCatController extends Controller
      * @param App\Http\Requests\CategoryRequest
      * @return Illuminate\Http\Response
      */
-    public function update_category(CategoryRequest $request)
+    public function updateCategory(CategoryRequest $request)
     {
 
         //form validate
@@ -113,11 +115,10 @@ class MainCatController extends Controller
         $categoryDetails['bn_name'] = $request->cat_name_bangla;
 
         //image file
-        if ($request->hasFile('cat_image')) {
-
+        if ( $request->hasFile('cat_image') ) {
             //remove old file
             $opath = public_path().'/images/';
-            if($oldcategory->cat_img_name != ''  && $oldcategory->cat_img_name != null){
+            if ( $oldcategory->cat_img_name != ''  && $oldcategory->cat_img_name != null ) {
                 $file_old = $opath.$oldcategory->cat_img_name;
                 unlink($file_old);
             }
@@ -141,7 +142,7 @@ class MainCatController extends Controller
      * @param Illuminate\Http\Request
      * @return Illuminate\Http\Response
      */
-    public function destroy_category($cid)
+    public function destroyCategory($cid)
     {
         $this->categoryRepository->deleteCategory($cid);
 

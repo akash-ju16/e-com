@@ -44,19 +44,19 @@ Route::middleware('auth')->group(function(){
     */
 
     /** category route */
-    Route::get('/category/add', [MainCatController::class, 'category_list'])->middleware(['can:viewAny, App\Models\Categorie'])->name('category');
-    Route::post('/category/add', [MainCatController::class, 'add_category'])->name('catepost');
-    Route::get('/category/edit/{cid}', [MainCatController::class, 'edit_category'])->name('editcat');
-    Route::put('/category/edit/{cid}', [MainCatController::class, 'update_category'])->name('updatecate');
-    Route::get('/category/delete/{cid}', [MainCatController::class, 'destroy_category'])->name('deletecate');
+    Route::get('/category/add', [MainCatController::class, 'categoryList'])->middleware(['can:viewAny, App\Models\Categorie'])->name('category');
+    Route::post('/category/add', [MainCatController::class, 'addCategory'])->name('catepost');
+    Route::get('/category/edit/{cid}', [MainCatController::class, 'editCategory'])->name('editcat');
+    Route::put('/category/edit/{cid}', [MainCatController::class, 'updateCategory'])->name('updatecate');
+    Route::get('/category/delete/{cid}', [MainCatController::class, 'destroyCategory'])->name('deletecate');
     
     
-    /** sub category */
-    Route::get('/category/add-sub-category', [SubCatController::class, 'sub_category_list'])->name('subcategory');
-    Route::post('/category/add-sub-category', [SubCatController::class, 'add_sub_category'])->name('subcatepost');
-    Route::get('/category/sub-category/edit/{scid}', [SubCatController::class, 'edit_sub_category'])->name('editsubcat');
-    Route::put('/category/sub-category/edit/{scid}', [SubCatController::class, 'update_sub_category'])->name('updatesubcat');
-    Route::get('/category/sub-category/delete/{scid}', [SubCatController::class, 'destroy_sub_category'])->name('deletesubcate');
+    /** sub category route */
+    Route::get('/category/add-sub-category', [SubCatController::class, 'subCategoryList'])->name('subcategory');
+    Route::post('/category/add-sub-category', [SubCatController::class, 'addSubCategory'])->name('subcatepost');
+    Route::get('/category/sub-category/edit/{scid}', [SubCatController::class, 'editSubCategory'])->name('editsubcat');
+    Route::put('/category/sub-category/edit/{scid}', [SubCatController::class, 'updateSubCategory'])->name('updatesubcat');
+    Route::get('/category/sub-category/delete/{scid}', [SubCatController::class, 'destroySubCategory'])->name('deletesubcate');
 
     /** child category */
     Route::get('/category/add-child-category', [ChildCatController::class, 'child_category_list'])->name('childcategory');
