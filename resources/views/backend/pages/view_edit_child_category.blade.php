@@ -43,6 +43,7 @@
               <!-- form start -->
               <form id="quickForm" style="padding:10px;" action="{{ route('updatechildcate', $data->id) }}" method="post">
               @csrf  
+              @method('PUT')
                   <div class="form-group">
                   <label>Category</label>
                       <select class='form-control select2 select_cat' name="category_select" id="category_select" style="width: 100%;">
@@ -76,7 +77,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Update</button>
                 </div>
               </form>
             </div>

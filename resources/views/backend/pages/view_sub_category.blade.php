@@ -49,7 +49,7 @@
                   <select name="mcategory" id="mcategory" class="form-control select2" style="width: 100%;">
                     <option value="">Select</option>
                     @foreach($mdata as $item)
-                      @if (old('mcategory')==$item->id)
+                      @if (old('mcategory') == $item->id)
                           <option value="{{$item->id}}" selected>{{ $item->en_name }}</option>
                       @else
                           <option value="{{$item->id}}" >{{ $item->en_name }}</option>

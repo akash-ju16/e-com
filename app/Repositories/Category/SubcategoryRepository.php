@@ -9,7 +9,7 @@ class SubcategoryRepository implements SubCategoryInterface
     /** fetch all sub categories */
     public function getCategoryAll()
     {
-        //
+        return Subcategorie::all();
     }
 
     /** sub category list with category */

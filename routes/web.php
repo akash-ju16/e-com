@@ -59,10 +59,10 @@ Route::middleware('auth')->group(function(){
     Route::get('/category/sub-category/delete/{scid}', [SubCatController::class, 'destroySubCategory'])->name('deletesubcate');
 
     /** child category */
-    Route::get('/category/add-child-category', [ChildCatController::class, 'child_category_list'])->name('childcategory');
-    Route::get('/category/child-category/edit/{ccid}', [ChildCatController::class, 'edit_child_category'])->name('editchild');
-    Route::post('/category/child-category', [ChildCatController::class, 'add_child_category'])->name('childcatepost');
-    Route::post('/category/child-category/edit/{ccid}', [ChildCatController::class, 'update_child_category'])->name('updatechildcate');
+    Route::get('/category/add-child-category', [ChildCatController::class, 'childCategoryList'])->name('childcategory');
+    Route::post('/category/child-category', [ChildCatController::class, 'addChildCategory'])->name('childcatepost');
+    Route::get('/category/child-category/edit/{ccid}', [ChildCatController::class, 'editChildCategory'])->name('editchild');
+    Route::put('/category/child-category/edit/{ccid}', [ChildCatController::class, 'updateChildCategory'])->name('updatechildcate');
     
     /** dependency page for ajax */
     Route::get('/category/get-sub-category', [DependencyControler::class, 'get_sub_category_list'])->name('getSubCat');

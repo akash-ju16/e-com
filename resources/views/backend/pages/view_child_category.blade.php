@@ -48,8 +48,12 @@
                   <label>Category</label>
                       <select class='form-control select2 select_cat' name="category_select" id="category_select" style="width: 100%;">
                           <option value="">Select</option>
-                          @foreach($maincat as $key => $cat)
-                            <option {{ Input::old('category_select') == $key ? 'selected="selected"' : '' }} value="{{ $cat->id }}">{{ $cat->en_name }}</option>
+                          @foreach ($maincat as $key => $cat)
+                            @if (old('category_select') == $cat->id)
+                            <option value="{{ $cat->id }}" selected>{{ $cat->en_name }}</option>
+                            @else
+                            <option value="{{ $cat->id }}">{{ $cat->en_name }}</option>
+                            @endif
                           @endforeach
                       </select>
                       <span class="text-danger">@error('category_select') {{$message}} @enderror</span>
@@ -58,9 +62,13 @@
                   <label>Sub Category</label>
                     <select class='form-control select2' name="sub_category_select" id="sub_category_select" style="width: 100%;">
                         <option value="">Select</option>
-                         @foreach($subcat as $key => $cat)
-                            <option {{ Input::old('sub_category_select') == $key ? 'selected="selected"' : '' }} value="{{ $cat->id }}">{{ $cat->en_name }}</option>
-                          @endforeach
+                         @foreach ($subcat as $key => $cat)
+                            @if (old('sub_category_select') == $cat->id)
+                            <option value="{{ $cat->id }}" selected>{{ $cat->en_name }}</option>
+                            @else
+                            <option value="{{ $cat->id }}">{{ $cat->en_name }}</option>
+                            @endif
+                         @endforeach
                     </select>
                     <span class="text-danger">@error('sub_category_select') {{$message}} @enderror</span>
                   </div>

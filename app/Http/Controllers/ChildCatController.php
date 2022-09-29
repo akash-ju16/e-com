@@ -5,88 +5,107 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChildCategoryRequest;
 use Illuminate\Http\Request;
-use App\Models\{Categorie,Subcategorie,ChildCategory};
+use App\Interfaces\Category\ChildCategoryInterface;
+use App\Interfaces\Category\CategoryInterface;
+use App\Interfaces\Category\SubCategoryInterface;
 
 
 class ChildCatController extends Controller
 {
-    protected $childcategory;
+    private $childRepository;
+    private $categoryRepository;
+    private $subCategoryRepository;
 
-    public function __construct(ChildCategory $childcat)
+    public function __construct(ChildCategoryInterface $childRepository, CategoryInterface $categoryRepository, SubCategoryInterface $subCategoryRepository)
     {
-        $this->childcategory = $childcat;
-        // dd($this->childcat);
+        $this->childRepository = $childRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->subCategoryRepository = $subCategoryRepository;
     }
 
      /**
-     * child_category_list
+     * child category list
+     * 
      * @param null
+     * @return Illuminate\Http\Response
      */
-    public function child_category_list()
+    public function childCategoryList()
     {
 
-        $childcategory  = $this->childcategory::with(['subcategorie','maincategory'])->get(); 
-
+        $childcategory  = $this->childRepository->getChildCategoryWithCategoryWirhSubCategory(); 
         //main-category
-        $maincat = Categorie::all(); //it's a redundency
-
+        $mainCategory = $this->categoryRepository->getCategoryAll();
         //sub-category
-        $subcat = Subcategorie::all(); //it's a redundency
-        
+        $subCategory = $this->subCategoryRepository->getCategoryAll();
         // return $childcategory;
         //  dd($childcategory->toArray());
-        return view('backend.pages.view_child_category', ['data' => $childcategory, 'maincat'=>$maincat, 'subcat'=>$subcat]);
+        return view('backend.pages.view_child_category', ['data' => $childcategory, 'maincat'=>$mainCategory, 'subcat'=>$subCategory]);
 
     }
 
     /** 
-     * child category entry
+     * create child category
      * 
      * @param \App\Http\Requests\ChildCategoryRequest
      * @return \Illuminate\Http\Response
     */
-    public function add_child_category(ChildCategoryRequest $request){
+    public function addChildCategory(ChildCategoryRequest $request){
         // dd($request->input());
 
         //validation form
         $request->validated();
         
-        $data = $request->except('_token');
+        $data = $request->except('_token', 'category_select', 'sub_category_select');
         $data['categories_id']      =  $request->input('category_select', true);
         $data['subcategories_id']   =  $request->input('sub_category_select', true);
-        // dd($data);
-        $this->childcat->create($data);
+        
+        $this->childRepository->createCategory($data);
         
         return redirect(route('childcategory'))->with('status', 'child category insert successfully');
 
     }
 
     /**
-     * child category edit
+     * edit child category
      * 
      * @param \Illuminate\Http\Request
      * @return \Illuminate\Http\Response
      */
-    public function edit_child_category(Request $request) 
+    public function editChildCategory(Request $request) 
     {
-        $cid  = $request->ccid;
-        $data = $this->childcategory->where('id', $cid)->first();
-        
-        //main-category
-        $maincat = Categorie::all(); //it's a redundency
 
+        $data = $this->childRepository->getCategoryById($request->ccid);  
+        //main-category
+        $mainCategory = $this->categoryRepository->getCategoryAll();
         //sub-category
-        $subcat = Subcategorie::all(); //it's a redundency
+        $subCategory = $this->subCategoryRepository->getCategoryAll();
         
-        return view('backend.pages.view_edit_child_category', ['data'=>$data, 'maincat'=>$maincat, 'subcat'=>$subcat]);
+        return view('backend.pages.view_edit_child_category', ['data'=>$data, 'maincat'=>$mainCategory, 'subcat'=>$subCategory]);
     }
 
     /**
-     * update_child_category
+     * update child category
+     * 
+     * @param \Illuminate\Http\ChildCategoryRequest
+     * @return \Illuminate\Http\Response
      */
-    public function update_child_category(Request $request) 
+    public function updateChildCategory(ChildCategoryRequest $request) 
     {
-        dd($request->all());
+        //form validate
+        $request->validated();
+
+        //old child category data
+        $oldData = $this->childRepository->getCategoryById($request->ccid);
+
+         //from user input
+        $childCategoryDetails = $request->except('_token', '_method', 'category_select', 'sub_category_select');
+        $childCategoryDetails['categories_id']      =  $request->category_select;
+        $childCategoryDetails['subcategories_id']   =  $request->sub_category_select;
+         
+        //dd($childCategoryDetails);
+         $this->childRepository->updateCategory($request->ccid, $childCategoryDetails);
+ 
+         return redirect(route('childcategory'))->with('status', 'child category updated successfully');
     }
 
 }
