@@ -117,7 +117,10 @@
                       <td>{{ $item->maincategory->en_name }}</td>
                       <td>{{ $item->subcategorie->en_name }}</td>
                       <td>{{ $item->child_en_name }}</td>
-                      <td><a class="btn btn-info btn-sm" href="{{ route('editchild', $item->id) }}"><i class="fas fa-pencil-alt"></i></a></td>
+                      <td>
+                        <a class="btn btn-info btn-sm" href="{{ route('editchild', $item->id) }}"><i class="fas fa-pencil-alt"></i></a>
+                        <a class="btn btn-danger btn-sm" href="{{ route('deletechildcate', $item->id) }}"><i class="fas fa-trash"></i></a>
+                      </td>
                     </tr>
                    @endforeach
                   </tbody>

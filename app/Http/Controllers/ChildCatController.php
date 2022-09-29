@@ -108,4 +108,17 @@ class ChildCatController extends Controller
          return redirect(route('childcategory'))->with('status', 'child category updated successfully');
     }
 
+    /**
+     * delete child category
+     * 
+     * @param Illuminate\Http\Request
+     * @return Illuminate\Http\Response
+     */
+    public function destroyChildSubCategory($ccid)
+    {
+        $this->childRepository->deleteCategory($ccid);
+
+        return redirect(route('childcategory'))->with('status', 'child category deleted successfully');
+    }
+
 }
