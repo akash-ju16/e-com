@@ -18,14 +18,30 @@ class HomeController extends Controller
 
 
         $allCategory = Categorie::with(['Subcategorie', 'ChildCategory'])->get();
-        echo '<pre>';
-        print_r($allCategory);
-        
-        foreach($allCategory as $item){
-            echo $item.'<br>';
+        // echo '<pre>';
+        // // // $data = collect($allCategory)->;
+        foreach ($allCategory as $category) {
+            // $category->sub = $category->subcategorie;
+            foreach ($category->subcategorie as $scategory) {
+                $scategory->childCategoryData = $category->ChildCategory;
+            }
         }
-        exit;
+        dd($allCategory);
+        //
+        // print_r($allCategory->toArray());
+
+        // $data = array();
+        // foreach($allCategory as $item){
+        //     // echo $item.'<br><br><br>';
+        //     $item['test'] = 'test';
+        //     foreach($item->Subcategorie as $sub){
+
+        //     }
+        //     $data = $item;
+        // }
+        // print_r($data);
+        // exit;
         
-        return view('frontend.layouts.app');
+        return view('frontend.layouts.app', ['allCategory' => $allCategory]);
     }
 }

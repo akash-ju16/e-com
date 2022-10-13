@@ -10,7 +10,7 @@ class Categorie extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['en_name','bn_name','cat_img_name'];
+    protected $fillable = ['en_name', 'bn_name', 'cat_img_name'];
 
     public function subcategorie()
     {

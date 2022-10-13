@@ -1,4 +1,7 @@
 <!--header bottom satrt-->
+<?php
+dd($allCategory->toArray());
+?>
 <div class="header_bottom bottom_two sticky-header">
             <div class="container">
                 <div class="row align-items-center">
@@ -10,17 +13,19 @@
                                 </div>
                                 <div class="categories_menu_toggle">
                                     <ul>
-                                        <li class="menu_item_children categorie_list"><a href="#">Brake Parts <i class="fa fa-angle-right"></i></a>
+                                    @foreach ($allCategory as $item) 
+                                        <li class="menu_item_children categorie_list"><a href="#">{{ $item->en_name }} <i class="fa fa-angle-right"></i></a>
                                             <ul class="categories_mega_menu">
-                                                <li class="menu_item_children"><a href="#">Wheel Bearings</a>
+                                                @foreach ($item->Subcategorie as $sitem)
+                                                <li class="menu_item_children"><a href="#">{{ $sitem->en_name }}</a>
                                                     <ul class="categorie_sub_menu">
-                                                        <li><a href="#">Bower</a></li>
-                                                        <li><a href="#">Flipbac</a></li>
-                                                        <li><a href="#">Gary Fong</a></li>
-                                                        <li><a href="#">GigaPan</a></li>
+                                                        @foreach ($item->ChildCategory as $citem)
+                                                        <li><a href="#">{{ $citem->en_name }}</a></li>
+                                                        @endforeach
                                                     </ul>
                                                 </li>
-                                                <li class="menu_item_children"><a href="#">Wheel Rim Screws</a>
+                                                @endforeach
+                                                <!-- <li class="menu_item_children"><a href="#">Wheel Rim Screws</a>
                                                     <ul class="categorie_sub_menu">
                                                         <li><a href="#">Accessories</a></li>
                                                         <li><a href="#">2-Stroke</a></li>
@@ -38,11 +43,12 @@
                                                     <div class="categorie_banner">
                                                         <a href="#"><img src="{{ asset('assets/frontend/img/bg/banner2.jpg') }}" alt=""></a>
                                                     </div>
-                                                </li>
+                                                </li> -->
 
                                             </ul>
                                         </li>
-                                        <li class="menu_item_children"><a href="#"> Wheels & Tires <i class="fa fa-angle-right"></i></a>
+                                    @endforeach
+                                        <!-- <li class="menu_item_children"><a href="#"> Wheels & Tires <i class="fa fa-angle-right"></i></a>
                                             <ul class="categories_mega_menu">
                                                 <li class="menu_item_children"><a href="#">Dresses</a>
                                                     <div class="categorie_sub_menu">
@@ -177,7 +183,7 @@
                                         <li><a href="#"> Engine Parts</a></li>
                                         <li class="hidden"><a href="shop-left-sidebar.html">New Sofas</a></li>
                                         <li class="hidden"><a href="shop-left-sidebar.html">Sleight Sofas</a></li>
-                                        <li><a href="#" id="more-btn"><i class="fa fa-plus" aria-hidden="true"></i> More Categories</a></li>
+                                        <li><a href="#" id="more-btn"><i class="fa fa-plus" aria-hidden="true"></i> More Categories</a></li> -->
                                     </ul>
                                 </div>
                             </div>
