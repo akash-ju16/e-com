@@ -21,12 +21,12 @@ class HomeController extends Controller
         // echo '<pre>';
         // // // $data = collect($allCategory)->;
         foreach ($allCategory as $category) {
-            // $category->sub = $category->subcategorie;
-            foreach ($category->subcategorie as $scategory) {
-                $scategory->childCategoryData = $category->ChildCategory;
-            }
+            $category->sub = $category->subcategorie;
+            // foreach ($category->subcategorie as $scategory) {
+            //     $scategory->childCategoryData = $category->ChildCategory;
+            // }
         }
-        dd($allCategory);
+        // dd($allCategory);
         //
         // print_r($allCategory->toArray());
 
