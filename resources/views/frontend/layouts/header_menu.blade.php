@@ -12,7 +12,9 @@
                                 <div class="categories_menu_toggle">
                                     <ul>
                                     @foreach ($allCategory as $item) 
-                                        <li class="menu_item_children categorie_list"><a href="#">{{ $item->en_name }} <i class="fa fa-angle-right"></i></a>
+                                        <li class="menu_item_children categorie_list"><a href="#">{{ $item->en_name }} 
+                                            @if (count($item->Subcategorie) > 0) 
+                                            <i class="fa fa-angle-right"></i></a>
                                             <ul class="categories_mega_menu">
                                                 @foreach ($item->Subcategorie as $sitem)
                                                 <li class="menu_item_children"><a href="#">{{ $sitem->en_name }}</a>
@@ -24,6 +26,7 @@
                                                 </li>
                                                 @endforeach
                                             </ul>
+                                            @endif
                                         </li>
                                     @endforeach
                                     </ul>
