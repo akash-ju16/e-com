@@ -1,6 +1,6 @@
 <!--header bottom satrt-->
 <?php
-dd($allCategory->toArray());
+// dd($allCategory->toArray());
 ?>
 <div class="header_bottom bottom_two sticky-header">
             <div class="container">
@@ -17,10 +17,13 @@ dd($allCategory->toArray());
                                         <li class="menu_item_children categorie_list"><a href="#">{{ $item->en_name }} <i class="fa fa-angle-right"></i></a>
                                             <ul class="categories_mega_menu">
                                                 @foreach ($item->Subcategorie as $sitem)
+                                                <?php
+                                                    // dd($sitem->toArray());
+                                                    ?>
                                                 <li class="menu_item_children"><a href="#">{{ $sitem->en_name }}</a>
                                                     <ul class="categorie_sub_menu">
-                                                        @foreach ($item->ChildCategory as $citem)
-                                                        <li><a href="#">{{ $citem->en_name }}</a></li>
+                                                        @foreach ($sitem->ChildCategory as $citem)
+                                                        <li><a href="#">{{ $citem->child_en_name }}</a></li>
                                                         @endforeach
                                                     </ul>
                                                 </li>
