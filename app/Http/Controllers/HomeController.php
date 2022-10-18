@@ -14,8 +14,6 @@ class HomeController extends Controller
     */
     public function index()
     {
-        $collection = collect([1, 2, 3])->all();
-
 
         $allCategory = Categorie::with(['Subcategorie' => function ($query) {
             $query->with(['ChildCategory']);
