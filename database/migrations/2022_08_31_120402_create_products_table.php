@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('prod_name');
             $table->string('prod_name_bangla');
-            $table->string('prod_description');
+            $table->text('prod_description');
             $table->integer('prod_price');
             $table->char('prod_unit');
             $table->integer('prod_stock');

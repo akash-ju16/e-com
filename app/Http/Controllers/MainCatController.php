@@ -51,6 +51,12 @@ class MainCatController extends Controller
         //form validation
         $request->validated();
 
+        /** ##### NEXT UPDATE ON ##### SLUG->ORDER BY */
+        // use Illuminate\Support\Str;
+        // $slug = Str::slug('Laravel 8 Framework', '-');
+        // laravel-8-framework
+        /** ##### NEXT UPDATE ON ##### */
+
         //dd($request->all());
         //dd($request->file('cat_image')->getExtension());
 

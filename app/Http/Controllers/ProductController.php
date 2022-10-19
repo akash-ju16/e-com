@@ -169,7 +169,7 @@ class ProductController extends Controller
 
      $data['product_image'] = $img_name;
 
-
+    //  dd($data);
      $product = $this->product->create($data);
 
         return redirect(route('product'))->with('product-status', 'product insert successfully');
