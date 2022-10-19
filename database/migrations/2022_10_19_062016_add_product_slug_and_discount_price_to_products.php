@@ -14,7 +14,10 @@ class AddProductSlugAndDiscountPriceToProducts extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            //
+            $table->after('prod_price', function ($table) {
+                $table->string('product_slug');
+                $table->string('discount_price')->nullable();
+            });
         });
     }
 
@@ -26,7 +29,8 @@ class AddProductSlugAndDiscountPriceToProducts extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            //
+            $table->dropColumn('product_slug');
+            $table->dropColumn('discount_price');
         });
     }
 }

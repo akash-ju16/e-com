@@ -19,7 +19,8 @@ class Product extends Model
         'categories_id',
         'subcategories_id',
         'prod_attribute',
-        'product_image'
+        'product_image', 
+        'product_slug'
     ];
 
     public static function get_unit(){

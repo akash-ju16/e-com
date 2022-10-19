@@ -8,7 +8,7 @@ use App\Models\Categorie;
 use App\Models\Subcategorie;
 use App\Models\Product;
 use App\Http\Traits\ResizeImage;
-
+use Illuminate\Support\Str;
 /** 
  * Class Description
  * This class use for productDisplay, productStore, productUpdate and so on..
@@ -159,6 +159,10 @@ class ProductController extends Controller
 
      $data['categories_id'] = $request->input('category_select', true);
      $data['subcategories_id'] = $request->input('sub_category_select', true);
+
+     //product slug
+     $productName = $request->input('prod_name', true);
+     $data['product_slug'] = Str::slug($productName, '-');
 
     /** product image area */
     if ($request->hasFile('product_image')){ 
