@@ -156,19 +156,19 @@
             </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{{ route('newproduct') }}" class="nav-link">
+                    <a href="{{ route('onetoone') }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>One To One</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ route('product') }}" class="nav-link">
+                    <a href="{{ route('onetomany') }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>One To Many</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="pages/examples/e-commerce.html" class="nav-link">
+                    <a href="{{ route('manytomany') }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Many To Many</p>
                     </a>

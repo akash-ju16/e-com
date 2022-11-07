@@ -6,7 +6,7 @@ use App\Http\Controllers\{
     ServiceController,HomeController,MainCatController,SubCatController,ChildCatController,
     DependencyControler
 };
-
+use App\Http\Controllers\Relation\RelationController;
 
 //home page
 Route::get('/', [HomeController::class, 'index'])->name('homepg');
@@ -79,8 +79,11 @@ Route::middleware('auth')->group(function(){
 
 
     //Test pages
+
     /** relation page */
-    Route::get('/relation/one-to-one', [ProductController::class, 'product_display'])->name('product');
+    Route::get('/relation/one-to-one', [RelationController::class, 'oneToOne'])->name('onetoone');
+    Route::get('/relation/one-to-many', [RelationController::class, 'oneToMany'])->name('onetomany');
+    Route::get('/relation/many-to-many', [RelationController::class, 'manyToMany'])->name('manytomany');
 
 });
 
