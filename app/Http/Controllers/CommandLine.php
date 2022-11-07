@@ -13,4 +13,7 @@ class CommandLine extends Controller
 
     /** how to create controller with folder name */
     //php artisan make:controller Relation/RelationController
+
+    /** TABLE CREATE */
+    // php artisan make:migration create_posts_table 
 }
