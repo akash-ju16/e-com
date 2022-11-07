@@ -79,6 +79,8 @@ Route::middleware('auth')->group(function(){
 
 
     //Test pages
+    /** relation page */
+    Route::get('/relation/one-to-one', [ProductController::class, 'product_display'])->name('product');
 
 });
 

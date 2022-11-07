@@ -144,8 +144,37 @@
             </a>
           </li> 
 
-
-
+          <!--product section -->
+          <li class="nav-header">MY PRACTICE WORK</li> 
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Relation
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ route('newproduct') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>One To One</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('product') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>One To Many</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pages/examples/e-commerce.html" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Many To Many</p>
+                    </a>
+                  </li>
+                </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
