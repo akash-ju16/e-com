@@ -22,4 +22,23 @@ class CommandLine extends Controller
 
     /** using factory */
     //php artisan make:factory PostFactory
+
+/** 
+ * data insert using seeder
+ * 
+ */
+
+// php artisan make:seeder FilenameSeeder
+//     -using db facade for insert data
+//     -using array for insert multiple data
+//     -using carbon for insert date
+
+// run seeder file all/specific file
+//     -using call method
+
+// for all 
+//     php artisan db:seed
+// for specific
+//     php artisan db:seed --class=SubcateSeeder
+
 }
