@@ -17,8 +17,8 @@ class CreateDepartmentsTable extends Migration
             $table->id();
             $table->string('dname');
             $table->string('location');
+            $table->unsignedBigInteger('employe_id');
             $table->foreign('employe_id')->references('id')->on('employes');
-            // $table->foreignId('employe_id')->constrained();
             $table->timestamps();
         });
     }

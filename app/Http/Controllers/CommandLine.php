@@ -16,4 +16,10 @@ class CommandLine extends Controller
 
     /** TABLE CREATE */
     // php artisan make:migration create_posts_table 
+
+    /** using seeder */
+    //php artisan make:seeder FilenameSeeder
+
+    /** using factory */
+    //php artisan make:factory PostFactory
 }
