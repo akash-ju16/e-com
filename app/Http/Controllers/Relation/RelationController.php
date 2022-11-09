@@ -13,8 +13,25 @@ class RelationController extends Controller
      */
     public function oneToOne()
     {
-        $emp = Employe::all();
-        dd($emp);
+        //get employee id then return only one data department table which on mathches
+        $emp = Employe::find(27)->department;
+
+        //return two table data 
+        $emp1 = Employe::with('department')->get();
+        
+        foreach ($emp1 as $val) {
+            echo 'Employee Name: '.$val->ename.'</br>';
+            echo 'Department Name: '.$val->department->dname;
+            echo '<hr></br>';
+            // echo '<pre>';
+            // print_r($val);
+            // echo '</pre>';
+            
+        }
+        exit;
+        // dd($emp1);
+
+
         return view('backend.practice.one_to_one');
     }
 
