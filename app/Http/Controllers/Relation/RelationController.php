@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Relation;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Employe;
 
 class RelationController extends Controller
 {
@@ -12,6 +13,8 @@ class RelationController extends Controller
      */
     public function oneToOne()
     {
+        $emp = Employe::all();
+        dd($emp);
         return view('backend.practice.one_to_one');
     }
 
