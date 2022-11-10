@@ -23,6 +23,12 @@ class CommandLine extends Controller
     /** using factory */
     //php artisan make:factory PostFactory
 
+    /** model with migration */
+    //php artisan make:model ModelName -m
+
+    /** database new table upload */
+    //php artisan migrate
+
 /** 
  * data insert using seeder
  * 
