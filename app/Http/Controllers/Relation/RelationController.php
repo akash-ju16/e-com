@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Relation;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Employe;
+use App\Models\Categorie;
 
 class RelationController extends Controller
 {
@@ -40,6 +41,20 @@ class RelationController extends Controller
      */
     public function oneToMany()
     {
+        $emp = Categorie::find(1)->subcategorie;
+
+        //return two table data 
+        $emp1 = Categorie::with('subcategorie')->get();
+        // dd($emp1);
+        foreach ($emp1 as $cat) {
+           echo 'Category Name: '.$cat->en_name;
+            foreach ($cat->subcategorie as $sub) {
+                echo '<br>';
+                echo 'SubCategory Name: '.$sub->en_name;
+            }
+            echo '<hr></br>';    
+        }
+        exit;
         return view('backend.practice.one_to_many');
     }
 
