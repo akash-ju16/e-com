@@ -68,8 +68,8 @@ class RelationController extends Controller
         $course = Course::find(1);	
 
         /** course_id = 1, er jotogulo student ache ta dekhabe  */
-        $student = $course->student;
-        dd($student);
+        // $student = $course->student;
+        // dd($student);
 
         /** attach means course_id = 1 er under jei id gulo insert korte hobe */
         // $studentId = [5, 9, 7];
@@ -86,6 +86,13 @@ class RelationController extends Controller
          * */
         // $studentId = [5, 9, 7];
         // $course->student()->sync($studentId);
+
+        /** 
+         * toggle means matching gulo delete kore dibe
+         * aar jeita match korbe na seta insert korbe
+         * aar totaly new hole insert kore nibe
+         */
+        dd($course->student()->toggle([1, 2, 3, 8]));
         
         dd($course);
 
