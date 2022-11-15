@@ -65,11 +65,29 @@ class RelationController extends Controller
      */
     public function manyToMany()
     {
-        $crs = Course::find(1);	
-        // dd($stdn);
-        $studentId = [1, 2];
-        // $crs->student()->attach($studentId);
-        dd($crs->student()->sync($studentId));
+        $course = Course::find(1);	
+
+        /** course_id = 1, er jotogulo student ache ta dekhabe  */
+        $student = $course->student;
+        dd($student);
+
+        /** attach means course_id = 1 er under jei id gulo insert korte hobe */
+        // $studentId = [5, 9, 7];
+        // $course->student()->attach($studentId);
+
+        /** detach means course_id = 1 er under jei id gulo thakbe ta delete korbe */
+        // $studentId = [2];
+        // $course->student()->detach($studentId);
+
+        /** 
+         * sync means course_id = 1 er under jei id gulo dibo sei gulo age check korbe ta 
+         * thakle insert korbe na aar na thakle insert korbe aar sei id gulo bad diye sob delete kore dibe 
+         * 
+         * */
+        // $studentId = [5, 9, 7];
+        // $course->student()->sync($studentId);
+        
+        dd($course);
 
         return view('backend.practice.many_to_many');
     }
