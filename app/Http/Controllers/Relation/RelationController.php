@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Employe;
 use App\Models\Categorie;
+use App\Models\Student;
+use App\Models\Course;
 
 class RelationController extends Controller
 {
@@ -63,6 +65,12 @@ class RelationController extends Controller
      */
     public function manyToMany()
     {
+        $crs = Course::find(1);	
+        // dd($stdn);
+        $studentId = [1, 2];
+        // $crs->student()->attach($studentId);
+        dd($crs->student()->sync($studentId));
+
         return view('backend.practice.many_to_many');
     }
 }
