@@ -85,6 +85,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/relation/one-to-many', [RelationController::class, 'oneToMany'])->name('onetomany');
     Route::get('/relation/many-to-many', [RelationController::class, 'manyToMany'])->name('manytomany');
 
+    /** collection */
+    Route::get('/collection', [RelationController::class, 'collection'])->name('collection');
 });
 
 

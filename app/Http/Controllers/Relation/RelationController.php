@@ -98,4 +98,32 @@ class RelationController extends Controller
 
         return view('backend.practice.many_to_many');
     }
+
+    /**
+     * using Illuminate\Support\Collection
+     */
+    public function collection()
+    {
+        //collection class provides a fluent, convenient wrapper for working with array of data
+
+        $data = [1,2,3,4,5,6,7];
+        $collect = collect($data);
+        //dd($collect);
+
+        //all method represent only array 
+        //$data = $collect->all();
+        //$data = $collect->avg(); // return avg value
+
+        //chunk divide array with desire number of item
+        //$data = $collect->chunk(2);
+        //$data = $collect->chunk(2)->all();
+        //$data = $collect->reverse();
+
+        //map each item niye kaj kore; meanse array er protiti item niye manipulate kora jai, bec- callback function
+        $data = $collect->map(function($item, $key){
+            return $key;
+        });
+
+        dd($data);
+    }
 }
