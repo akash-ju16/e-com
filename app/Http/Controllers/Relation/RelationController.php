@@ -8,6 +8,7 @@ use App\Models\Employe;
 use App\Models\Categorie;
 use App\Models\Student;
 use App\Models\Course;
+use Illuminate\Support\Facades\DB;
 
 class RelationController extends Controller
 {
@@ -104,6 +105,11 @@ class RelationController extends Controller
      */
     public function collection()
     {
+
+        // $stdnt = Student::all();
+        // $stdnt = DB::table('students')->get();
+        // dd(collect($stdnt)->chunk(3));
+
         //collection class provides a fluent, convenient wrapper for working with array of data
 
         $data = [1,2,3,4,5,6,7];
@@ -120,10 +126,15 @@ class RelationController extends Controller
         //$data = $collect->reverse();
 
         //map each item niye kaj kore; meanse array er protiti item niye manipulate kora jai, bec- callback function
-        $data = $collect->map(function($item, $key){
-            return $key;
-        });
+        // $data = $collect->map(function($item, $key){
+        //     return $key;
+        // });
 
-        dd($data);
+        //all means only array
+        // $data = $collect->map(function($item, $key){
+        //     return $item + 2;
+        // })->all();
+
+        // dd($data);
     }
 }
