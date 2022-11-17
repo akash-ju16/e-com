@@ -47,4 +47,8 @@ class CommandLine extends Controller
 // for specific
 //     php artisan db:seed --class=SubcateSeeder
 
+//api
+//php artisan make:controller Api/ProductController
+
+//php artisan make:resource ProductResource
 }
