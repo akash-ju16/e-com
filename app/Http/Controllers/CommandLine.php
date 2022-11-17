@@ -51,4 +51,7 @@ class CommandLine extends Controller
 //php artisan make:controller Api/ProductController
 
 //php artisan make:resource ProductResource
+
+//npm run deve
+//npm run watch
 }

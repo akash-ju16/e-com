@@ -10,4 +10,4 @@ import CategoryComp from './components/CategoryComp.vue'
 
 const app = createApp({});
 app.component('category-grid', CategoryComp);
-app.mount("#app");
+app.mount("#cat");
