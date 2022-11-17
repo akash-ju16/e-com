@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     RegisterController,LoginController,ProductController,
     ServiceController,HomeController,MainCatController,SubCatController,ChildCatController,
-    DependencyControler
+    DependencyControler, PracticeController
 };
 use App\Http\Controllers\Relation\RelationController;
 
@@ -92,3 +92,6 @@ Route::middleware('auth')->group(function(){
 
 //custom service pages
 Route::get('/service', [ServiceController::class, 'displayService']);
+
+//api page >> from vue to laravel blade
+Route::get('/item', [PracticeController::class, 'categoryItem']);
