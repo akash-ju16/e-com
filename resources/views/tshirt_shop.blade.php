@@ -11,9 +11,9 @@
     <div id="tshirt">
         <top-header></top-header>
         <menu-bar></menu-bar>
+        <product-list></product-list>
+        <footer-app></footer-app>
     </div>
-
-
 
 </body>
 </html>
