@@ -95,3 +95,4 @@ Route::get('/service', [ServiceController::class, 'displayService']);
 
 //api page >> from vue to laravel blade
 Route::get('/item', [PracticeController::class, 'categoryItem']);
+Route::get('/t-shirt', [PracticeController::class, 'tTemplate']);

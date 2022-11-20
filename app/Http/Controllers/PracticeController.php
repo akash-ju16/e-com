@@ -11,4 +11,13 @@ class PracticeController extends Controller
     {
         return view('category_item_display');
     }
+
+
+    /** 
+     * t-shirt shop
+    */
+    public function tTemplate()
+    {
+        return view('tshirt_shop');
+    }
 }
