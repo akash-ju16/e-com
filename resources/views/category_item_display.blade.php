@@ -9,7 +9,7 @@
 
 
     <div id="cat">
-        <category-grid></category-grid>
+        <category-grid greeting-message="hello"></category-grid>
     </div>
 
 

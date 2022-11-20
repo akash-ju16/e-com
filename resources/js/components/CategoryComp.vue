@@ -1,4 +1,5 @@
 <template>
+    <h1>{{ greetingMessage }}</h1>
     <u v-for="item in items" :key="item.id">
         <li>{{ item.id }}. {{ item.en_name }}</li>
     </u>
@@ -6,6 +7,9 @@
 
 <script>
 export default {
+    props: {
+        greetingMessage : String,
+    },
     data() {
         return {
             items: []

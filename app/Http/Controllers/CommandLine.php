@@ -52,6 +52,12 @@ class CommandLine extends Controller
 
 //php artisan make:resource ProductResource
 
-//npm run deve
+//npm run dev
 //npm run watch
+//php artisan --version
+
+//npm install vuetify --force
+//npm install sass@~1.32 sass-loader deepmerge -D
+//npm install vuetify-loader
+//npm install --save-dev case-sensitive-paths-webpack-plugin
 }
