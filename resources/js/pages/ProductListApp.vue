@@ -1,17 +1,29 @@
 <template>
+<v-app>
+    <v-main>
+        <v-container>
+            <v-row>
+            <v-col v-for="item in items" :key="item.id" cols="4">
+                <v-card>
+                   <v-img
+                        :src="`http://127.0.0.1:8000/vue-images/${item.cat_img_name}`"
+                        height="250"
+                        cover
+                        class="bg-grey-lighten-2"
+                        ></v-img> 
+                    <v-card-title class="text-h6">{{ item.en_name }}</v-card-title>
+                </v-card>
+            </v-col>
+            </v-row>
+        </v-container>
 
- <v-app class="grey lighten-4">
-    <v-content class="mx-4 mb-4">
-        <h1>hello</h1>
-        <v-btn color="primary">Primary</v-btn>
-    </v-content>
-  </v-app>
+        <!-- <h1>{{ greetingMessage }}</h1> -->
+       
 
-
-    <h1>{{ greetingMessage }}</h1>
-    <u v-for="item in items" :key="item.id">
-        <li>{{ item.id }}. {{ item.en_name }}</li>
-    </u>
+    </v-main>
+</v-app>
+        
+    
 </template>
 
 <script>
