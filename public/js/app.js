@@ -2145,7 +2145,11 @@ var render = function render() {
       }
     }), _vm._v(" "), _c("v-card-title", {
       staticClass: "text-h6"
-    }, [_vm._v(_vm._s(item.en_name))])], 1)], 1);
+    }, [_c("a", {
+      attrs: {
+        href: "t-shirt/".concat(item.id)
+      }
+    }, [_vm._v(_vm._s(item.en_name))])])], 1)], 1);
   }), 1)], 1)], 1)], 1);
 };
 var staticRenderFns = [];

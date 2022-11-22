@@ -11,7 +11,7 @@
                         cover
                         class="bg-grey-lighten-2"
                         ></v-img> 
-                    <v-card-title class="text-h6">{{ item.en_name }}</v-card-title>
+                    <v-card-title class="text-h6"><a :href="`t-shirt/${item.id}`">{{ item.en_name }}</a></v-card-title>
                 </v-card>
             </v-col>
             </v-row>
