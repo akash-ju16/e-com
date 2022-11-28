@@ -1,4 +1,5 @@
 <template>
+
 <v-app>
     <v-main>
         <v-container>
@@ -11,7 +12,10 @@
                         cover
                         class="bg-grey-lighten-2"
                         ></v-img> 
-                    <v-card-title class="text-h6"><a :href="`t-shirt/${item.id}`">{{ item.en_name }}</a></v-card-title>
+                    <v-card-title class="text-h6">
+                        <router-link :to="`/zzz/${item.id}`">{{ item.en_name }}</router-link>
+                        <!-- <router-link @click="goTo('/zzz/1')">{{ item.en_name }}</router-link> -->
+                    </v-card-title>
                 </v-card>
             </v-col>
             </v-row>
@@ -42,7 +46,10 @@ export default {
                 .then((response) => {
                     this.items = response.data.data
                 })
-        }
+        },
+        // goTo(val) {
+        //      window.open(val);
+        // },
     },
     mounted() {
         this.getCategory()

@@ -3,15 +3,25 @@ require('./bootstrap');
 
 import Vue from 'vue'
 import vuetify from "../plugins/vuetify.js";
+import VueRouter from 'vue-router'
+import Routes from './router.js'
 
 //import component file
 import CategoryComp from './pages/TopHeaderApp.vue'
 
 Vue.config.productionTip = false
 
+Vue.use(VueRouter)
+
+const router = new VueRouter({
+	routes: Routes
+});
+
+
 new Vue({
     vuetify,
-	render: h => h(CategoryComp)
+	render: h => h(CategoryComp),
+    router: router
 }).$mount('#tshirt')
 
 

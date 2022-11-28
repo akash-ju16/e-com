@@ -19,6 +19,13 @@ class ApiController extends Controller
     //    return response()->json($category);
     }
 
+    public function singleGetCategories(Request $request) 
+    {
+        $detailsProduct = Categorie::where('id', $request->id)->get();
+
+        return response()->json($detailsProduct);
+    }
+
     public function getSubCategories(Request $request){
         
         $subcategory = Subcategorie::where('categorie_id', $request->country_id)->get();

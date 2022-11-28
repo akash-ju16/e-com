@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ApiController;
 
 Route::get('/category', [ApiController::class, 'getCategories']);
+Route::get('/category/{id}', [ApiController::class, 'singleGetCategories']);
 Route::get('/subcategory/{country_id}', [ApiController::class, 'getSubCategories']);
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

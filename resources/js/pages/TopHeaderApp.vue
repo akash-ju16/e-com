@@ -4,7 +4,7 @@
       <v-container class="py-0 fill-height">
         <v-avatar class="mr-10" color="grey darken-1" size="32"></v-avatar>
         <v-btn v-for="link in links" :key="link" text>
-          {{ link }}
+          <router-link to="/zzz">{{ link }}</router-link>
         </v-btn>
         <v-spacer></v-spacer>
         <v-responsive max-width="260">
@@ -42,19 +42,23 @@
 
           <v-col>
             <v-sheet min-height="70vh" rounded="lg">
-                <ProductListApp> </ProductListApp>
+                <span v-if="this.$route.params.id"><ProductDetailsApp> </ProductDetailsApp></span>
+                <span v-else><ProductListApp> </ProductListApp></span>
             </v-sheet>
+          
           </v-col>
         </v-row>
       </v-container>
     </v-main>
+    <router-view /> <!--For router link-->
   </v-app>
 </template>
 
 <script>
 import ProductListApp from '../pages/ProductListApp.vue'
+import ProductDetailsApp from '../pages/ProductDetailsApp.vue'
   export default {
-    components: {ProductListApp},
+    components: {ProductListApp, ProductDetailsApp},
     data: () => ({
       links: [
         'Dashboard',
@@ -63,6 +67,7 @@ import ProductListApp from '../pages/ProductListApp.vue'
         'KIDS',
         'GIFT CARDS'
       ],
+      awesome: this.$route.params.id,
     }),
   }
 </script>
