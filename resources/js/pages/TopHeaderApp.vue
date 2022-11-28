@@ -42,9 +42,8 @@
 
           <v-col>
             <v-sheet min-height="70vh" rounded="lg">
-
-                <ProductListApp> </ProductListApp>
-                
+                <span v-if="this.$route.params.id"><ProductDetailsApp> </ProductDetailsApp></span>
+                <span v-else><ProductListApp> </ProductListApp></span>
             </v-sheet>
           
           </v-col>
@@ -57,8 +56,9 @@
 
 <script>
 import ProductListApp from '../pages/ProductListApp.vue'
+import ProductDetailsApp from '../pages/ProductDetailsApp.vue'
   export default {
-    components: {ProductListApp},
+    components: {ProductListApp, ProductDetailsApp},
     data: () => ({
       links: [
         'Dashboard',
@@ -67,7 +67,7 @@ import ProductListApp from '../pages/ProductListApp.vue'
         'KIDS',
         'GIFT CARDS'
       ],
-      type: true,
+      awesome: this.$route.params.id,
     }),
   }
 </script>

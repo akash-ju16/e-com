@@ -1,12 +1,16 @@
-import FooterApp from './pages/FooterApp.vue'
+// import ProductDetailsApp from './pages/ProductDetailsApp.vue'
 
 export default [
         
     {
         path: '/zzz/:id', 
         name: 'zzz', 
-        component: FooterApp
-    }
+    },
+    // {
+    //     path: '/zzz/:id', 
+    //     name: 'zzz', 
+    //     component: ProductDetailsApp
+    // }
 
 ]
 

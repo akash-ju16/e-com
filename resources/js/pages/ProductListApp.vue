@@ -46,7 +46,10 @@ export default {
                 .then((response) => {
                     this.items = response.data.data
                 })
-        }
+        },
+        // goTo(val) {
+        //      window.open(val);
+        // },
     },
     mounted() {
         this.getCategory()
