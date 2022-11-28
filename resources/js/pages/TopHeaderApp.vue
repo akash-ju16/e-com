@@ -4,7 +4,7 @@
       <v-container class="py-0 fill-height">
         <v-avatar class="mr-10" color="grey darken-1" size="32"></v-avatar>
         <v-btn v-for="link in links" :key="link" text>
-          {{ link }}
+          <router-link to="/zzz">{{ link }}</router-link>
         </v-btn>
         <v-spacer></v-spacer>
         <v-responsive max-width="260">
@@ -42,12 +42,16 @@
 
           <v-col>
             <v-sheet min-height="70vh" rounded="lg">
+
                 <ProductListApp> </ProductListApp>
+                
             </v-sheet>
+          
           </v-col>
         </v-row>
       </v-container>
     </v-main>
+    <router-view /> <!--For router link-->
   </v-app>
 </template>
 
@@ -63,6 +67,7 @@ import ProductListApp from '../pages/ProductListApp.vue'
         'KIDS',
         'GIFT CARDS'
       ],
+      type: true,
     }),
   }
 </script>
